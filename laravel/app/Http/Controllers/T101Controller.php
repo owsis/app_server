@@ -1,0 +1,59 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+use App\Http\Requests;
+use App\T101;
+use App\T004;
+use App\Transformers\T101Transformer;
+
+class T101Controller extends Controller
+{
+    public function get(T101 $t101)
+    {
+        $t101s = $t101->all();
+
+        return fractal()
+        ->collection($t101s)
+        ->transformWith(new T101Transformer)
+        ->addMeta([
+            'data-count' => $t101->count()
+        ])
+        ->toArray();
+    }
+
+    public function post(Request $req, T101 $t101, $revCode, $unitCode)
+    {
+        $rev_code = \App\User::where('reveral_code', $revCode)->get();
+        $unit_code = \App\T003::where('code_unit', $unitCode)
+        ->update([
+            'status_unit' => 'close'
+        ]);
+
+        $this->validate($req, [
+            'branchcode' => 'required',
+            'booking_no' => 'required',
+            'code_customer' => 'required',
+            'name_customer' => 'required',
+            'code_unit' => 'required',
+            'type_unit' => 'required',
+            'first_payment' => 'required',
+            'type_payment' => 'required'
+        ]);
+
+        $t101s = $t101->create([
+            'branchcode' => $req->branchcode,
+            'booking_no' => $req->booking_no,
+            'code_customer' => $req->code_customer,
+            'name_customer' => strtoupper($req->name_customer),
+            'code_unit' => $req->code_unit,
+            'type_unit' => $req->type_unit,
+            'first_payment' => $req->first_payment,
+            'type_payment' => $req->type_payment,
+            'reveral_code' => $rev_code[0]->id
+        ]);
+
+        return response()->json($t101s);
+    }
+}
