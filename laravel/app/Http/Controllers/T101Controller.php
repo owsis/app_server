@@ -17,8 +17,9 @@ class T101Controller extends Controller
         return fractal()
         ->collection($t101s)
         ->transformWith(new T101Transformer)
+        ->includeT002()
         ->addMeta([
-            'data-count' => $t101->count()
+            'data_count' => $t101->count()
         ])
         ->toArray();
     }

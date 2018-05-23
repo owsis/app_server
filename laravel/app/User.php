@@ -37,4 +37,9 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function t101()
+    {
+        return $this->belongsTo(\App\T101::class);
+    }
 }

@@ -22,4 +22,9 @@ class T101 extends Model
         'cash',
         'reveral_code'
     ];
+
+    public function t002()
+    {
+        return $this->hasOne(\App\User::class);
+    }
 }
