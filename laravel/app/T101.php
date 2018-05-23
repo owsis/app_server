@@ -17,6 +17,9 @@ class T101 extends Model
         'type_unit',
         'first_payment',
         'type_payment',
+        'dp',
+        'kpr',
+        'cash',
         'reveral_code'
     ];
 }

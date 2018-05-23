@@ -39,7 +39,10 @@ class T101Controller extends Controller
             'code_unit' => 'required',
             'type_unit' => 'required',
             'first_payment' => 'required',
-            'type_payment' => 'required'
+            'type_payment' => 'required',
+            'dp' => 'required',
+            'kpr' => 'required',
+            'cash' => 'required'
         ]);
 
         $t101s = $t101->create([
@@ -51,6 +54,9 @@ class T101Controller extends Controller
             'type_unit' => $req->type_unit,
             'first_payment' => $req->first_payment,
             'type_payment' => $req->type_payment,
+            'dp' => $req->dp,
+            'kpr' => $req->kpr,
+            'cash' => $req->cash,
             'reveral_code' => $rev_code[0]->id
         ]);
 
