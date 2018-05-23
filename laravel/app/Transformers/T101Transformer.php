@@ -5,7 +5,7 @@ namespace App\Transformers;
 use App\T101;
 use League\Fractal\TransformerAbstract;
 
-class T002Transformer extends TransformerAbstract
+class T101Transformer extends TransformerAbstract
 {
      public function transform(T101 $t101)
      {
@@ -18,6 +18,7 @@ class T002Transformer extends TransformerAbstract
           'type_unit' => $t101->type_unit,
           'first_payment' => $t101->first_payment,
           'type_payment' => $t101->type_payment,
+          'reveral_code' => $t101->reveral_code
           ];
      }
 }

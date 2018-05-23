@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateT101sTable extends Migration
+class CreateT005sTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,16 +13,10 @@ class CreateT101sTable extends Migration
      */
     public function up()
     {
-        Schema::create('t101s', function (Blueprint $table) {
+        Schema::create('t005s', function (Blueprint $table) {
             $table->increments('id');
             $table->string('branchcode');
-            $table->string('booking_no');
-            $table->string('code_customer');
-            $table->string('name_customer');
-            $table->string('code_unit');
-            $table->string('type_unit');
-            $table->string('first_payment');
-            $table->string('type_payment');
+            $table->string('nominal');
             $table->timestamps();
         });
     }
@@ -34,6 +28,6 @@ class CreateT101sTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('t101s');
+        Schema::dropIfExists('t005s');
     }
 }
