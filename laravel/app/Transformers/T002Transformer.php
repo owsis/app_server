@@ -10,6 +10,7 @@ class T002Transformer extends TransformerAbstract
      public function transform(User $t002)
      {
           return [
+          'id' => $t002->id,
           'branchcode' => $t002->branchcode,
           'code' => $t002->code,
           'email' => $t002->email,

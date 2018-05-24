@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use App\T101;
 
 class User extends Authenticatable
 {
@@ -40,6 +41,6 @@ class User extends Authenticatable
 
     public function t101()
     {
-        return $this->belongsTo(\App\T101::class);
+        return $this->belongsTo(T101::class);
     }
 }

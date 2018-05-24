@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\User;
 
 class T101 extends Model
 {
@@ -15,6 +16,7 @@ class T101 extends Model
         'name_customer',
         'code_unit',
         'type_unit',
+        'price_unit',
         'first_payment',
         'type_payment',
         'dp',
@@ -25,6 +27,6 @@ class T101 extends Model
 
     public function t002()
     {
-        return $this->hasOne(\App\User::class);
+        return $this->hasOne(T002::class);
     }
 }

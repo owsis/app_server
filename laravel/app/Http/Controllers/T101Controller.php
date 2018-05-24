@@ -5,22 +5,25 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\T101;
+use App\User;
 use App\T004;
 use App\Transformers\T101Transformer;
 
 class T101Controller extends Controller
 {
-    public function get(T101 $t101)
+    public function get(T101 $t101, User $t002, $revCode)
     {
-        $t101s = $t101->all();
+        $rev_code = $t002::where('reveral_code', $revCode)->get();
+
+        $t101s = $t101::where('reveral_code', $rev_code[0]->id)->get();
 
         return fractal()
         ->collection($t101s)
         ->transformWith(new T101Transformer)
-        ->includeT002()
         ->addMeta([
             'data_count' => $t101->count()
         ])
+        ->includeT002()
         ->toArray();
     }
 
@@ -39,6 +42,7 @@ class T101Controller extends Controller
             'name_customer' => 'required',
             'code_unit' => 'required',
             'type_unit' => 'required',
+            'price_unit' => 'required',
             'first_payment' => 'required',
             'type_payment' => 'required',
             'dp' => 'required',
@@ -53,6 +57,7 @@ class T101Controller extends Controller
             'name_customer' => strtoupper($req->name_customer),
             'code_unit' => $req->code_unit,
             'type_unit' => $req->type_unit,
+            'price_unit' => $req->price_unit,
             'first_payment' => $req->first_payment,
             'type_payment' => $req->type_payment,
             'dp' => $req->dp,

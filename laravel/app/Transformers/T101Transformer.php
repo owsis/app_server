@@ -9,7 +9,7 @@ use League\Fractal\TransformerAbstract;
 class T101Transformer extends TransformerAbstract
 {
    protected $availableIncludes = [
-      'reveral'
+      'reveral_code'
    ];
    
      public function transform(T101 $t101)
@@ -21,6 +21,7 @@ class T101Transformer extends TransformerAbstract
           'name_customer' => $t101->name_customer,
           'code_unit' => $t101->code_unit,
           'type_unit' => $t101->type_unit,
+          'price_unit' => $t101->price_unit,
           'first_payment' => $t101->first_payment,
           'type_payment' => $t101->type_payment,
           'dp' => $t101->dp,
@@ -32,8 +33,8 @@ class T101Transformer extends TransformerAbstract
 
      public function includeT002(T101 $t101)
      {
-        $reveral = $t101->t002;
+        $reveral_code = $t101->t002;
 
-        return $this->collection($reveral, new T002Transformer);
+        return $this->item($reveral_code, new T002Transformer);
      }
 }
