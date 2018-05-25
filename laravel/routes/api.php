@@ -22,6 +22,7 @@ Route::post('/marketing/login', 'T002Controller@login');
 Route::get('/units', 'T003Controller@get');
 
 
+Route::get('/customer/{email}', 'T004Controller@get');
 Route::post('/customer', 'T004Controller@post');
 
 
@@ -30,5 +31,6 @@ Route::get('/add/pm', 'T006Controller@get');
 Route::get('/add/fp', 'T005Controller@get');
 Route::post('/add/fp', 'T005Controller@post');
 
+Route::get('/trans/{email}', 'T101Controller@getPembeli');
 Route::get('/trans/{revCode}', 'T101Controller@get');
 Route::post('/trans/{revCode}/{unitCode}', 'T101Controller@post');

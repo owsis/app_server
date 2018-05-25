@@ -15,6 +15,9 @@ class T004Controller extends Controller
         return fractal()
         ->collection($t004s)
         ->transformWith(new T004Transformer)
+        ->addMeta([
+            'data_count' => $t004::where('email', $email)->count()
+        ])
         ->toArray();
     }
 
