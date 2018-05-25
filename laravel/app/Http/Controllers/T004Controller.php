@@ -8,16 +8,13 @@ use App\Transformers\T004Transformer;
 
 class T004Controller extends Controller
 {
-    public function get(T004 $t004)
+    public function get(T004 $t004, $email)
     {
-        $t004s = $t004->all();
+        $t004s = $t004::where('email', $email)->get();
 
         return fractal()
         ->collection($t004s)
         ->transformWith(new T004Transformer)
-        ->addMeta([
-            'data-count' => $t004->count()
-        ])
         ->toArray();
     }
 

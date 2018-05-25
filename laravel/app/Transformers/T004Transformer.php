@@ -18,7 +18,7 @@ class T004Transformer extends TransformerAbstract
           'email' => $t004->email,
           'ktp' => $t004->ktp,
           'npwp' => $t004->npwp, 
-          'phone' => $t004->phone,
+          'phone' => $t004->phone
           ];
      }
 }

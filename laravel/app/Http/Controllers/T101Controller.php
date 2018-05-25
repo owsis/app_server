@@ -21,7 +21,7 @@ class T101Controller extends Controller
         ->collection($t101s)
         ->transformWith(new T101Transformer)
         ->addMeta([
-            'data_count' => $t101->count()
+            'data_count' => $t101::where('reveral_code', $rev_code[0]->id)->count()
         ])
         ->includeT002()
         ->toArray();
