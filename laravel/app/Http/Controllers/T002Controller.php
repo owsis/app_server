@@ -25,6 +25,16 @@ class T002Controller extends Controller
         ->toArray();
     }
 
+    public function getPhone(User $t002, $revCode)
+    {
+        $t002s = $t002::where('reveral_code', $revCode)->get();
+
+        return fractal()
+        ->collection($t002s)
+        ->transformWith(new T002Transformer)
+        ->toArray();
+    }
+
     public function register(Request $request, User $t002)
     {
         $this->validate($request, [

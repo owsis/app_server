@@ -15,6 +15,7 @@ use Illuminate\Http\Request;
 
 
 Route::get('/marketing', 'T002Controller@marketings');
+Route::get('/marketing/{revCode}', 'T002Controller@getPhone');
 Route::post('/marketing/reg', 'T002Controller@register');
 Route::post('/marketing/login', 'T002Controller@login');
 
@@ -31,6 +32,6 @@ Route::get('/add/pm', 'T006Controller@get');
 Route::get('/add/fp', 'T005Controller@get');
 Route::post('/add/fp', 'T005Controller@post');
 
-Route::get('/trans/{email}', 'T101Controller@getPembeli');
+Route::get('/trans-beli/{email}', 'T101Controller@getPembeli');
 Route::get('/trans/{revCode}', 'T101Controller@get');
 Route::post('/trans/{revCode}/{unitCode}', 'T101Controller@post');
