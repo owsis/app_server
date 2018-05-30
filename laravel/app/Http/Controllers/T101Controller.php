@@ -24,7 +24,6 @@ class T101Controller extends Controller
             'data_count' => $t101::where('reveral_code', $rev_code[0]->id)->count(),
             'kumulatif' => $t101::where('reveral_code', $rev_code[0]->id)->sum('price_unit')
         ])
-        ->includeT002()
         ->toArray();
     }
 
@@ -40,7 +39,6 @@ class T101Controller extends Controller
         ->addMeta([
             'data_count' => $t101::where('code_customer', $emailCust[0]->code_customer)->count()
         ])
-        ->includeT002()
         ->toArray();
     }
 

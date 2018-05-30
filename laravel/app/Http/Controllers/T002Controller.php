@@ -70,7 +70,7 @@ class T002Controller extends Controller
     public function login(Request $request, User $t002)
     {
         
-        if (!Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
+        if (!Auth::attempt(['phone' => $request->phone, 'password' => $request->password])) {
             return response()->json(['error' => 'Error'], 404);
         }
         $t002s = $t002->find(Auth::user()->id);
