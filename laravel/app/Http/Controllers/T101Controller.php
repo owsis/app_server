@@ -75,6 +75,7 @@ class T101Controller extends Controller
             'price_unit' => $req->price_unit,
             'first_payment' => $req->first_payment,
             'type_payment' => $req->type_payment,
+            'harga_trans' => $req->harga_trans,
             'dp' => $req->dp,
             'kpr' => $req->kpr,
             'cash' => $req->cash,
