@@ -14,7 +14,7 @@ class T007Controller extends Controller
 
         return fractal()
         ->collection($t007s)
-        ->transformWith(new T006Transformer)
+        ->transformWith(new T007Transformer)
         ->toArray();
     }
 

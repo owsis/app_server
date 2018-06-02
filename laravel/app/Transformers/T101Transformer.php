@@ -22,6 +22,7 @@ class T101Transformer extends TransformerAbstract
           'code_unit' => $t101->code_unit,
           'type_unit' => $t101->type_unit,
           'price_unit' => $t101->price_unit,
+          'nilai_trans' => $t101->nilai_transaksi,
           'first_payment' => $t101->first_payment,
           'type_payment' => $t101->type_payment,
           'dp' => $t101->dp,

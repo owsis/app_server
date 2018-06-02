@@ -17,6 +17,7 @@ class T101 extends Model
         'code_unit',
         'type_unit',
         'price_unit',
+        'nilai_transaksi',
         'first_payment',
         'type_payment',
         'dp',
