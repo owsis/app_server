@@ -22,7 +22,7 @@ class T101Controller extends Controller
         ->transformWith(new T101Transformer)
         ->addMeta([
             'data_count' => $t101::where('reveral_code', $rev_code[0]->id)->count(),
-            'kumulatif' => $t101::where('reveral_code', $rev_code[0]->id)->sum('price_unit')
+            'kumulatif' => $t101::where('reveral_code', $rev_code[0]->id)->sum('harga_trans')
         ])
         ->toArray();
     }
@@ -51,35 +51,36 @@ class T101Controller extends Controller
         ]);
 
         $this->validate($req, [
-            'branchcode' => 'required',
-            'booking_no' => 'required',
+            'branchcode'    => 'required',
+            'booking_no'    => 'required',
             'code_customer' => 'required',
             'name_customer' => 'required',
-            'code_unit' => 'required',
-            'type_unit' => 'required',
-            'price_unit' => 'required',
+            'code_unit'     => 'required',
+            'type_unit'     => 'required',
+            'price_unit'    => 'required',
             'first_payment' => 'required',
-            'type_payment' => 'required',
-            'dp' => 'required',
-            'kpr' => 'required',
-            'cash' => 'required'
+            'type_payment'  => 'required',
+            'dp'            => 'required',
+            'kpr'           => 'required',
+            'cash'          => 'required'
         ]);
 
         $t101s = $t101->create([
-            'branchcode' => $req->branchcode,
-            'booking_no' => $req->booking_no,
+            'branchcode'    => $req->branchcode,
+            'booking_no'    => $req->booking_no,
             'code_customer' => $req->code_customer,
             'name_customer' => strtoupper($req->name_customer),
-            'code_unit' => $req->code_unit,
-            'type_unit' => $req->type_unit,
-            'price_unit' => $req->price_unit,
+            'code_unit'     => $req->code_unit,
+            'type_unit'     => $req->type_unit,
+            'price_unit'    => $req->price_unit,
             'first_payment' => $req->first_payment,
-            'type_payment' => $req->type_payment,
-            'harga_trans' => $req->harga_trans,
-            'dp' => $req->dp,
-            'kpr' => $req->kpr,
-            'cash' => $req->cash,
-            'reveral_code' => $rev_code[0]->id
+            'type_payment'  => $req->type_payment,
+            'harga_trans'   => $req->harga_trans,
+            'dp'            => $req->dp,
+            'kpr'           => $req->kpr,
+            'cash'          => $req->cash,
+            'reveral_code'  => $rev_code[0]->id,
+            'status'        => $req->status
         ]);
 
         return response()->json($t101s);

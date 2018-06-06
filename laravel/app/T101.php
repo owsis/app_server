@@ -23,7 +23,8 @@ class T101 extends Model
         'dp',
         'kpr',
         'cash',
-        'reveral_code'
+        'reveral_code',
+        'status'
     ];
 
     public function t002()

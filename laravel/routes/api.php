@@ -15,7 +15,7 @@ use Illuminate\Http\Request;
 
 
 Route::get('/marketing', 'T002Controller@marketings');
-Route::get('/marketing/{revCode}', 'T002Controller@getPhone');
+Route::get('/marketing/{code}', 'T002Controller@updateUser');
 Route::post('/marketing/reg', 'T002Controller@register');
 Route::post('/marketing/login', 'T002Controller@login');
 

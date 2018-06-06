@@ -25,9 +25,9 @@ class T002Controller extends Controller
         ->toArray();
     }
 
-    public function getPhone(User $t002, $revCode)
+    public function updateUser(User $t002, $code)
     {
-        $t002s = $t002::where('reveral_code', $revCode)->get();
+        $t002s = $t002::where('code', $code)->get();
 
         return fractal()
         ->collection($t002s)
