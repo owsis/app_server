@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 
 use App\User;
+use App\T002_1;
 use Auth;
 use App\Transformers\T002Transformer;
 use Illuminate\Http\JsonResponse;
@@ -35,9 +36,9 @@ class T002Controller extends Controller
         ->toArray();
     }
 
-    public function register(Request $request, User $t002, $refFrom)
+    public function register(Request $request, User $t002, T002_1 $t002_1, $refFrom)
     {
-        $ref_from = $t002::where('referral_code', $refFrom)->get();
+        $ref_from = $t002_1::where('referral_code', $refFrom)->get();
 
         $this->validate($request, [
             'branchcode'    => 'required',
@@ -48,8 +49,7 @@ class T002Controller extends Controller
             'address'       => 'required',
             'phone'         => 'required',
             'ktp'           => 'required',
-            'npwp'          => 'required',
-            'referral_from' => 'required'
+            'npwp'          => 'required'
         ]);
 
         $t002s = $t002->create([
@@ -64,7 +64,14 @@ class T002Controller extends Controller
             'ktp'           => $request->ktp,
             'npwp'          => $request->npwp,
             'referral_code' => $request->ktp,
-            'referral_from' => $request->referral_from
+            'referral_from' => $ref_from[0]->id
+        ]);
+
+        $t002_1->create([
+            'branchcode'    => $request->branchcode,
+            'email'         => $request->email,
+            'name'          => strtoupper($request->name),
+            'referral_code' => $request->ktp
         ]);
 
         return fractal($t002s, new T002Transformer())
