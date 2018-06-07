@@ -35,10 +35,10 @@ class T002Controller extends Controller
         ->toArray();
     }
 
-    public function register(Request $request, User $t002)
+    public function register(Request $request, User $t002, $refFrom)
     {
         $ref_from = $t002::where('referral_code', $refFrom)->get();
-        
+
         $this->validate($request, [
             'branchcode'    => 'required',
             'code'          => 'required',

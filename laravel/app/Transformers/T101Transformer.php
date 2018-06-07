@@ -28,7 +28,7 @@ class T101Transformer extends TransformerAbstract
           'dp'            => $t101->dp,
           'kpr'           => $t101->kpr,
           'cash'          => $t101->cash,
-          'reveral_code'  => $t101->reveral_code,
+          'referral_code'  => $t101->referral_code,
           'status'        => $t101->status
           ];
      }
