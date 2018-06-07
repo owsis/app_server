@@ -37,30 +37,34 @@ class T002Controller extends Controller
 
     public function register(Request $request, User $t002)
     {
+        $ref_from = $t002::where('referral_code', $refFrom)->get();
+        
         $this->validate($request, [
-            'branchcode' => 'required',
-            'code' => 'required',
-            'email' => 'required|email|unique:t002s',
-            'password' => 'required|min:6',
-            'name' => 'required',
-            'address' => 'required',
-            'phone' => 'required',
-            'ktp' => 'required',
-            'npwp' => 'required'
+            'branchcode'    => 'required',
+            'code'          => 'required',
+            'email'         => 'required|email|unique:t002s',
+            'password'      => 'required|min:6',
+            'name'          => 'required',
+            'address'       => 'required',
+            'phone'         => 'required',
+            'ktp'           => 'required',
+            'npwp'          => 'required',
+            'referral_from' => 'required'
         ]);
 
         $t002s = $t002->create([
-            'branchcode' => $request->branchcode,
-            'code' => $request->code,
-            'email' => $request->email,
-            'password' => bcrypt($request->password),
-            'api_token' => bcrypt($request->email),
-            'name' => strtoupper($request->name),
-            'address' => strtoupper($request->address),
-            'phone' => $request->phone,
-            'ktp' => $request->ktp,
-            'npwp' => $request->npwp,
-            'reveral_code' => $request->ktp
+            'branchcode'    => $request->branchcode,
+            'code'          => $request->code,
+            'email'         => $request->email,
+            'password'      => bcrypt($request->password),
+            'api_token'     => bcrypt($request->email),
+            'name'          => strtoupper($request->name),
+            'address'       => strtoupper($request->address),
+            'phone'         => $request->phone,
+            'ktp'           => $request->ktp,
+            'npwp'          => $request->npwp,
+            'referral_code' => $request->ktp,
+            'referral_from' => $request->referral_from
         ]);
 
         return fractal($t002s, new T002Transformer())

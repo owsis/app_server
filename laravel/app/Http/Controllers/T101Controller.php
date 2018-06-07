@@ -13,16 +13,16 @@ class T101Controller extends Controller
 {
     public function get(T101 $t101, User $t002, $revCode)
     {
-        $rev_code = $t002::where('reveral_code', $revCode)->get();
+        $rev_code = $t002::where('referral_code', $revCode)->get();
 
-        $t101s = $t101::where('reveral_code', $rev_code[0]->id)->get();
+        $t101s = $t101::where('referral_code', $rev_code[0]->id)->get();
 
         return fractal()
         ->collection($t101s)
         ->transformWith(new T101Transformer)
         ->addMeta([
-            'data_count' => $t101::where('reveral_code', $rev_code[0]->id)->count(),
-            'kumulatif' => $t101::where('reveral_code', $rev_code[0]->id)->sum('harga_trans')
+            'data_count' => $t101::where('referral_code', $rev_code[0]->id)->count(),
+            'kumulatif' => $t101::where('referral_code', $rev_code[0]->id)->sum('harga_trans')
         ])
         ->toArray();
     }
@@ -31,7 +31,7 @@ class T101Controller extends Controller
     {
         $emailCust = $t004::where('email', $email)->get();
 
-        $t101s = $t101::where('code_customer', $emailCust[0]->code_customer)->get();
+        $t101s = $t101::where('code_customer', $emailCust[0]->code_customer)->orWhere('code_customer', $emailCust[1]->code_customer)->get();
 
         return fractal()
         ->collection($t101s)
@@ -44,7 +44,7 @@ class T101Controller extends Controller
 
     public function post(Request $req, T101 $t101, $revCode, $unitCode)
     {
-        $rev_code = \App\User::where('reveral_code', $revCode)->get();
+        $rev_code = \App\User::where('referral_code', $revCode)->get();
         $unit_code = \App\T003::where('code_unit', $unitCode)
         ->update([
             'status_unit' => 'close'

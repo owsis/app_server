@@ -23,7 +23,7 @@ Route::post('/marketing/login', 'T002Controller@login');
 Route::get('/units', 'T003Controller@get');
 
 
-Route::get('/customer/{email}', 'T004Controller@get');
+Route::get('/customer/{email}/{branchcode}', 'T004Controller@get');
 Route::post('/customer', 'T004Controller@post');
 
 

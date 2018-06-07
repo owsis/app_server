@@ -20,7 +20,8 @@ class T002Transformer extends TransformerAbstract
           'phone' => $t002->phone,
           'ktp' => $t002->ktp,
           'npwp' => $t002->npwp,
-          'reveral_code' => $t002->reveral_code 
+          'referral_code' => $t002->referral_code, 
+          'referral_from' => $t002->referral_from, 
           ];
      }
 }

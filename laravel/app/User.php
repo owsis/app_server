@@ -27,7 +27,8 @@ class User extends Authenticatable
         'phone',
         'ktp',
         'npwp',
-        'reveral_code'
+        'referral_code',
+        'referral_from'
     ];
 
     /**
