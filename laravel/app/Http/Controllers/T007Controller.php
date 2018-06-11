@@ -10,11 +10,14 @@ class T007Controller extends Controller
 {
     public function get(T007 $t007)
     {
-        $t007s = $t007->all();
+        $t007s = $t007::where('status_nup', 'available')->get();
 
         return fractal()
         ->collection($t007s)
         ->transformWith(new T007Transformer)
+        ->addMeta([
+            'data-count' => $t007::where('status_nup', 'available')->count()
+        ])
         ->toArray();
     }
 

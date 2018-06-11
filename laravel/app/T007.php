@@ -10,7 +10,8 @@ class T007 extends Model
 
     protected $fillable = [
         'branchcode',
-        'name',
-        'disc'
+        'nup',
+        'code_user',
+        'status_nup'
     ];
 }

@@ -64,11 +64,10 @@ class T002Controller extends Controller
             'ktp'           => $request->ktp,
             'npwp'          => $request->npwp,
             'referral_code' => $request->ktp,
-            'referral_from' => $ref_from[0]->id
+            'referral_from' => $ref_from[0]->referral_code
         ]);
 
         $t002_1->create([
-            'branchcode'    => $request->branchcode,
             'email'         => $request->email,
             'name'          => strtoupper($request->name),
             'referral_code' => $request->ktp

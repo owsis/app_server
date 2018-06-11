@@ -11,8 +11,9 @@ class T007Transformer extends TransformerAbstract
      {
           return [
           'branchcode'     => $t007->branchcode,
-          'name'           => $t007->name,
-          'disc'           => $t007->disc
+          'nup'            => $t007->nup,
+          'code_user'      => $t007->code_user,
+          'status_nup'     => $t007->status_nup
           ];
      }
 }
