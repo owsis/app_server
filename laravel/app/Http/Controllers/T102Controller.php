@@ -15,7 +15,7 @@ class T102Controller extends Controller
             'order_id'  => 'required',
             'jum_nup'   => 'required',
             'total_nup' => 'required',
-            'code_nup'  => 'required',
+            'code_user'  => 'required',
         ]);
 
         $t102s = $t102->create([
@@ -23,7 +23,9 @@ class T102Controller extends Controller
             'order_id'  => $req->order_id,
             'jum_nup'   => $req->jum_nup,
             'total_nup' => $req->total_nup,
-            'code_nup'  => $req->code_nup,
+            'code_user' => $req->code_user,
+            'name_user' => $req->name_user,
+            'phone_user'=> $req->phone_user,
         ]);
 
         return response()->json($t102s);
