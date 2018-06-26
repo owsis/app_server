@@ -38,4 +38,5 @@ Route::get('/trans-beli/{email}', 'T101Controller@getPembeli');
 Route::get('/trans/{revCode}', 'T101Controller@get');
 Route::post('/trans/{revCode}/{unitCode}', 'T101Controller@post');
 
-Route::get('nup', 'T007Controller@get');
+Route::get('/nup', 'T007Controller@get');
+Route::post('/nup', 'T102Controller@post');

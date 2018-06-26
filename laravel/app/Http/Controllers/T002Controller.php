@@ -47,7 +47,7 @@ class T002Controller extends Controller
             'password'      => 'required|min:6',
             'name'          => 'required',
             'address'       => 'required',
-            'phone'         => 'required',
+            'phone'         => 'required|unique:t002s',
             'ktp'           => 'required',
             'npwp'          => 'required'
         ]);

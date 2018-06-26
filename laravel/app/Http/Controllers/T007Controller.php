@@ -16,7 +16,7 @@ class T007Controller extends Controller
         ->collection($t007s)
         ->transformWith(new T007Transformer)
         ->addMeta([
-            'data-count' => $t007::where('status_nup', 'available')->count()
+            'data_count' => $t007::where('status_nup', 'available')->count()
         ])
         ->toArray();
     }
