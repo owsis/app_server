@@ -13,6 +13,7 @@ use Illuminate\Http\Request;
 |
 */
 
+Route::get('/', 'T002Controller@api');
 
 Route::get('/marketing', 'T002Controller@marketings');
 Route::get('/marketing/{code}', 'T002Controller@updateUser');

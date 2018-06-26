@@ -13,6 +13,7 @@ class T102 extends Model
         'order_id',
         'jum_nup',
         'total_nup',
+        'status_nup',
         'code_user',
         'name_user',
         'phone_user',

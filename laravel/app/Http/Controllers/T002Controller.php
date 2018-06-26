@@ -13,6 +13,12 @@ use Illuminate\Http\JsonResponse;
 
 class T002Controller extends Controller
 {
+
+    public function api()
+    {
+        return view('welcome');
+    }
+
     public function marketings(User $t002)
     {
         $t002s = $t002->all();
