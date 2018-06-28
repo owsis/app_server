@@ -40,4 +40,5 @@ Route::get('/trans/{revCode}', 'T101Controller@get');
 Route::post('/trans/{revCode}/{unitCode}', 'T101Controller@post');
 
 Route::get('/nup', 'T007Controller@get');
+Route::get('/nup/{code_u}', 'T102Controller@get');
 Route::post('/nup', 'T102Controller@post');
