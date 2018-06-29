@@ -19,7 +19,7 @@ Route::get('/marketing', 'T002Controller@marketings');
 Route::get('/marketing/{code}', 'T002Controller@updateUser');
 Route::post('/marketing/reg/{refFrom}', 'T002Controller@register');
 Route::post('/marketing/login', 'T002Controller@login');
-
+Route::get('/nup/{code_u}', 'T002Controller@getNup');
 
 Route::get('/units', 'T003Controller@get');
 
@@ -40,5 +40,4 @@ Route::get('/trans/{revCode}', 'T101Controller@get');
 Route::post('/trans/{revCode}/{unitCode}', 'T101Controller@post');
 
 Route::get('/nup', 'T007Controller@get');
-Route::get('/nup/{code_u}', 'T102Controller@get');
 Route::post('/nup', 'T102Controller@post');
