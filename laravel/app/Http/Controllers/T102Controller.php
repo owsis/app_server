@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\T102;
 use App\User;
 use Illuminate\Http\Request;
+use App\Transformers\T102Transformer;
 
 class T102Controller extends Controller
 {
@@ -17,7 +18,7 @@ class T102Controller extends Controller
             ->transformWith(new T102Transformer)
             ->addMeta([
                 'data_count' => $t102::where('code_user', $code_u)->count(),
-                'kumulatif' => $t102::where('code_user', $code_u)->sum('jum_nup'),
+                'total_jum_nup' => $t102::where('code_user', $code_u)->where('status_nup', 'aktif')->sum('jum_nup'),
             ])
             ->toArray();
 

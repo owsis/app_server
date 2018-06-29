@@ -62,7 +62,7 @@ class T002Controller extends Controller
             'branchcode'    => $request->branchcode,
             'code'          => $request->code,
             'email'         => $request->email,
-            'password'      => bcrypt($request->password),
+            'password'      => $request->password,
             'api_token'     => bcrypt($request->email),
             'name'          => strtoupper($request->name),
             'address'       => strtoupper($request->address),
