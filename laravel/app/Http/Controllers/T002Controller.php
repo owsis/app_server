@@ -55,27 +55,29 @@ class T002Controller extends Controller
             'npwp' => 'required',
         ]);
 
+        $t002s = $t002->create([
+            'branchcode' => $request->branchcode,
+            'code' => $request->code,
+            'email' => $request->email,
+            'password' => bcrypt($request->password),
+            'api_token' => bcrypt($request->email),
+            'name' => strtoupper($request->name),
+            'address' => strtoupper($request->address),
+            'phone' => $request->phone,
+            'ktp' => $request->ktp,
+            'npwp' => $request->npwp,
+            'referral_code' => $request->ktp,
+            'referral_from' => $ref_from[0]->referral_code,
+        ]);
+
         if ($request->hasFile('image')) {
             $request->file('image')->store('public/imagesKtp');
 
             $filename = $request->file('image')->hashName();
-
-            $t002s = $t002->create([
-                'branchcode' => $request->branchcode,
-                'code' => $request->code,
-                'email' => $request->email,
-                'password' => bcrypt($request->password),
-                'api_token' => bcrypt($request->email),
-                'name' => strtoupper($request->name),
-                'address' => strtoupper($request->address),
-                'phone' => $request->phone,
-                'ktp' => $request->ktp,
+            
+            $t002->update([
                 'image_ktp' => $filename,
-                'npwp' => $request->npwp,
-                'referral_code' => $request->ktp,
-                'referral_from' => $ref_from[0]->referral_code,
             ]);
-
         }
 
         $t002_1->create([
