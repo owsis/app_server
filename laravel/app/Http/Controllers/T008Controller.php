@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\T008;
 use App\Transformers\T008Transformer;
 
-class T007Controller extends Controller
+class T008Controller extends Controller
 {
     public function get(T008 $t008)
     {
