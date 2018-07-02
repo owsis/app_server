@@ -14,27 +14,10 @@ class T008Controller extends Controller
 
         return fractal()
         ->collection($t008s)
-        ->transformWith(new T007Transformer)
+        ->transformWith(new T008Transformer)
         ->addMeta([
             'data_count' => $t008::count()
         ])
         ->toArray();
-    }
-
-    public function post(Request $req, T007 $t008)
-    {
-        $this->validate($req, [
-            'branchcode'    => 'required',
-            'name'          => 'required',
-            'disc'          => 'required'
-        ]);
-
-        $t008s = $t008->create([
-            'branchcode'    => $req->branchcode,
-            'name'          => $req->name,
-            'disc'          => $req->note
-        ]);
-
-        return response()->json($t008s, 201);
     }
 }
