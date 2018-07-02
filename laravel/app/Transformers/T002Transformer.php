@@ -21,7 +21,8 @@ class T002Transformer extends TransformerAbstract
           'ktp' => $t002->ktp,
           'npwp' => $t002->npwp,
           'referral_code' => $t002->referral_code, 
-          'referral_from' => $t002->referral_from, 
+          'referral_from' => $t002->referral_from,
+          'nup' => $t002->nup,
           ];
      }
 }
