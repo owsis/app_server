@@ -21,6 +21,8 @@ Route::post('/marketing/reg/{refFrom}', 'T002Controller@register');
 Route::post('/marketing/login', 'T002Controller@login');
 Route::get('/marketing/nup/{code_u}', 'T002Controller@getNup');
 
+
+Route::get('/newunits', 'T008Controller@get');
 Route::get('/units', 'T003Controller@get');
 
 

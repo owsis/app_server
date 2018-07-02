@@ -42,6 +42,7 @@ class T002Controller extends Controller
     public function register(Request $request, User $t002, T002_1 $t002_1, $refFrom)
     {
         $ref_from = $t002_1::where('referral_code', $refFrom)->get();
+        $originalImage = $request->file('filename');
 
         $this->validate($request, [
             'branchcode' => 'required',
@@ -52,6 +53,7 @@ class T002Controller extends Controller
             'address' => 'required',
             'phone' => 'required|unique:t002s',
             'ktp' => 'required',
+            'image_ktp' => 'image|required|mimes:jpeg,png,jpg,gif,svg',
             'npwp' => 'required',
         ]);
 
@@ -65,6 +67,7 @@ class T002Controller extends Controller
             'address' => strtoupper($request->address),
             'phone' => $request->phone,
             'ktp' => $request->ktp,
+            'image_ktp' => $path,
             'npwp' => $request->npwp,
             'referral_code' => $request->ktp,
             'referral_from' => $ref_from[0]->referral_code,
@@ -74,7 +77,7 @@ class T002Controller extends Controller
             $request->file('image')->store('public/imagesKtp');
 
             $filename = $request->file('image')->hashName();
-            
+
             $t002->update([
                 'image_ktp' => $filename,
             ]);
