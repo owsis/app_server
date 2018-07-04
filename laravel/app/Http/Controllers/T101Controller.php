@@ -27,17 +27,15 @@ class T101Controller extends Controller
         ->toArray();
     }
 
-    public function getPembeli(T101 $t101, T004 $t004, $email)
+    public function getPembeli(T101 $t101, $phone)
     {
-        $emailCust = $t004::where('email', $email)->get();
-
-        $t101s = $t101::where('code_customer', $emailCust[0]->code_customer)->orWhere('code_customer', $emailCust[1]->code_customer)->get();
+        $t101s = $t101::where('phone_customer', $phone)->get();
 
         return fractal()
         ->collection($t101s)
         ->transformWith(new T101Transformer)
         ->addMeta([
-            'data_count' => $t101::where('code_customer', $emailCust[0]->code_customer)->orWhere('code_customer', $emailCust[1]->code_customer)->count()
+            'data_count' => $t101::where('phone_customer', $phone)->count()
         ])
         ->toArray();
     }

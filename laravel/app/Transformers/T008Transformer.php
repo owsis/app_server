@@ -2,6 +2,7 @@
 
 namespace App\Transformers;
 
+use App\T008;
 use League\Fractal\TransformerAbstract;
 
 class T008Transformer extends TransformerAbstract
