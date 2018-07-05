@@ -23,7 +23,7 @@ Route::get('/marketing/nup/{code_u}', 'T002Controller@getNup');
 
 
 Route::get('/newunits', 'T008Controller@get');
-Route::get('/units', 'T003Controller@get');
+Route::get('/units/{type}/{block}', 'T003Controller@get');
 Route::get('/unitblocks/{type}', 'T003Controller@getBlock');
 
 

@@ -9,13 +9,16 @@ use App\Transformers\T003_1Transformer;
 
 class T003Controller extends Controller
 {
-    public function get(T003 $t003)
+    public function get(T003 $t003, $type, $block)
     {
-        $t003s = $t003->all();
+        $t003s = $t003::where('type_unit', $type)->where('block_unit', $block)->get();
 
         return fractal()
             ->collection($t003s)
             ->transformWith(new T003Transformer)
+            ->addMeta([
+                'data_count' => $t003::where('type_unit', $type)->where('block_unit', $block)->count(),
+            ])
             ->toArray();
     }
 
@@ -24,12 +27,12 @@ class T003Controller extends Controller
         $t003s_1 = $t003_1::where('type_unit', $type)->get();
 
         return fractal()
-        ->collection($t003s_1)
-        ->transformWith(new T003_1Transformer)
-        ->addMeta([
-            'data_count' => $t003_1::where('type_unit', $type)->count()            
-        ])
-        ->toArray();
+            ->collection($t003s_1)
+            ->transformWith(new T003_1Transformer)
+            ->addMeta([
+                'data_count' => $t003_1::where('type_unit', $type)->count(),
+            ])
+            ->toArray();
 
     }
 }
