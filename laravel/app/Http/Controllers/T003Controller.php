@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\T003;
+use App\T003_1;
 use App\Transformers\T003Transformer;
 
 class T003Controller extends Controller
@@ -17,14 +18,11 @@ class T003Controller extends Controller
             ->toArray();
     }
 
-    public function getBlock(T003 $t003, $type)
+    public function getBlock(T003_1 $t003_1, $type)
     {
-        $t003s = $t003::where('type_unit', $type)->get();
+        $t003s_1 = $t003_1::where('type_unit', $type)->union('block_unit');
 
-        return fractal()
-            ->collection($t003s)
-            ->transformWith(new T003Transformer)
-            ->toArray();
+        return response()->json($t003s_1, 200);
 
     }
 }
