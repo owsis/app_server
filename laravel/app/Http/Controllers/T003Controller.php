@@ -2,9 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Http\Requests;
-
 use App\T003;
 use App\Transformers\T003Transformer;
 
@@ -15,8 +12,19 @@ class T003Controller extends Controller
         $t003s = $t003->all();
 
         return fractal()
-        ->collection($t003s)
-        ->transformWith(new T003Transformer)
-        ->toArray();
+            ->collection($t003s)
+            ->transformWith(new T003Transformer)
+            ->toArray();
+    }
+
+    public function getBlock(T003 $t003, $type)
+    {
+        $t003s = $t003::where('type_unit', $type)->get();
+
+        return fractal()
+            ->collection($t003s)
+            ->transformWith(new T003Transformer)
+            ->toArray();
+
     }
 }
