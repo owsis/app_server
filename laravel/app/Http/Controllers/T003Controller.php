@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\T003;
 use App\T003_1;
 use App\Transformers\T003Transformer;
+use App\Transformers\T003_1Transformer;
 
 class T003Controller extends Controller
 {
@@ -20,9 +21,15 @@ class T003Controller extends Controller
 
     public function getBlock(T003_1 $t003_1, $type)
     {
-        $t003s_1 = $t003_1::where('type_unit', $type)->union('block_unit');
+        $t003s_1 = $t003_1::where('type_unit', $type)->get();
 
-        return response()->json($t003s_1, 200);
+        return fractal()
+        ->collection($t003s_1)
+        ->transformWith(new T003_1Transformer)
+        ->addMeta([
+            'data_count' => $t003_1::where('type_unit', $type)->count()            
+        ])
+        ->toArray();
 
     }
 }
