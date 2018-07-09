@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\T002_1;
 use App\Transformers\T002Transformer;
+use App\Http\Controllers\T002ControllerRequest;
 use App\User;
 use Auth;
+use Validator;
 use Illuminate\Http\Request;
 
 class T002Controller extends Controller
@@ -44,7 +46,7 @@ class T002Controller extends Controller
         $ref_from = $t002_1::where('referral_code', $refFrom)->get();
         $originalImage = $request->file('filename');
 
-        $this->validate($request, [
+        $validator = Validator::make($request->all(), [
             'branchcode' => 'required',
             'code' => 'required',
             'email' => 'required|email|unique:t002s',
@@ -53,7 +55,7 @@ class T002Controller extends Controller
             'address' => 'required',
             'phone' => 'required|unique:t002s',
             'ktp' => 'required',
-            'image_ktp' => 'image|required|mimes:jpeg,png,jpg,gif,svg',
+            'image_ktp' => 'image|required|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'npwp' => 'required',
         ]);
 
@@ -73,8 +75,10 @@ class T002Controller extends Controller
             'referral_from' => $ref_from[0]->referral_code,
         ]);
 
-        if ($request->hasFile('image')) {
-            $request->file('image')->store('public/imagesKtp');
+        if ($validator->passes()) {
+            $input = $request->all();
+            $input['image_ktp'] = time().'.'.$request->imgKtp->getClientOriginalExtension();
+            $request->imgKtp->move(public_path('images_ktp'), $input['imgKtp']);
 
             $filename = $request->file('image')->hashName();
 
