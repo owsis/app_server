@@ -9,16 +9,31 @@ use App\Transformers\T102Transformer;
 
 class T102Controller extends Controller
 {
-    public function get(T102 $t102, $code_u)
+    public function getPending(T102 $t102, $code_u)
     {
-        $t102s = $t102::where('code_user', $code_u)->get();
+        $t102s = $t102::where('code_user', $code_u)->where('status_nup', 'pending')->get();
 
         return fractal()
             ->collection($t102s)
             ->transformWith(new T102Transformer)
             ->addMeta([
                 'data_count' => $t102::where('code_user', $code_u)->count(),
-                'total_jum_nup' => $t102::where('code_user', $code_u)->where('status_nup', 'aktif')->sum('jum_nup'),
+                // 'total_jum_nup' => $t102::where('code_user', $code_u)->where('status_nup', 'aktif')->sum('jum_nup'),
+            ])
+            ->toArray();
+
+    }
+
+    public function getAvailable(T102 $t102, $code_u)
+    {
+        $t102s = $t102::where('code_user', $code_u)->where('status_nup', 'available')->get();
+
+        return fractal()
+            ->collection($t102s)
+            ->transformWith(new T102Transformer)
+            ->addMeta([
+                'data_count' => $t102::where('code_user', $code_u)->count(),
+                // 'total_jum_nup' => $t102::where('code_user', $code_u)->where('status_nup', 'aktif')->sum('jum_nup'),
             ])
             ->toArray();
 
@@ -47,5 +62,10 @@ class T102Controller extends Controller
         ]);
 
         return response()->json($t102s);
+    }
+
+    public function delete(T102 $t102)
+    {
+        $t102s = $t102::where();
     }
 }
