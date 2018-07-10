@@ -64,8 +64,9 @@ class T102Controller extends Controller
         return response()->json($t102s);
     }
 
-    public function delete(T102 $t102)
+    public function delete(T102 $t102, $code_u)
     {
-        $t102s = $t102::where();
+        $t102s = $t102::where('code_user', $code_u)->delete();
+        return response()->json($t102s, 200);
     }
 }
