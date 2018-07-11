@@ -112,7 +112,7 @@ class T002Controller extends Controller
             ->respond(200, []);
     }
 
-    public function getNup(User $t002, $code_u)
+    public function getTiket(User $t002, $code_u)
     {
         $t002s = $t002::where('code', $code_u)->get();
 
@@ -120,7 +120,7 @@ class T002Controller extends Controller
             ->collection($t002s)
             ->transformWith(new T002Transformer)
             ->addMeta([
-                'total_jum_nup' => $t002::where('code', $code_u)->sum('nup'),
+                'total_jum_tiket' => $t002::where('code', $code_u)->sum('tiket'),
             ])
             ->toArray();
 

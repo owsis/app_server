@@ -64,7 +64,7 @@ class T102Controller extends Controller
         return response()->json($t102s);
     }
 
-    public function update(T102 $t102, $orderId)
+    public function update(Request $req, T102 $t102, $orderId)
     {
         $this->validate($req, [
             'jum_tiket' => 'required',

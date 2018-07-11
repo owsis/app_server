@@ -19,7 +19,7 @@ Route::get('/marketing', 'T002Controller@marketings');
 Route::get('/marketing/{code}', 'T002Controller@updateUser');
 Route::post('/marketing/reg/{refFrom}', 'T002Controller@register');
 Route::post('/marketing/login', 'T002Controller@login');
-Route::get('/marketing/nup/{code_u}', 'T002Controller@getNup');
+Route::get('/marketing/tiket/{code_u}', 'T002Controller@getNup');
 
 Route::get('/developer', 'T009Controller@get');
 
@@ -46,5 +46,5 @@ Route::post('/trans/{revCode}/{unitCode}', 'T101Controller@post');
 Route::get('/tiketpending/{code_u}', 'T102Controller@getPending');
 Route::get('/tiketavailable/{code_u}', 'T102Controller@getAvailable');
 Route::post('/tiket', 'T102Controller@post');
-Route::post('/tiket/update', 'T102Controller@update');
+Route::post('/tiket/update/{orderId}', 'T102Controller@update');
 Route::delete('/tiketdelete/{code_u}', 'T102Controller@delete');
