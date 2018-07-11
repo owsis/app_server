@@ -17,7 +17,7 @@ class T102Controller extends Controller
             ->collection($t102s)
             ->transformWith(new T102Transformer)
             ->addMeta([
-                'data_count' => $t102::where('code_user', $code_u)->count(),
+                'data_count' => $t102::where('code_user', $code_u)->where('status_nup', 'pending')->count(),
                 'total_jum_nup' => $t102::where('code_user', $code_u)->where('status_nup', 'pending')->sum('jum_nup'),
             ])
             ->toArray();
