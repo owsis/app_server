@@ -18,7 +18,7 @@ class T102Controller extends Controller
             ->transformWith(new T102Transformer)
             ->addMeta([
                 'data_count' => $t102::where('code_user', $code_u)->count(),
-                // 'total_jum_nup' => $t102::where('code_user', $code_u)->where('status_nup', 'aktif')->sum('jum_nup'),
+                'total_jum_nup' => $t102::where('code_user', $code_u)->where('status_nup', 'pending')->sum('jum_nup'),
             ])
             ->toArray();
 
@@ -66,7 +66,7 @@ class T102Controller extends Controller
 
     public function delete(T102 $t102, $code_u)
     {
-        $t102s = $t102::where('code_user', $code_u)->delete();
+        $t102s = $t102::where('order_id', $code_u)->delete();
         return response()->json($t102s, 200);
     }
 }

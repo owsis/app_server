@@ -44,9 +44,8 @@ class T002Controller extends Controller
     public function register(Request $request, User $t002, T002_1 $t002_1, $refFrom)
     {
         $ref_from = $t002_1::where('referral_code', $refFrom)->get();
-        $originalImage = $request->file('filename');
 
-        $validator = Validator::make($request->all(), [
+        $this->validate($request, [
             'branchcode' => 'required',
             'code' => 'required',
             'email' => 'required|email|unique:t002s',
@@ -69,7 +68,6 @@ class T002Controller extends Controller
             'address' => strtoupper($request->address),
             'phone' => $request->phone,
             'ktp' => $request->ktp,
-            'image_ktp' => $path,
             'npwp' => $request->npwp,
             'referral_code' => $request->ktp,
             'referral_from' => $ref_from[0]->referral_code,
@@ -95,6 +93,11 @@ class T002Controller extends Controller
 
         return fractal($t002s, new T002Transformer())
             ->respond(201, []);
+    }
+
+    public function registerUpload(Type $var = null)
+    {
+        # code...
     }
 
     public function login(Request $request, User $t002)
