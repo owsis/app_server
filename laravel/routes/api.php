@@ -43,7 +43,8 @@ Route::get('/trans-beli/{email}', 'T101Controller@getPembeli');
 Route::get('/trans/{revCode}', 'T101Controller@get');
 Route::post('/trans/{revCode}/{unitCode}', 'T101Controller@post');
 
-Route::get('/nuppending/{code_u}', 'T102Controller@getPending');
-Route::get('/nupavailable/{code_u}', 'T102Controller@getAvailable');
-Route::post('/nup', 'T102Controller@post');
-Route::delete('/nupdelete/{code_u}', 'T102Controller@delete');
+Route::get('/tiketpending/{code_u}', 'T102Controller@getPending');
+Route::get('/tiketavailable/{code_u}', 'T102Controller@getAvailable');
+Route::post('/tiket', 'T102Controller@post');
+Route::post('/tiket/update', 'T102Controller@update');
+Route::delete('/tiketdelete/{code_u}', 'T102Controller@delete');

@@ -14,7 +14,7 @@ class T009Controller extends Controller
 
         return fractal()
         ->collection($t009s)
-        ->transformWith(new T008Transformer)
+        ->transformWith(new T009Transformer)
         ->includeClusters()
         ->addMeta([
             'data_count' => $t009::count()

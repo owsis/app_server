@@ -9,7 +9,7 @@ use League\Fractal\TransformerAbstract;
 class T009Transformer extends TransformerAbstract
 {
     protected $availableIncludes = [
-        'clusters'
+        'cluster'
     ];
 
     public function transform(T009 $t009)
