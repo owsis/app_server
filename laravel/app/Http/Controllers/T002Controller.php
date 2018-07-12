@@ -47,47 +47,36 @@ class T002Controller extends Controller
 
         $this->validate($request, [
             'branchcode' => 'required',
-            'code' => 'required',
-            'email' => 'required|email|unique:t002s',
-            'password' => 'required|min:6',
-            'name' => 'required',
-            'address' => 'required',
-            'phone' => 'required|unique:t002s',
-            'ktp' => 'required',
-            'image_ktp' => 'image|required|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'npwp' => 'required',
+            'code'       => 'required',
+            'email'      => 'required|email|unique:t002s',
+            'password'   => 'required|min:6',
+            'name'       => 'required',
+            'address'    => 'required',
+            'phone'      => 'required|unique:t002s',
+            'ktp'        => 'required',
+            'image_ktp'  => 'image|required|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'npwp'       => 'required',
         ]);
 
         $t002s = $t002->create([
-            'branchcode' => $request->branchcode,
-            'code' => $request->code,
-            'email' => $request->email,
-            'password' => bcrypt($request->password),
-            'api_token' => bcrypt($request->email),
-            'name' => strtoupper($request->name),
-            'address' => strtoupper($request->address),
-            'phone' => $request->phone,
-            'ktp' => $request->ktp,
-            'npwp' => $request->npwp,
+            'branchcode'    => $request->branchcode,
+            'code'          => $request->code,
+            'email'         => $request->email,
+            'password'      => bcrypt($request->password),
+            'api_token'     => bcrypt($request->email),
+            'name'          => strtoupper($request->name),
+            'address'       => strtoupper($request->address),
+            'phone'         => $request->phone,
+            'ktp'           => $request->ktp,
+            'image_ktp'     => $request->file('image_ktp')->store('images_ktp'),
+            'npwp'          => $request->npwp,
             'referral_code' => $request->ktp,
             'referral_from' => $ref_from[0]->referral_code,
         ]);
 
-        if ($validator->passes()) {
-            $input = $request->all();
-            $input['image_ktp'] = time().'.'.$request->imgKtp->getClientOriginalExtension();
-            $request->imgKtp->move(public_path('images_ktp'), $input['imgKtp']);
-
-            $filename = $request->file('image')->hashName();
-
-            $t002->update([
-                'image_ktp' => $filename,
-            ]);
-        }
-
         $t002_1->create([
-            'email' => $request->email,
-            'name' => strtoupper($request->name),
+            'email'         => $request->email,
+            'name'          => strtoupper($request->name),
             'referral_code' => $request->ktp,
         ]);
 
