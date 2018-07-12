@@ -16,9 +16,9 @@ class T102Transformer extends TransformerAbstract
         return [
             'branchcode'  => $t102->branchcode,
             'order_id'    => $t102->order_id,
-            'jum_nup'     => $t102->jum_nup,
-            'total_nup'   => $t102->total_nup,
-            'status_nup'  => $t102->status_nup,
+            'jum_tiket'     => $t102->jum_tiket,
+            'total_tiket'   => $t102->total_tiket,
+            'status_tiket'  => $t102->status_tiket,
             'code_user'   => $t102->code_user,
             'name_user'   => $t102->name_user,
             'phone_user'  => $t102->phone_user,

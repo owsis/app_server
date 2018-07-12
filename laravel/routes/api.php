@@ -19,7 +19,7 @@ Route::get('/marketing', 'T002Controller@marketings');
 Route::get('/marketing/{code}', 'T002Controller@updateUser');
 Route::post('/marketing/reg/{refFrom}', 'T002Controller@register');
 Route::post('/marketing/login', 'T002Controller@login');
-Route::get('/marketing/tiket/{code_u}', 'T002Controller@getNup');
+Route::get('/marketing/tiket/{code_u}', 'T002Controller@getTiket');
 
 Route::get('/developer', 'T009Controller@get');
 
