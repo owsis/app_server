@@ -43,7 +43,7 @@ Route::get('/trans-beli/{email}', 'T101Controller@getPembeli');
 Route::get('/trans/{revCode}', 'T101Controller@get');
 Route::post('/trans/{revCode}/{unitCode}', 'T101Controller@post');
 
-Route::get('/tiketpending/{code_u}', 'T102Controller@getPending');
+Route::get('/tiketorder/{code_u}', 'T102Controller@getOrder');
 Route::get('/tiketavailable/{code_u}', 'T102Controller@getAvailable');
 Route::post('/tiket', 'T102Controller@post');
 Route::post('/tiket/update/{orderId}', 'T102Controller@update');

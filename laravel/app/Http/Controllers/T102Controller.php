@@ -9,16 +9,17 @@ use Illuminate\Http\Request;
 
 class T102Controller extends Controller
 {
-    public function getPending(T102 $t102, $code_u)
+    public function getOrder(T102 $t102, $code_u)
     {
-        $t102s = $t102::where('code_user', $code_u)->where('status_tiket', 'pending')->get();
+        $t102s = $t102::where('code_user', $code_u)->where('status_tiket', 'order')->get();
 
         return fractal()
             ->collection($t102s)
             ->transformWith(new T102Transformer)
             ->addMeta([
-                'data_count' => $t102::where('code_user', $code_u)->where('status_tiket', 'pending')->count(),
-                'total_jum_tiket' => $t102::where('code_user', $code_u)->where('status_tiket', 'pending')->sum('jum_tiket'),
+                'data_count' => $t102::where('code_user', $code_u)->where('status_tiket', 'order')->count(),
+                'total_jum_tiket' => $t102::where('code_user', $code_u)->where('status_tiket', 'order')->sum('jum_tiket'),
+                'total_har_tiket' => $t102::where('code_user', $code_u)->where('status_tiket', 'order')->sum('total_tiket'),
             ])
             ->toArray();
 
