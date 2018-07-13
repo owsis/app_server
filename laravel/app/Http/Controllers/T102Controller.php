@@ -42,23 +42,23 @@ class T102Controller extends Controller
     public function post(Request $req, T102 $t102, User $t002)
     {
         $this->validate($req, [
-            'branchcode' => 'required',
-            'order_id' => 'required|unique:t102s',
-            'jum_tiket' => 'required',
-            'total_tiket' => 'required',
+            'branchcode'   => 'required',
+            'order_id'     => 'required|unique:t102s',
+            'jum_tiket'    => 'required',
+            'total_tiket'  => 'required',
             'status_tiket' => 'required',
-            'code_user' => 'required',
+            'code_user'    => 'required',
         ]);
 
         $t102s = $t102->create([
-            'branchcode' => $req->branchcode,
-            'order_id' => $req->order_id,
-            'jum_tiket' => $req->jum_tiket,
-            'total_tiket' => $req->total_tiket,
+            'branchcode'   => $req->branchcode,
+            'order_id'     => $req->order_id,
+            'jum_tiket'    => $req->jum_tiket,
+            'total_tiket'  => $req->total_tiket,
             'status_tiket' => $req->status_tiket,
-            'code_user' => $req->code_user,
-            'name_user' => $req->name_user,
-            'phone_user' => $req->phone_user,
+            'code_user'    => $req->code_user,
+            'name_user'    => $req->name_user,
+            'phone_user'   => $req->phone_user,
         ]);
 
         return response()->json($t102s);
