@@ -69,7 +69,7 @@ class T002Controller extends Controller
             'address'       => strtoupper($request->address),
             'phone'         => $request->phone,
             'ktp'           => $request->ktp,
-            'image_ktp'     => $request->file('image_ktp')->getClientOriginalName()->store('images_ktp'),
+            'image_ktp'     => $request->file('image_ktp')->store('images_ktp'),
             'npwp'          => $request->npwp,
             'referral_code' => $request->ktp,
             'referral_from' => $ref_from[0]->referral_code,
