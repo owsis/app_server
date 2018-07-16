@@ -14,6 +14,7 @@ class T101 extends Model
         'booking_no',
         'code_customer',
         'name_customer',
+        'phone_customer',
         'code_unit',
         'type_unit',
         'price_unit',

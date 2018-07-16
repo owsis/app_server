@@ -49,6 +49,7 @@ class T002Controller extends Controller
             'branchcode' => 'required',
             'code'       => 'required',
             'email'      => 'required|email|unique:t002s',
+            'emailRef'   => 'required|email|unique:t002s_1',
             'password'   => 'required|min:6',
             'name'       => 'required',
             'address'    => 'required',
@@ -75,7 +76,7 @@ class T002Controller extends Controller
         ]);
 
         $t002_1->create([
-            'email'         => $request->email,
+            'email'         => $request->emailRef,
             'name'          => strtoupper($request->name),
             'referral_code' => $request->ktp,
         ]);
