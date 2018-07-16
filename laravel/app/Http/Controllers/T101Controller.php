@@ -44,7 +44,7 @@ class T101Controller extends Controller
             ]);
         $code_user = \App\User::where('code', $codeUser)->get();
         \App\User::where('code', $codeUser)->update([
-            'tiket' => (int)$code_user->tiket - (int)$req->tiket
+            'tiket' => $code_user->tiket - $req->tiket
         ]);
 
         $this->validate($req, [
