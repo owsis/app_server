@@ -35,16 +35,16 @@ class T101Controller extends Controller
             ->toArray();
     }
 
-    public function post(Request $req, T101 $t101, $refFode, $unitCode, $codeUser)
+    public function post(Request $req, T101 $t101, $refFrom, $unitCode, $codeUser)
     {
-        $ref_from = \App\User::where('referral_from', $refFode)->get();
+        $ref_from = \App\User::where('referral_from', $refFrom)->get();
         $unit_code = \App\T003::where('code_unit', $unitCode)
             ->update([
                 'status_unit' => 'close',
             ]);
         $code_user = \App\User::where('code', $codeUser)->get();
         \App\User::where('code', $codeUser)->update([
-            'tiket' => $code_user->tiket - $req->tiket
+            'tiket' => $code_user[0]->tiket - $req->tiket
         ]);
 
         $this->validate($req, [
