@@ -2,29 +2,24 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Http\Requests;
 use App\T101;
-use App\User;
-use App\T004;
 use App\Transformers\T101Transformer;
+use App\User;
+use Illuminate\Http\Request;
 
 class T101Controller extends Controller
 {
     public function get(T101 $t101, User $t002, $revCode)
     {
-        $rev_code = $t002::where('referral_code', $revCode)->get();
-
-        $t101s = $t101::where('referral_code', $rev_code[0]->id)->get();
+        $t101s = $t101::where('referral_from', $revCode)->get();
 
         return fractal()
-        ->collection($t101s)
-        ->transformWith(new T101Transformer)
-        ->addMeta([
-            'data_count' => $t101::where('referral_code', $rev_code[0]->id)->count(),
-            'kumulatif' => $t101::where('referral_code', $rev_code[0]->id)->sum('harga_trans')
-        ])
-        ->toArray();
+            ->collection($t101s)
+            ->transformWith(new T101Transformer)
+            ->addMeta([
+                'data_count' => $t101::where('referral_from', $revCode)->count(),
+            ])
+            ->toArray();
     }
 
     public function getPembeli(T101 $t101, $phone)
@@ -32,20 +27,24 @@ class T101Controller extends Controller
         $t101s = $t101::where('phone_customer', $phone)->get();
 
         return fractal()
-        ->collection($t101s)
-        ->transformWith(new T101Transformer)
-        ->addMeta([
-            'data_count' => $t101::where('phone_customer', $phone)->count()
-        ])
-        ->toArray();
+            ->collection($t101s)
+            ->transformWith(new T101Transformer)
+            ->addMeta([
+                'data_count' => $t101::where('phone_customer', $phone)->count(),
+            ])
+            ->toArray();
     }
 
-    public function post(Request $req, T101 $t101, $revCode, $unitCode)
+    public function post(Request $req, T101 $t101, $refFode, $unitCode, $codeUser)
     {
-        $rev_code = \App\User::where('referral_code', $revCode)->get();
+        $ref_from = \App\User::where('referral_from', $refFode)->get();
         $unit_code = \App\T003::where('code_unit', $unitCode)
-        ->update([
-            'status_unit' => 'close'
+            ->update([
+                'status_unit' => 'close',
+            ]);
+        $code_user = \App\User::where('code', $codeUser)->get();
+        \App\User::where('code', $codeUser)->update([
+            'tiket' => (int)$code_user->tiket - (int)$req->tiket
         ]);
 
         $this->validate($req, [
@@ -60,7 +59,7 @@ class T101Controller extends Controller
             'type_payment'  => 'required',
             'dp'            => 'required',
             'kpr'           => 'required',
-            'cash'          => 'required'
+            'cash'          => 'required',
         ]);
 
         $t101s = $t101->create([
@@ -77,8 +76,10 @@ class T101Controller extends Controller
             'dp'            => $req->dp,
             'kpr'           => $req->kpr,
             'cash'          => $req->cash,
-            'reveral_code'  => $rev_code[0]->id,
-            'status'        => $req->status
+            'referral_from' => $ref_from[0]->referral_from,
+            'tiket'         => $req->tiket,
+            'total_tiket'   => $req->total_tiket,
+            'status'        => $req->status,
         ]);
 
         return response()->json($t101s);

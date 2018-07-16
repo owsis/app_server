@@ -65,6 +65,13 @@ class T102Controller extends Controller
         return response()->json($t102s);
     }
 
+    public function exeOrder(T102 $t102, $code_u)
+    {
+        $t102s = $t102::where('code_user', $code_u)->where('status_tiket', 'order')->update(['status_tiket' => 'pending']);
+
+        return response()->json($t102s);
+    }
+
     public function update(Request $req, T102 $t102, $orderId)
     {
         $this->validate($req, [

@@ -23,7 +23,9 @@ class T101 extends Model
         'dp',
         'kpr',
         'cash',
-        'reveral_code',
+        'referral_from',
+        'tiket',
+        'total_tiket',
         'status'
     ];
 
