@@ -18,6 +18,7 @@ Route::get('/', 'T002Controller@api');
 Route::get('/marketing', 'T002Controller@marketings');
 Route::get('/marketing/{code}', 'T002Controller@updateUser');
 Route::post('/marketing/reg/{refFrom}', 'T002Controller@register');
+Route::post('/marketing/reg/{phone}', 'T002Controller@registerUpload');
 Route::post('/marketing/login', 'T002Controller@login');
 Route::get('/marketing/tiket/{code_u}', 'T002Controller@getTiket');
 
@@ -39,7 +40,7 @@ Route::post('/add/fp', 'T005Controller@post');
 Route::get('/add/promo', 'T007Controller@get');
 Route::post('/add/promo', 'T007Controller@post');
 
-Route::get('/trans-beli/{email}', 'T101Controller@getPembeli');
+Route::get('/trans-beli/{phone}', 'T101Controller@getPembeli');
 Route::get('/trans/{revCode}', 'T101Controller@get');
 Route::post('/trans/{refFrom}/{unitCode}/{codeUser}', 'T101Controller@post');
 

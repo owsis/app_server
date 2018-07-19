@@ -29,7 +29,9 @@ class User extends Authenticatable
         'npwp',
         'image_ktp',
         'referral_code',
-        'referral_from'
+        'referral_from',
+        'tiket',
+        'saldo'
     ];
 
     /**

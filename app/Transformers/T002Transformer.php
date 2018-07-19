@@ -23,7 +23,8 @@ class T002Transformer extends TransformerAbstract
             'npwp'          => $t002->npwp,
             'referral_code' => $t002->referral_code,
             'referral_from' => $t002->referral_from,
-            'tiket'         => $t002->tiket
+            'tiket'         => $t002->tiket,
+            'saldo'         => $t002->saldo
         ];
     }
 }

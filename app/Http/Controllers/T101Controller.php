@@ -48,19 +48,19 @@ class T101Controller extends Controller
         ]);
 
         $this->validate($req, [
-            'branchcode'    => 'required',
-            'booking_no'    => 'required',
-            'code_customer' => 'required',
-            'name_customer' => 'required',
+            'branchcode'     => 'required',
+            'booking_no'     => 'required',
+            'code_customer'  => 'required',
+            'name_customer'  => 'required',
             'phone_customer' => 'required',
-            'code_unit'     => 'required',
-            'type_unit'     => 'required',
-            'price_unit'    => 'required',
-            'first_payment' => 'required',
-            'type_payment'  => 'required',
-            'dp'            => 'required',
-            'kpr'           => 'required',
-            'cash'          => 'required',
+            'code_unit'      => 'required',
+            'type_unit'      => 'required',
+            'price_unit'     => 'required',
+            'first_payment'  => 'required',
+            'type_payment'   => 'required',
+            'dp'             => 'required',
+            'kpr'            => 'required',
+            'cash'           => 'required',
         ]);
 
         $t101s = $t101->create([
