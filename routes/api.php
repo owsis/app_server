@@ -50,3 +50,5 @@ Route::get('/tiketavailable/{code_u}', 'T102Controller@getAvailable');
 Route::post('/tiket', 'T102Controller@post');
 Route::post('/tiket/update/{orderId}', 'T102Controller@update');
 Route::delete('/tiketdelete/{code_u}', 'T102Controller@delete');
+
+Route::get('/tiketmidtrans/{codeUser}', 'T102Controller@getMidtrans');
