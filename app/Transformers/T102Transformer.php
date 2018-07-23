@@ -17,7 +17,7 @@ class T102Transformer extends TransformerAbstract
             'branchcode'   => $t102->branchcode,
             'order_id'     => $t102->order_id,
             'nominal'      => $t102->nominal,
-            'status_tiket' => $t102->status_tiket,
+            'status_saldo' => $t102->status_saldo,
             'code_user'    => $t102->code_user,
             'name_user'    => $t102->name_user,
             'phone_user'   => $t102->phone_user,
