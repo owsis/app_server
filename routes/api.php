@@ -20,7 +20,7 @@ Route::get('/marketing/{code}', 'T002Controller@updateUser');
 Route::post('/marketing/reg/{refFrom}', 'T002Controller@register');
 Route::post('/marketing/reg/{phone}', 'T002Controller@registerUpload');
 Route::post('/marketing/login', 'T002Controller@login');
-Route::get('/marketing/tiket/{code_u}', 'T002Controller@getTiket');
+Route::get('/marketing/saldo/{code_u}', 'T002Controller@getSaldo');
 
 Route::get('/developer', 'T009Controller@get');
 
@@ -44,11 +44,11 @@ Route::get('/trans-beli/{phone}', 'T101Controller@getPembeli');
 Route::get('/trans/{revCode}', 'T101Controller@get');
 Route::post('/trans/{refFrom}/{unitCode}/{codeUser}', 'T101Controller@post');
 
-Route::get('/tiketorder/{code_u}', 'T102Controller@getOrder');
-Route::post('/tiketorder/exe/{code_u}', 'T102Controller@exeOrder');
-Route::get('/tiketavailable/{code_u}', 'T102Controller@getAvailable');
-Route::post('/tiket', 'T102Controller@post');
-Route::post('/tiket/update/{orderId}', 'T102Controller@update');
-Route::delete('/tiketdelete/{code_u}', 'T102Controller@delete');
+Route::get('/saldoorder/{code_u}', 'T102Controller@getOrder');
+Route::post('/saldoorder/exe/{code_u}', 'T102Controller@exeOrder');
+Route::get('/saldoavailable/{code_u}', 'T102Controller@getAvailable');
+Route::post('/saldo', 'T102Controller@post');
+Route::post('/saldo/update/{orderId}', 'T102Controller@update');
+Route::delete('/saldodelete/{code_u}', 'T102Controller@delete');
 
-Route::get('/tiketmidtrans/{codeUser}', 'T102Controller@getMidtrans');
+Route::get('/saldomidtrans/{codeUser}', 'T102Controller@getMidtrans');

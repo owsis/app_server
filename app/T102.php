@@ -11,8 +11,7 @@ class T102 extends Model
     protected $fillable = [
         'branchcode',
         'order_id',
-        'jum_tiket',
-        'total_tiket',
+        'nominal',
         'status_tiket',
         'code_user',
         'name_user',

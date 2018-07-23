@@ -13,15 +13,14 @@ class T102Controller extends Controller
 {
     public function getOrder(T102 $t102, $code_u)
     {
-        $t102s = $t102::where('code_user', $code_u)->where('status_tiket', 'order')->get();
+        $t102s = $t102::where('code_user', $code_u)->where('status_saldo', 'order')->get();
 
         return fractal()
             ->collection($t102s)
             ->transformWith(new T102Transformer)
             ->addMeta([
-                'data_count' => $t102::where('code_user', $code_u)->where('status_tiket', 'order')->count(),
-                'total_jum_tiket' => $t102::where('code_user', $code_u)->where('status_tiket', 'order')->sum('jum_tiket'),
-                'total_har_tiket' => $t102::where('code_user', $code_u)->where('status_tiket', 'order')->sum('total_tiket'),
+                'data_count' => $t102::where('code_user', $code_u)->where('status_saldo', 'order')->count(),
+                'total_saldo' => $t102::where('code_user', $code_u)->where('status_saldo', 'order')->sum('nominal'),
             ])
             ->toArray();
 
@@ -29,7 +28,7 @@ class T102Controller extends Controller
 
     public function getAvailable(T102 $t102, $code_u)
     {
-        $t102s = $t102::where('code_user', $code_u)->where('status_tiket', 'available')->get();
+        $t102s = $t102::where('code_user', $code_u)->where('status_saldo', 'available')->get();
 
         return fractal()
             ->collection($t102s)
@@ -45,23 +44,21 @@ class T102Controller extends Controller
     public function post(Request $req, T102 $t102, User $t002)
     {
         $this->validate($req, [
-            'branchcode' => 'required',
-            'order_id' => 'required|unique:t102s',
-            'jum_tiket' => 'required',
-            'total_tiket' => 'required',
-            'status_tiket' => 'required',
-            'code_user' => 'required',
+            'branchcode'   => 'required',
+            'order_id'     => 'required|unique:t102s',
+            'nominal'      => 'required',
+            'status_saldo' => 'required',
+            'code_user'    => 'required',
         ]);
 
         $t102s = $t102->create([
-            'branchcode' => $req->branchcode,
-            'order_id' => $req->order_id,
-            'jum_tiket' => $req->jum_tiket,
-            'total_tiket' => $req->total_tiket,
-            'status_tiket' => $req->status_tiket,
-            'code_user' => $req->code_user,
-            'name_user' => $req->name_user,
-            'phone_user' => $req->phone_user,
+            'branchcode'   => $req->branchcode,
+            'order_id'     => $req->order_id,
+            'nominal'      => $req->nominal,
+            'status_saldo' => $req->status_saldo,
+            'code_user'    => $req->code_user,
+            'name_user'    => $req->name_user,
+            'phone_user'   => $req->phone_user,
         ]);
 
         return response()->json($t102s);
@@ -69,7 +66,7 @@ class T102Controller extends Controller
 
     public function exeOrder(T102 $t102, $code_u)
     {
-        $t102s = $t102::where('code_user', $code_u)->where('status_tiket', 'order')->update(['status_tiket' => 'pending']);
+        $t102s = $t102::where('code_user', $code_u)->where('status_saldo', 'order')->update(['status_saldo' => 'pending']);
 
         return response()->json($t102s);
     }
@@ -77,13 +74,11 @@ class T102Controller extends Controller
     public function update(Request $req, T102 $t102, $orderId)
     {
         $this->validate($req, [
-            'jum_tiket' => 'required',
-            'total_tiket' => 'required',
+            'nominal' => 'required',
         ]);
 
         $t102s = $t102::where('order_id', $orderId)->update([
-            'jum_tiket' => $req->jum_tiket,
-            'total_tiket' => $req->total_tiket,
+            'total_saldo' => $req->total_saldo,
         ]);
 
         return response()->json($t102s);
