@@ -104,4 +104,24 @@ class T102Controller extends Controller
             ->toArray();
 
     }
+
+    public function postMidtrans(Request $req, T102_1 $t102_1, T102 $t102, $code_u)
+    {
+        $this->validate($req, [
+            'order_id'  => 'required',
+            'code_user' => 'required',
+            'name_user' => 'required'
+        ]);
+
+        $t102_1s = $t102_1->create([
+            'order_id'  => $req->order_id,
+            'code_user' => $req->code_user,
+            'name_user' => $req->name_user,
+        ]);
+
+        $t102::where('code_user', $code_u)->where('status_saldo', 'order')->update(['status_saldo' => 'pending']);
+
+
+        return response()->json($t102_1s);
+    }
 }
