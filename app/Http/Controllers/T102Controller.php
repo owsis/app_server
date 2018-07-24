@@ -78,7 +78,7 @@ class T102Controller extends Controller
         ]);
 
         $t102s = $t102::where('order_id', $orderId)->update([
-            'total_saldo' => $req->total_saldo,
+            'nominal' => $req->nominal,
         ]);
 
         return response()->json($t102s);
