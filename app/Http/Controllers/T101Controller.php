@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 
 class T101Controller extends Controller
 {
-    public function getUnitOrder(T101 $t101, User $t002, $code)
+    public function getUnitOrder(T101 $t101, $code)
     {
         $t101s = $t101::where('code_customer', $code)->where('status', 'ORDER')->get();
 
@@ -17,7 +17,7 @@ class T101Controller extends Controller
             ->collection($t101s)
             ->transformWith(new T101Transformer)
             ->addMeta([
-                'data_count' => $t101::where('referral_from', $revCode)->count(),
+                'data_count' => $t101::where('code_customer', $code)->where('status', 'ORDER')->count(),
             ])
             ->toArray();
     }
