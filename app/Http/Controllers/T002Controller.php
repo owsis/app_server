@@ -46,7 +46,6 @@ class T002Controller extends Controller
         $ref_from = $t002::where('referral_code', $refFrom)->get();
 
         $this->validate($request, [
-            'branchcode' => 'required',
             'code'       => 'required',
             'email'      => 'required|email|unique:t002s',
             'password'   => 'required|min:6',
@@ -59,7 +58,6 @@ class T002Controller extends Controller
         ]);
 
         $t002s = $t002->create([
-            'branchcode'    => $request->branchcode,
             'code'          => $request->code,
             'email'         => $request->email,
             'password'      => bcrypt($request->password),
@@ -81,7 +79,7 @@ class T002Controller extends Controller
     public function registerUpload(Request $req, User $t002, $code)
     {
         $t002s = $t002::where('code', $code)->update([
-            'image_ktp' => $req->file('image_ktp')->store('images_ktp')
+            'image_ktp' => $req->file('image_ktp')->hashName()->store('images_ktp')
         ]);
     }
 
