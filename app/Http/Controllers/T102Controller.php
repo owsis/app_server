@@ -44,7 +44,6 @@ class T102Controller extends Controller
     public function post(Request $req, T102 $t102, User $t002)
     {
         $this->validate($req, [
-            'branchcode'   => 'required',
             'order_id'     => 'required|unique:t102s',
             'nominal'      => 'required',
             'status_saldo' => 'required',
@@ -52,7 +51,6 @@ class T102Controller extends Controller
         ]);
 
         $t102s = $t102->create([
-            'branchcode'   => $req->branchcode,
             'order_id'     => $req->order_id,
             'nominal'      => $req->nominal,
             'status_saldo' => $req->status_saldo,
