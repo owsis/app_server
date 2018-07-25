@@ -41,15 +41,14 @@ class T002Controller extends Controller
             ->toArray();
     }
 
-    public function register(Request $request, User $t002, T002_1 $t002_1, $refFrom)
+    public function register(Request $request, User $t002, $refFrom)
     {
-        $ref_from = $t002_1::where('referral_code', $refFrom)->get();
+        $ref_from = $t002::where('referral_code', $refFrom)->get();
 
         $this->validate($request, [
             'branchcode' => 'required',
             'code'       => 'required',
             'email'      => 'required|email|unique:t002s',
-            'emailRef'   => 'required|email|unique:t002s_1',
             'password'   => 'required|min:6',
             'name'       => 'required',
             'address'    => 'required',
@@ -73,12 +72,6 @@ class T002Controller extends Controller
             'npwp'          => $request->npwp,
             'referral_code' => $request->ktp,
             'referral_from' => $ref_from[0]->referral_code,
-        ]);
-
-        $t002_1->create([
-            'email'         => $request->emailRef,
-            'name'          => strtoupper($request->name),
-            'referral_code' => $request->ktp,
         ]);
 
         return fractal($t002s, new T002Transformer())
