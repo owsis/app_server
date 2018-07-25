@@ -78,9 +78,9 @@ class T002Controller extends Controller
             ->respond(201, []);
     }
 
-    public function registerUpload(Request $req, User $t002, $phone)
+    public function registerUpload(Request $req, User $t002, $code)
     {
-        $t002s = $t002::where('phone', $phone)->update([
+        $t002s = $t002::where('code', $code)->update([
             'image_ktp' => $req->file('image_ktp')->store('images_ktp')
         ]);
     }
