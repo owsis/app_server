@@ -78,8 +78,12 @@ class T002Controller extends Controller
 
     public function registerUpload(Request $req, User $t002, $code)
     {
+        $img = $req->file('image_ktp');
+        $filename = 'ktp_'.time().'.'.$img->getClientOriginalExtension();
+        $path = $img->storeAs('images_ktp', $filename);
+
         $t002s = $t002::where('code', $code)->update([
-            'image_ktp' => $req->file('image_ktp')->hashName()->store('images_ktp')
+            'image_ktp' => $filename
         ]);
     }
 
