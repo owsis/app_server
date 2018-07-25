@@ -9,10 +9,9 @@ class T102 extends Model
     protected $table = 't102s';
 
     protected $fillable = [
-        'branchcode',
         'order_id',
         'nominal',
-        'status_tiket',
+        'status_saldo',
         'code_user',
         'name_user',
         'phone_user',
