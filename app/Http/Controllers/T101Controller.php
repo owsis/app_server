@@ -9,9 +9,9 @@ use Illuminate\Http\Request;
 
 class T101Controller extends Controller
 {
-    public function get(T101 $t101, User $t002, $revCode)
+    public function getUnitOrder(T101 $t101, User $t002, $code)
     {
-        $t101s = $t101::where('referral_from', $revCode)->get();
+        $t101s = $t101::where('code_customer', $code)->where('status', 'ORDER')->get();
 
         return fractal()
             ->collection($t101s)
