@@ -35,6 +35,19 @@ class T101Controller extends Controller
             ->toArray();
     }
 
+    public function getPembeli(T101 $t101, $code)
+    {
+        $t101s = $t101::where('code_customer', $code)->where('status', 'BOOKED')->get();
+
+        return fractal()
+            ->collection($t101s)
+            ->transformWith(new T101Transformer)
+            ->addMeta([
+                'data_count' => $t101::where('code_customer', $code)->where('status', 'BOOKED')->count(),
+            ])
+            ->toArray();
+    }
+
     public function post(Request $req, T101 $t101, $refFrom, $unitCode, $codeUser)
     {
         $ref_from = \App\User::where('referral_from', $refFrom)->get();

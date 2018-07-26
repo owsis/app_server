@@ -41,6 +41,7 @@ Route::get('/add/promo', 'T007Controller@get');
 Route::post('/add/promo', 'T007Controller@post');
 
 Route::get('/trans/jual/{refFrom}', 'T101Controller@getPenjual');
+Route::get('/trans/beli/{code}', 'T101Controller@getPembeli');
 Route::get('/trans/order/{code}', 'T101Controller@getUnitOrder');
 Route::post('/trans/{refFrom}/{unitCode}/{codeUser}', 'T101Controller@post');
 
