@@ -22,15 +22,15 @@ class T101Controller extends Controller
             ->toArray();
     }
 
-    public function getPembeli(T101 $t101, $phone)
+    public function getPenjual(T101 $t101, $refFrom)
     {
-        $t101s = $t101::where('phone_customer', $phone)->get();
+        $t101s = $t101::where('refferal_from', $refFrom)->get();
 
         return fractal()
             ->collection($t101s)
             ->transformWith(new T101Transformer)
             ->addMeta([
-                'data_count' => $t101::where('phone_customer', $phone)->count(),
+                'data_count' => $t101::where('refferal_from', $refFrom)->count(),
             ])
             ->toArray();
     }
