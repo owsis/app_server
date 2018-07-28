@@ -41,6 +41,32 @@ class T002Controller extends Controller
             ->toArray();
     }
 
+    public function updateData(Request $req, User $t002, $code)
+    {
+        $this->validate($req, [
+            'email'      => 'required|email|unique:t002s',
+            'name'       => 'required',
+            'address'    => 'required',
+            'phone'      => 'required|unique:t002s',
+            'ktp'        => 'required',
+            'npwp'       => 'required',
+        ]);
+
+        $t002s = $t002::where('code', $code)->update([
+            'email'   => $req->email,
+            'name'    => $req->name,
+            'address' => $req->address,
+            'phone'   => $req->phone,
+            'ktp'     => $req->ktp,
+            'npwp'    => $req->npwp
+        ]);
+
+        return fractal()
+            ->collection($t002s)
+            ->transformWith(new T002Transformer)
+            ->toArray();
+    }
+
     public function register(Request $request, User $t002, $refFrom)
     {
         $ref_from = $t002::where('referral_code', $refFrom)->get();

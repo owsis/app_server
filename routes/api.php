@@ -20,7 +20,9 @@ Route::get('/marketing/{code}', 'T002Controller@updateUser');
 Route::post('/marketing/reg/{refFrom}', 'T002Controller@register');
 Route::post('/marketing/img/{code}', 'T002Controller@registerUpload');
 Route::post('/marketing/login', 'T002Controller@login');
+Route::post('/marketing/update/{code}', 'T002Controller@updateData');
 Route::get('/marketing/saldo/{code_u}', 'T002Controller@getSaldo');
+Route::get('/marketing/pic/{img}', 'T002Controller@getImg');
 
 Route::get('/developer', 'T009Controller@get');
 
