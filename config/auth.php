@@ -67,7 +67,7 @@ return [
     'providers' => [
         't002s' => [
             'driver' => 'eloquent',
-            'model' => App\User::class,
+            'model' => App\T002::class,
         ],
         'users' => [
             'driver' => 'eloquent',

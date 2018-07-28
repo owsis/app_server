@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\T002_1;
 use App\Transformers\T002Transformer;
 use App\Http\Controllers\T002ControllerRequest;
-use App\User;
+use App\T002;
 use Auth;
 use Validator;
 use Illuminate\Http\Request;
@@ -18,7 +18,7 @@ class T002Controller extends Controller
         return view('welcome');
     }
 
-    public function marketings(User $t002)
+    public function marketings(T002 $t002)
     {
         $t002s = $t002->all();
 
@@ -111,7 +111,7 @@ class T002Controller extends Controller
         ]);
     }
 
-    public function login(Request $request, User $t002)
+    public function login(Request $request, T002 $t002)
     {
 
         if (!Auth::attempt(['phone' => $request->phone, 'password' => $request->password])) {

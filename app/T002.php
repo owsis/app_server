@@ -6,10 +6,10 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use App\T101;
 
-class User extends Authenticatable
+class T002 extends Authenticatable
 {
     use Notifiable;
-    protected $table = 'users';
+    protected $table = 't002s';
 
     /**
      * The attributes that are mass assignable.
