@@ -117,7 +117,10 @@ class T002Controller extends Controller
         if (!Auth::attempt(['phone' => $request->phone, 'password' => $request->password])) {
             return response()->json(['error' => 'Error'], 404);
         }
-        $t002s = $t002->find(Auth::user()->id);
+        $t002s = $t002->find(Auth::attempt([
+            'phone' => $request->phone,
+            'password' => $request->password
+        ])->id);
 
         return fractal($t002s, new T002Transformer())
             ->respond(200, []);

@@ -8,6 +8,7 @@ use App\Transformers\T102Transformer;
 use App\Transformers\T102_1Transformer;
 use App\User;
 use Illuminate\Http\Request;
+use App\Veritrans\Veritrans;
 
 class T102Controller extends Controller
 {
