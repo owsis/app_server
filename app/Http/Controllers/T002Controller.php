@@ -116,7 +116,7 @@ class T002Controller extends Controller
     {
         $credentials = $request->only('phone', 'password');
 
-        if (Auth::attempt($credentials)) {
+        if (Auth::guard('userapp')->attempt($credentials)) {
             return response()->json(200, []);
         }
     }
