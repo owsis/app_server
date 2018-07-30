@@ -8,7 +8,7 @@ use League\Fractal\TransformerAbstract;
 
 class T002Transformer extends TransformerAbstract
 {
-    public function transform(T002 $t002)
+    public function transform(User $t002)
     {
         return [
             'id'            => $t002->id,
