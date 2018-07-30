@@ -42,6 +42,11 @@ return [
         ],
 
         'api' => [
+            'driver' => 'token',
+            'provider' => 'users',
+        ],
+
+        'userapp' => [
             'driver' => 'sessions',
             'provider' => 't002s',
         ],
