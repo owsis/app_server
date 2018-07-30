@@ -31,7 +31,7 @@ class T002Controller extends Controller
             ->toArray();
     }
 
-    public function updateUser(User $t002, $code)
+    public function updateUser(T002 $t002, $code)
     {
         $t002s = $t002::where('code', $code)->get();
 
