@@ -113,14 +113,11 @@ class T002Controller extends Controller
 
     public function login(Request $request, T002 $t002)
     {
+        $credentials = $request->only('phone', 'password');
 
-        if (!Auth::attempt(['phone' => $request->phone, 'password' => $request->password])) {
-            return response()->json(['error' => 'Error'], 404);
+        if (Auth::attempt($credentials)) {
+            return response()->json(200, []);
         }
-        $t002s = $t002->find(Auth::attempt(['phone' => $request->phone, 'password' => $request->password])->id);
-
-        return fractal($t002s, new T002Transformer())
-            ->respond(200, []);
     }
 
     public function getSaldo(User $t002, $code_u)
