@@ -6,9 +6,9 @@ use App\T002_1;
 use App\Transformers\T002Transformer;
 use App\Http\Controllers\T002ControllerRequest;
 use App\T002;
-use Auth;
-use Validator;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+
 
 class T002Controller extends Controller
 {
@@ -117,7 +117,7 @@ class T002Controller extends Controller
         if (!Auth::attempt(['phone' => $request->phone, 'password' => $request->password])) {
             return response()->json(['error' => 'Error'], 404);
         }
-        $t002s = $t002->find(Auth::guard('userapp')->user()->id);
+        $t002s = $t002->find(Auth::attempt(['phone' => $request->phone, 'password' => $request->password])->id);
 
         return fractal($t002s, new T002Transformer())
             ->respond(200, []);
