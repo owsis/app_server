@@ -116,7 +116,8 @@ class T002Controller extends Controller
         if (Auth::attempt($credentials)) {
             $t002s = $t002->find(Auth::attempt($credentials)->id);
             return fractal()
-                ->collection(new T002Transformer)
+                ->collection($t002s)
+                ->transformWith(new T002Transformer)
                 ->toArray();
         }
     }
