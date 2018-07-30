@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\Controller;
 use App\T002_1;
 use App\Transformers\T002Transformer;
 use App\Http\Controllers\T002ControllerRequest;
