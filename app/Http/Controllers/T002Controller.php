@@ -114,7 +114,7 @@ class T002Controller extends Controller
     public function login(Request $request, T002 $t002)
     {
 
-        if (!Auth::attempt(['phone' => $request->phone, 'password' => $request->password])) {
+        if (!Auth::guard('api')->attempt(['phone' => $request->phone, 'password' => $request->password])) {
             return response()->json(['error' => 'Error'], 404);
         }
         $t002s = $t002->find(Auth::guard('api')->attempt([
