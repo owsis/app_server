@@ -3,13 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use App\T002_1;
 use App\Transformers\T002Transformer;
-use App\Http\Controllers\T002ControllerRequest;
-use App\T002;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-
 
 class T002Controller extends Controller
 {
@@ -19,7 +16,7 @@ class T002Controller extends Controller
         return view('welcome');
     }
 
-    public function marketings(T002 $t002)
+    public function marketings(User $t002)
     {
         $t002s = $t002->all();
 
@@ -45,21 +42,21 @@ class T002Controller extends Controller
     public function updateData(Request $req, User $t002, $code)
     {
         $this->validate($req, [
-            'email'      => 'required|email|unique:t002s',
-            'name'       => 'required',
-            'address'    => 'required',
-            'phone'      => 'required|unique:t002s',
-            'ktp'        => 'required',
-            'npwp'       => 'required',
+            'email' => 'required|email|unique:t002s',
+            'name' => 'required',
+            'address' => 'required',
+            'phone' => 'required|unique:t002s',
+            'ktp' => 'required',
+            'npwp' => 'required',
         ]);
 
         $t002s = $t002::where('code', $code)->update([
-            'email'   => $req->email,
-            'name'    => $req->name,
+            'email' => $req->email,
+            'name' => $req->name,
             'address' => $req->address,
-            'phone'   => $req->phone,
-            'ktp'     => $req->ktp,
-            'npwp'    => $req->npwp
+            'phone' => $req->phone,
+            'ktp' => $req->ktp,
+            'npwp' => $req->npwp,
         ]);
 
         return fractal()
@@ -73,26 +70,26 @@ class T002Controller extends Controller
         $ref_from = $t002::where('referral_code', $refFrom)->get();
 
         $this->validate($request, [
-            'code'       => 'required',
-            'email'      => 'required|email|unique:t002s',
-            'password'   => 'required|min:6',
-            'name'       => 'required',
-            'address'    => 'required',
-            'phone'      => 'required|unique:t002s',
-            'ktp'        => 'required',
-            'npwp'       => 'required',
+            'code' => 'required',
+            'email' => 'required|email|unique:t002s',
+            'password' => 'required|min:6',
+            'name' => 'required',
+            'address' => 'required',
+            'phone' => 'required|unique:t002s',
+            'ktp' => 'required',
+            'npwp' => 'required',
         ]);
 
         $t002s = $t002->create([
-            'code'          => $request->code,
-            'email'         => $request->email,
-            'password'      => bcrypt($request->password),
-            'api_token'     => bcrypt($request->email),
-            'name'          => strtoupper($request->name),
-            'address'       => strtoupper($request->address),
-            'phone'         => $request->phone,
-            'ktp'           => $request->ktp,
-            'npwp'          => $request->npwp,
+            'code' => $request->code,
+            'email' => $request->email,
+            'password' => bcrypt($request->password),
+            'api_token' => bcrypt($request->email),
+            'name' => strtoupper($request->name),
+            'address' => strtoupper($request->address),
+            'phone' => $request->phone,
+            'ktp' => $request->ktp,
+            'npwp' => $request->npwp,
             'referral_code' => $request->ktp,
             'referral_from' => $ref_from[0]->referral_code,
         ]);
@@ -104,20 +101,23 @@ class T002Controller extends Controller
     public function registerUpload(Request $req, User $t002, $code)
     {
         $img = $req->file('image_ktp');
-        $filename = 'ktp_'.time().'.'.$img->getClientOriginalExtension();
+        $filename = 'ktp_' . time() . '.' . $img->getClientOriginalExtension();
         $path = $img->storeAs('images_ktp', $filename);
 
         $t002s = $t002::where('code', $code)->update([
-            'image_ktp' => $filename
+            'image_ktp' => $filename,
         ]);
     }
 
-    public function login(Request $request, T002 $t002)
+    public function login(Request $request, User $t002)
     {
         $credentials = $request->only('phone', 'password');
 
-        if (Auth::guard('userapp')->attempt($credentials)) {
-            return response()->json(200, []);
+        if (Auth::attempt($credentials)) {
+            $t002s = $t002->find(Auth::attempt($credentials)->id);
+            return fractal()
+                ->collection(new T002Transformer)
+                ->toArray();
         }
     }
 

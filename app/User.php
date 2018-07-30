@@ -9,7 +9,7 @@ use App\T101;
 class User extends Authenticatable
 {
     use Notifiable;
-    protected $table = 'users';
+    protected $table = 't002s';
 
     /**
      * The attributes that are mass assignable.
