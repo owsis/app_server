@@ -3,11 +3,12 @@
 namespace App\Transformers;
 
 use App\User;
+use App\T002;
 use League\Fractal\TransformerAbstract;
 
 class T002Transformer extends TransformerAbstract
 {
-    public function transform(User $t002)
+    public function transform(T002 $t002)
     {
         return [
             'id'            => $t002->id,
