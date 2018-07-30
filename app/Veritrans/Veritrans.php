@@ -30,8 +30,8 @@ Class Veritrans
 
     public function config($params)
     {
-        Veritrans::$serverKey = $params['server_key'];
-        Veritrans::$isProduction = $params['production'];
+        Veritrans::$serverKey = $params['SB-Mid-server-iykXrCTadcrXdN-4RhB9TS6n'];
+        Veritrans::$isProduction = $params['Mid-server-mn8OGvaWPvKYm5RloWUIvJBN'];
     }
 
     /**
