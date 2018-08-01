@@ -178,7 +178,8 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         Spatie\Fractal\FractalServiceProvider::class, 
-        Intervention\Image\ImageServiceProvider::class,       
+        Intervention\Image\ImageServiceProvider::class,   
+        Irazasyed\JwtAuthGuard\JwtAuthGuardServiceProvider::class,    
 
     ],
 

@@ -29,7 +29,7 @@ class T002Controller extends Controller
             ->toArray();
     }
 
-    public function updateUser(T002 $t002, $code)
+    public function updateUser(User $t002, $code)
     {
         $t002s = $t002::where('code', $code)->get();
 
@@ -42,21 +42,21 @@ class T002Controller extends Controller
     public function updateData(Request $req, User $t002, $code)
     {
         $this->validate($req, [
-            'email' => 'required|email|unique:t002s',
-            'name' => 'required',
+            'email'   => 'required|email|unique:t002s',
+            'name'    => 'required',
             'address' => 'required',
-            'phone' => 'required|unique:t002s',
-            'ktp' => 'required',
-            'npwp' => 'required',
+            'phone'   => 'required|unique:t002s',
+            'ktp'     => 'required',
+            'npwp'    => 'required',
         ]);
 
         $t002s = $t002::where('code', $code)->update([
-            'email' => $req->email,
-            'name' => $req->name,
+            'email'   => $req->email,
+            'name'    => $req->name,
             'address' => $req->address,
-            'phone' => $req->phone,
-            'ktp' => $req->ktp,
-            'npwp' => $req->npwp,
+            'phone'   => $req->phone,
+            'ktp'     => $req->ktp,
+            'npwp'    => $req->npwp,
         ]);
 
         return fractal()
@@ -81,15 +81,15 @@ class T002Controller extends Controller
         ]);
 
         $t002s = $t002->create([
-            'code' => $request->code,
-            'email' => $request->email,
-            'password' => bcrypt($request->password),
-            'api_token' => bcrypt($request->email),
-            'name' => strtoupper($request->name),
-            'address' => strtoupper($request->address),
-            'phone' => $request->phone,
-            'ktp' => $request->ktp,
-            'npwp' => $request->npwp,
+            'code'          => $request->code,
+            'email'         => $request->email,
+            'password'      => bcrypt($request->password),
+            'api_token'     => bcrypt($request->email),
+            'name'          => strtoupper($request->name),
+            'address'       => strtoupper($request->address),
+            'phone'         => $request->phone,
+            'ktp'           => $request->ktp,
+            'npwp'          => $request->npwp,
             'referral_code' => $request->ktp,
             'referral_from' => $ref_from[0]->referral_code,
         ]);

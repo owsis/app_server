@@ -13,7 +13,7 @@
         <!-- Styles -->
         <style>
             html, body {
-                background-color: #fff;
+                background-color: #f2edf3;
                 color: #636b6f;
                 font-family: 'Raleway', sans-serif;
                 font-weight: 100;
@@ -73,7 +73,7 @@
                 </div>
 
                 <div class="links">
-                    <a href="https://www.tombakintan.co.id/">Tombak Intan</a>
+                    <a href="{{ url('/public/inadmin') }}">Login</a>
                 </div>
             </div>
         </div>

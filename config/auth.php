@@ -46,9 +46,9 @@ return [
             'provider' => 'users',
         ],
 
-        'userapp' => [
-            'driver' => 'sessions',
-            'provider' => 't002s',
+        't001' => [
+            'driver' => 'session',
+            'provider' => 't001',
         ],
     ],
 
@@ -70,9 +70,9 @@ return [
     */
 
     'providers' => [
-        't002s' => [
+        't001' => [
             'driver' => 'eloquent',
-            'model' => App\T002::class,
+            'model' => App\T001::class,
         ],
         'users' => [
             'driver' => 'eloquent',
@@ -103,6 +103,11 @@ return [
     'passwords' => [
         'users' => [
             'provider' => 'users',
+            'table' => 'password_resets',
+            'expire' => 60,
+        ],
+        'admins' => [
+            'provider' => 't001s',
             'table' => 'password_resets',
             'expire' => 60,
         ],
