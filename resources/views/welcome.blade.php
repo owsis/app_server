@@ -8,14 +8,13 @@
         <title>API Tobi</title>
 
         <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
+        <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:400,700" rel="stylesheet" type="text/css">
 
         <!-- Styles -->
         <style>
             html, body {
                 background-color: #f2edf3;
-                color: #636b6f;
-                font-family: 'Raleway', sans-serif;
+                font-family: 'Roboto Condensed', sans-serif;
                 font-weight: 100;
                 height: 100vh;
                 margin: 0;
@@ -47,6 +46,10 @@
 
             .title {
                 font-size: 84px;
+                font-weight: 700;
+                background: -webkit-gradient(linear, left top, right top, from(#da8cff), to(#9a55ff));
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
             }
 
             .links > a {
@@ -69,11 +72,11 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    API TOBI APP
+                    SMILE IN PROPERTI
                 </div>
 
                 <div class="links">
-                    <a href="{{ url('/public/inadmin') }}">Login</a>
+                    <a href="{{ url('/public/inadmin') }}">MASUK</a>
                 </div>
             </div>
         </div>

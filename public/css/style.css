@@ -8650,13 +8650,15 @@ html {
   width: device-width;
 }
 
+@import url('https://fonts.googleapis.com/css?family=Roboto+Condensed:400,700');
+
 article, aside, figcaption, figure, footer, header, hgroup, main, nav, section {
   display: block;
 }
 
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  font-family: "Roboto Condensed", -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   font-size: 1rem;
   font-weight: 400;
   line-height: 1.5;
@@ -8785,7 +8787,7 @@ pre,
 code,
 kbd,
 samp {
-  font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  font-family: "Roboto Condensed", SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
   font-size: 1em;
 }
 
@@ -13741,7 +13743,7 @@ button.close {
   z-index: 1070;
   display: block;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  font-family: "Roboto Condensed", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   font-style: normal;
   font-weight: 400;
   line-height: 1.5;
@@ -13854,7 +13856,7 @@ button.close {
   z-index: 1060;
   display: block;
   max-width: 276px;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  font-family: "Roboto Condensed", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   font-style: normal;
   font-weight: 400;
   line-height: 1.5;
@@ -16754,7 +16756,7 @@ button.bg-dark:focus {
 }
 
 .text-monospace {
-  font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  font-family: "Roboto Condensed", SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 }
 
 .text-justify {
@@ -17328,7 +17330,7 @@ input:focus {
 .sidebar {
   min-height: calc(100vh - 70px);
   background: #ffffff;
-  font-family: "ubuntu-regular", sans-serif;
+  font-family: "Roboto Condensed", "ubuntu-regular", sans-serif;
   padding: 0;
   width: 260px;
   z-index: 11;
@@ -17431,7 +17433,7 @@ input:focus {
 
 .sidebar .nav .nav-item.active > .nav-link .menu-title {
   color: #b66dff;
-  font-family: "ubuntu-medium", sans-serif;
+  font-family: "Roboto Condensed", "ubuntu-medium", sans-serif;
 }
 
 .sidebar .nav .nav-item.active > .nav-link i {
@@ -17723,7 +17725,7 @@ input:focus {
 }
 
 .navbar.default-layout-navbar {
-  font-family: "ubuntu-light", sans-serif;
+  font-family: "Roboto Condensed", "ubuntu-light", sans-serif;
   background: #ffffff;
   transition: background 0.25s ease;
   -webkit-transition: background 0.25s ease;
@@ -17834,25 +17836,25 @@ input:focus {
 .navbar.default-layout-navbar .navbar-menu-wrapper .search-field .input-group input:-ms-input-placeholder {
   font-size: 0.875rem;
   color: #9c9fa6;
-  font-family: "ubuntu-light", sans-serif;
+  font-family: "Roboto Condensed", "ubuntu-light", sans-serif;
 }
 
 .navbar.default-layout-navbar .navbar-menu-wrapper .search-field .input-group input:-moz-placeholder {
   font-size: 0.875rem;
   color: #9c9fa6;
-  font-family: "ubuntu-light", sans-serif;
+  font-family: "Roboto Condensed", "ubuntu-light", sans-serif;
 }
 
 .navbar.default-layout-navbar .navbar-menu-wrapper .search-field .input-group input::-moz-placeholder {
   font-size: 0.875rem;
   color: #9c9fa6;
-  font-family: "ubuntu-light", sans-serif;
+  font-family: "Roboto Condensed", "ubuntu-light", sans-serif;
 }
 
 .navbar.default-layout-navbar .navbar-menu-wrapper .search-field .input-group input::-webkit-input-placeholder {
   font-size: 0.875rem;
   color: #9c9fa6;
-  font-family: "ubuntu-light", sans-serif;
+  font-family: "Roboto Condensed", "ubuntu-light", sans-serif;
 }
 
 .navbar.default-layout-navbar .navbar-menu-wrapper .search-field .input-group i {
@@ -18000,7 +18002,7 @@ input:focus {
   background: #ffffff;
   border-radius: 6px;
   line-height: 1;
-  font-family: "ubuntu-bold", sans-serif;
+  font-family: "Roboto Condensed", "ubuntu-bold", sans-serif;
 }
 
 @media (max-width: 991px) {
@@ -18089,7 +18091,7 @@ input:focus {
 
 .navbar.horizontal-full-width-layout-navbar .navbar-top .navbar-menu-wrapper .navbar-nav .nav-item .nav-link {
   color: #9c9fa6;
-  font-family: "ubuntu-bold", sans-serif;
+  font-family: "Roboto Condensed", "ubuntu-bold", sans-serif;
 }
 
 .navbar.horizontal-full-width-layout-navbar .navbar-top .navbar-menu-wrapper .navbar-nav .nav-item .nav-link.active {
@@ -18128,7 +18130,7 @@ input:focus {
   color: #9c9fa6;
   padding: .75rem 1rem;
   line-height: 1;
-  font-family: "ubuntu-bold", sans-serif;
+  font-family: "Roboto Condensed", "ubuntu-bold", sans-serif;
 }
 
 .navbar.horizontal-full-width-layout-navbar .navbar-bottom .navbar-nav.navbar-nav-left .nav-item .nav-link i {
@@ -18163,25 +18165,25 @@ input:focus {
 .navbar.horizontal-full-width-layout-navbar .navbar-bottom .navbar-nav .nav-item.nav-search .search-field input:-ms-input-placeholder {
   font-size: .875rem;
   color: #9c9fa6;
-  font-family: "ubuntu-regular", sans-serif;
+  font-family: "Roboto Condensed", "ubuntu-regular", sans-serif;
 }
 
 .navbar.horizontal-full-width-layout-navbar .navbar-bottom .navbar-nav .nav-item.nav-search .search-field input:-moz-placeholder {
   font-size: .875rem;
   color: #9c9fa6;
-  font-family: "ubuntu-regular", sans-serif;
+  font-family: "Roboto Condensed", "ubuntu-regular", sans-serif;
 }
 
 .navbar.horizontal-full-width-layout-navbar .navbar-bottom .navbar-nav .nav-item.nav-search .search-field input::-moz-placeholder {
   font-size: .875rem;
   color: #9c9fa6;
-  font-family: "ubuntu-regular", sans-serif;
+  font-family: "Roboto Condensed", "ubuntu-regular", sans-serif;
 }
 
 .navbar.horizontal-full-width-layout-navbar .navbar-bottom .navbar-nav .nav-item.nav-search .search-field input::-webkit-input-placeholder {
   font-size: .875rem;
   color: #9c9fa6;
-  font-family: "ubuntu-regular", sans-serif;
+  font-family: "Roboto Condensed", "ubuntu-regular", sans-serif;
 }
 
 .navbar.horizontal-full-width-layout-navbar .navbar-bottom .navbar-nav.navbar-nav-right .nav-item .nav-link {
@@ -18286,7 +18288,7 @@ input:focus {
 /* Typography */
 body {
   font-size: 1rem;
-  font-family: "ubuntu-regular", sans-serif;
+  font-family: "Roboto Condensed", "ubuntu-regular", sans-serif;
   font-weight: initial;
   line-height: normal;
   -webkit-font-smoothing: antialiased;
@@ -18304,7 +18306,7 @@ h6,
 .h4,
 .h5,
 .h6 {
-  font-family: "ubuntu-medium", sans-serif;
+  font-family: "Roboto Condensed", "ubuntu-medium", sans-serif;
 }
 
 p {
@@ -18559,7 +18561,7 @@ pre {
 code {
   padding: 5px;
   color: #fe7c96;
-  font-family: "ubuntu-light", sans-serif;
+  font-family: "Roboto Condensed", "ubuntu-light", sans-serif;
   font-size: 0.875rem;
   border-radius: 4px;
 }
@@ -18602,7 +18604,7 @@ code {
   -webkit-transition: all 0.25s ease;
   -ms-transition: all 0.25s ease;
   font-size: calc(0.875rem - 0.05rem);
-  font-family: "ubuntu-regular", sans-serif;
+  font-family: "Roboto Condensed", "ubuntu-regular", sans-serif;
   border-top: 1px solid #dccedf;
 }
 
@@ -18734,15 +18736,15 @@ code {
 }
 
 .font-weight-light {
-  font-family: "ubuntu-light", sans-serif;
+  font-family: "Roboto Condensed", "ubuntu-light", sans-serif;
 }
 
 .font-weight-bold {
-  font-family: "ubuntu-bold", sans-serif;
+  font-family: "Roboto Condensed", "ubuntu-bold", sans-serif;
 }
 
 .font-weight-normal {
-  font-family: "ubuntu-regular", sans-serif;
+  font-family: "Roboto Condensed", "ubuntu-regular", sans-serif;
 }
 
 /* Demo Styles */
@@ -18881,7 +18883,7 @@ code {
   font-weight: initial;
   line-height: 1;
   padding: .375rem .5625rem;
-  font-family: "ubuntu-medium", sans-serif;
+  font-family: "Roboto Condensed", "ubuntu-medium", sans-serif;
 }
 
 .badge.badge-pill {
@@ -19041,7 +19043,7 @@ code {
 .btn {
   font-size: 0.875rem;
   line-height: 1;
-  font-family: "ubuntu-bold", sans-serif;
+  font-family: "Roboto Condensed", "ubuntu-bold", sans-serif;
   /* Buttons with only icons */
   /* Buttons with icon and text */
 }
@@ -20051,19 +20053,19 @@ code {
   color: #000;
   margin-bottom: .75rem;
   text-transform: capitalize;
-  font-family: "ubuntu-medium", sans-serif;
+  font-family: "Roboto Condensed", "ubuntu-medium", sans-serif;
   font-size: 1.125rem;
 }
 
 .card .card-subtitle {
-  font-family: "ubuntu-regular", sans-serif;
+  font-family: "Roboto Condensed", "ubuntu-regular", sans-serif;
   margin-top: 0.625rem;
   margin-bottom: 0.625rem;
 }
 
 .card .card-description {
   margin-bottom: 1.5rem;
-  font-family: "ubuntu-regular", sans-serif;
+  font-family: "Roboto Condensed", "ubuntu-regular", sans-serif;
   color: #76838f;
 }
 
@@ -20479,7 +20481,7 @@ code {
 
 .form-control {
   border: 1px solid #ebedf2;
-  font-family: "ubuntu-regular", sans-serif;
+  font-family: "Roboto Condensed", "ubuntu-regular", sans-serif;
   font-size: 0.8125rem;
 }
 
@@ -20595,7 +20597,7 @@ select.form-control.border-dark:focus {
   -webkit-align-items: center;
   align-items: center;
   padding: 15px 15px;
-  font-family: "ubuntu-regular", sans-serif;
+  font-family: "Roboto Condensed", "ubuntu-regular", sans-serif;
   font-size: 0.875rem;
 }
 
@@ -20856,7 +20858,7 @@ dl li {
 .table thead th {
   border-top: 0;
   border-bottom-width: 1px;
-  font-family: "ubuntu-medium", sans-serif;
+  font-family: "Roboto Condensed", "ubuntu-medium", sans-serif;
   font-weight: initial;
 }
 
