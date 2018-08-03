@@ -50,16 +50,16 @@ class VTController extends Controller
             // TODO set payment status in merchant's database to 'Settlement'
             echo "Transaction order_id: " . $order_id . " successfully transfered using " . $type;
 
-            // $t102_id = T102::where('order_id', $order_id)->get();
-            // $t002_id = User::where('code_user', $t102_id[0]->code_user)->get();
+            $t102_id = T102::where('order_id', $order_id)->get();
+            $t002_id = User::where('code_user', $t102_id[0]->code_user)->get();
 
             T102::where('order_id', $order_id)->update([
                 'status_saldo' => 'SETTLEMENT FROM VT',
             ]);
 
-            /* User::where('code_user', $t102_id[0]->code_user)->update([
+            User::where('code_user', $t102_id[0]->code_user)->update([
                 'saldo' => $t002_id[0]->saldo + $gross_amount,
-            ]);*/
+            ]);
 
         } else if ($transaction == 'pending') {
             // TODO set payment status in merchant's database to 'Pending'
