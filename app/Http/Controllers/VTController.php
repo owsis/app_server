@@ -51,7 +51,7 @@ class VTController extends Controller
             echo "Transaction order_id: " . $order_id . " successfully transfered using " . $type;
 
             $t102_id = T102::where('order_id', $order_id)->get();
-            $t002_id = User::where('code_user', $t102_id[0]->code_user)->get();
+            $t002_id = User::where('code', $t102_id[0]->code_user)->get();
 
             T102::where('order_id', $order_id)->update([
                 'status_saldo' => 'SETTLEMENT FROM VT',
