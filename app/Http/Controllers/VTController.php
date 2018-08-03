@@ -19,7 +19,6 @@ class VTController extends Controller
     public function notif()
     {
         $vt = new Veritrans;
-        echo 'test notification handler';
         $json_result = file_get_contents('php://input');
         $result = json_decode($json_result);
 
@@ -77,7 +76,15 @@ class VTController extends Controller
                 'status_saldo' => 'DENY FROM VT',
             ]);
 
-        }
+        } else if ($transaction == 'expire') {
+            // TODO set payment status in merchant's database to 'Denied'
+            echo "Payment using " . $type . " for transaction order_id: " . $order_id . " is denied.";
+
+            T102::where('order_id', $order_id)->update([
+                'status_saldo' => 'EXPIRE FROM VT',
+            ]);
+
+        } 
 
     }
 }
