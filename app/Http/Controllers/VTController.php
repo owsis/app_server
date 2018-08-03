@@ -57,7 +57,7 @@ class VTController extends Controller
                 'status_saldo' => 'SETTLEMENT FROM VT',
             ]);
 
-            User::where('code_user', $t102_id[0]->code_user)->update([
+            User::where('code', $t102_id[0]->code_user)->update([
                 'saldo' => $t002_id[0]->saldo + $gross_amount,
             ]);
 
