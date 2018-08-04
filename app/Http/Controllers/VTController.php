@@ -44,8 +44,6 @@ class VTController extends Controller
         $order_id     = $notif->order_id;
         $gross_amount = $notif->gross_amount;
         $fraud        = $notif->fraud_status;
-        $va_number    = $notif->va_numbers->va_number;
-        $bank         = $notif->va_numbers->bank;
 
         if ($transaction == 'capture') {
             // For credit card transaction, we need to check whether transaction is challenge by FDS or not
@@ -68,8 +66,7 @@ class VTController extends Controller
             $userkey = "1xsbad";
             $passkey = "abc123";
             $notelp  = $t002_id[0]->phone;
-            $msg     = "Terima Kasih telah top up saldo pada aplikasi Smile In Properti. "+"\n"+
-                    "Dengan nomor Virtual Account "+$va_number+"\n"+
+            $msg     = "Terima Kasih telah top up saldo pada aplikasi Smile In Properti. "+
                     "Pembayaran Anda telah Sukses.";
 
 
@@ -109,8 +106,8 @@ class VTController extends Controller
             $userkey = "1xsbad";
             $passkey = "abc123";
             $notelp  = $t002_id[0]->phone;
-            $msg     = "Terima Kasih telah top up saldo pada aplikasi Smile In Properti. " + "\n" +
-                    "Dengan nomor Virtual Account "+ $va_number + "\n" +
+            $msg     = "Terima Kasih telah top up saldo pada aplikasi Smile In Properti. " +
+                    "Dengan nomor Virtual Account "+ $va_number +
                     "Segera selesaikan Pembayaran Anda.";
 
             $url = "https://alpha.zenziva.net/apps/smsapi.php";
