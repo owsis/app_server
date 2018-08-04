@@ -107,7 +107,6 @@ class VTController extends Controller
             $passkey = "abc123";
             $notelp  = $t002_id[0]->phone;
             $msg     = "Terima Kasih telah top up saldo pada aplikasi Smile In Properti. " +
-                    "Dengan nomor Virtual Account "+ $va_number +
                     "Segera selesaikan Pembayaran Anda.";
 
             $url = "https://alpha.zenziva.net/apps/smsapi.php";
