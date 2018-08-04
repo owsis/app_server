@@ -65,12 +65,13 @@ class VTController extends Controller
             $t102_id = T102::where('order_id', $order_id)->get();
             $t002_id = User::where('code', $t102_id[0]->code_user)->get();
 
-            $userkey = '1xsbad';
-            $passkey = 'abc123';
+            $userkey = "1xsbad";
+            $passkey = "abc123";
             $notelp  = $t002_id[0]->phone;
-            $msg     = 'Terima Kasih telah top up saldo pada aplikasi Smile In Properti. ' + "\n" +
-                    'Dengan nomor Virtual Account ' + $va_number + "\n" +
-                    'Pembayaran Anda telah sukses.';
+            $msg     = "Terima Kasih telah top up saldo pada aplikasi Smile In Properti. "+"\n"+
+                    "Dengan nomor Virtual Account "+$va_number+"\n"+
+                    "Pembayaran Anda telah Sukses.";
+
 
             $url = "https://alpha.zenziva.net/apps/smsapi.php";
             $curlHandle = curl_init();
@@ -105,12 +106,12 @@ class VTController extends Controller
                 'status_saldo' => 'PENDING FROM VT',
             ]);
 
-            $userkey = '1xsbad';
-            $passkey = 'abc123';
+            $userkey = "1xsbad";
+            $passkey = "abc123";
             $notelp  = $t002_id[0]->phone;
-            $msg     = 'Terima Kasih telah top up saldo pada aplikasi Smile In Properti. ' + "\n" +
-                    'Dengan nomor Virtual Account '+ $va_number + "\n" +
-                    'Segera selesaikan Pembayaran Anda.';
+            $msg     = "Terima Kasih telah top up saldo pada aplikasi Smile In Properti. " + "\n" +
+                    "Dengan nomor Virtual Account "+ $va_number + "\n" +
+                    "Segera selesaikan Pembayaran Anda.";
 
             $url = "https://alpha.zenziva.net/apps/smsapi.php";
             $curlHandle = curl_init();
