@@ -41,8 +41,8 @@ class VTController extends Controller
         $order_id     = $notif->order_id;
         $gross_amount = $notif->gross_amount;
         $fraud        = $notif->fraud_status;
-        $va_number    = $notif->va_numbers->va_number;
-        $bank         = $notif->va_numbers->bank;
+        // $va_number    = $notif->va_numbers->va_number;
+        // $bank         = $notif->va_numbers->bank;
 
         if ($transaction == 'capture') {
             // For credit card transaction, we need to check whether transaction is challenge by FDS or not
