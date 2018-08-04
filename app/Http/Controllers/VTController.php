@@ -61,7 +61,7 @@ class VTController extends Controller
 
             $t102_id = T102::where('order_id', $order_id)->get();
             $t002_id = User::where('code', $t102_id[0]->code_user)->get();
-
+            /*
             $userkey = '1xsbad';
             $passkey = 'abc123';
             $notelp  = $t002_id[0]->phone;
@@ -81,7 +81,7 @@ class VTController extends Controller
             curl_setopt($curlHandle, CURLOPT_POST, 1);
             $results = curl_exec($curlHandle);
             curl_close($curlHandle);
-
+ */
             T102::where('order_id', $order_id)->update([
                 'status_saldo' => 'SETTLEMENT FROM VT',
             ]);
@@ -101,7 +101,7 @@ class VTController extends Controller
             T102::where('order_id', $order_id)->update([
                 'status_saldo' => 'PENDING FROM VT',
             ]);
-
+/*
             $userkey = '1xsbad';
             $passkey = 'abc123';
             $notelp  = $t002_id[0]->phone;
@@ -121,7 +121,7 @@ class VTController extends Controller
             curl_setopt($curlHandle, CURLOPT_POST, 1);
             $results = curl_exec($curlHandle);
             curl_close($curlHandle);
-
+*/
         } else if ($transaction == 'deny') {
             // TODO set payment status in merchant's database to 'Denied'
             echo "Payment using " . $type . " for transaction order_id: " . $order_id . " is denied.";
