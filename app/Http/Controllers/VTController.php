@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\User;
 use App\T102;
 use App\Veritrans\Veritrans;
+use Illuminate\Http\Request;
+use App\Http\Requests;
 
 class VTController extends Controller
 {
@@ -27,6 +29,7 @@ class VTController extends Controller
     public function notif()
     {
         $vt = new Veritrans;
+        echo 'test notification handler';
         $json_result = file_get_contents('php://input');
         $result = json_decode($json_result);
 
@@ -41,8 +44,8 @@ class VTController extends Controller
         $order_id     = $notif->order_id;
         $gross_amount = $notif->gross_amount;
         $fraud        = $notif->fraud_status;
-        // $va_number    = $notif->va_numbers->va_number;
-        // $bank         = $notif->va_numbers->bank;
+        $va_number    = $notif->va_numbers->va_number;
+        $bank         = $notif->va_numbers->bank;
 
         if ($transaction == 'capture') {
             // For credit card transaction, we need to check whether transaction is challenge by FDS or not
@@ -61,7 +64,7 @@ class VTController extends Controller
 
             $t102_id = T102::where('order_id', $order_id)->get();
             $t002_id = User::where('code', $t102_id[0]->code_user)->get();
-            /*
+
             $userkey = '1xsbad';
             $passkey = 'abc123';
             $notelp  = $t002_id[0]->phone;
@@ -81,7 +84,7 @@ class VTController extends Controller
             curl_setopt($curlHandle, CURLOPT_POST, 1);
             $results = curl_exec($curlHandle);
             curl_close($curlHandle);
- */
+ 
             T102::where('order_id', $order_id)->update([
                 'status_saldo' => 'SETTLEMENT FROM VT',
             ]);
@@ -101,7 +104,7 @@ class VTController extends Controller
             T102::where('order_id', $order_id)->update([
                 'status_saldo' => 'PENDING FROM VT',
             ]);
-/*
+
             $userkey = '1xsbad';
             $passkey = 'abc123';
             $notelp  = $t002_id[0]->phone;
@@ -121,7 +124,7 @@ class VTController extends Controller
             curl_setopt($curlHandle, CURLOPT_POST, 1);
             $results = curl_exec($curlHandle);
             curl_close($curlHandle);
-*/
+
         } else if ($transaction == 'deny') {
             // TODO set payment status in merchant's database to 'Denied'
             echo "Payment using " . $type . " for transaction order_id: " . $order_id . " is denied.";
