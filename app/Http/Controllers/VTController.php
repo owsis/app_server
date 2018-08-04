@@ -16,6 +16,14 @@ class VTController extends Controller
 
     }
 
+    public function finishVT() {
+        return view('sukses-midtrans');
+    }
+
+    public function failVT() {
+        return view('gagal-midtrans');
+    }
+
     public function notif()
     {
         $vt = new Veritrans;
@@ -33,6 +41,8 @@ class VTController extends Controller
         $order_id     = $notif->order_id;
         $gross_amount = $notif->gross_amount;
         $fraud        = $notif->fraud_status;
+        $va_number    = $notif->va_numbers->va_number;
+        $bank         = $notif->va_numbers->bank;
 
         if ($transaction == 'capture') {
             // For credit card transaction, we need to check whether transaction is challenge by FDS or not
@@ -48,10 +58,29 @@ class VTController extends Controller
             }
         } else if ($transaction == 'settlement') {
             // TODO set payment status in merchant's database to 'Settlement'
-            echo "Transaction order_id: " . $order_id . " successfully transfered using " . $type;
 
             $t102_id = T102::where('order_id', $order_id)->get();
             $t002_id = User::where('code', $t102_id[0]->code_user)->get();
+
+            $userkey = '1xsbad';
+            $passkey = 'abc123';
+            $notelp  = $t002_id[0]->phone;
+            $msg     = 'Terima Kasih telah top up saldo pada aplikasi Smile In Properti. ' + "\n" +
+                    'Dengan nomor Virtual Account ' + $va_number + "\n" +
+                    'Pembayaran Anda telah sukses.';
+
+            $url = "https://alpha.zenziva.net/apps/smsapi.php";
+            $curlHandle = curl_init();
+            curl_setopt($curlHandle, CURLOPT_URL, $url);
+            curl_setopt($curlHandle, CURLOPT_POSTFIELDS, 'userkey=' . $userkey . '&passkey=' . $passkey . '&nohp=' . $notelp . '&pesan=' . urlencode($msg));
+            curl_setopt($curlHandle, CURLOPT_HEADER, 0);
+            curl_setopt($curlHandle, CURLOPT_RETURNTRANSFER, 1);
+            curl_setopt($curlHandle, CURLOPT_SSL_VERIFYHOST, 2);
+            curl_setopt($curlHandle, CURLOPT_SSL_VERIFYPEER, 0);
+            curl_setopt($curlHandle, CURLOPT_TIMEOUT, 30);
+            curl_setopt($curlHandle, CURLOPT_POST, 1);
+            $results = curl_exec($curlHandle);
+            curl_close($curlHandle);
 
             T102::where('order_id', $order_id)->update([
                 'status_saldo' => 'SETTLEMENT FROM VT',
@@ -64,10 +93,35 @@ class VTController extends Controller
         } else if ($transaction == 'pending') {
             // TODO set payment status in merchant's database to 'Pending'
             echo "Waiting customer to finish transaction order_id: " . $order_id . " using " . $type;
+
+            $t102_id = T102::where('order_id', $order_id)->get();
+            $t002_id = User::where('code', $t102_id[0]->code_user)->get();
+
             
             T102::where('order_id', $order_id)->update([
                 'status_saldo' => 'PENDING FROM VT',
             ]);
+
+            $userkey = '1xsbad';
+            $passkey = 'abc123';
+            $notelp  = $t002_id[0]->phone;
+            $msg     = 'Terima Kasih telah top up saldo pada aplikasi Smile In Properti. ' + "\n" +
+                    'Dengan nomor Virtual Account '+ $va_number + "\n" +
+                    'Segera selesaikan Pembayaran Anda.';
+
+            $url = "https://alpha.zenziva.net/apps/smsapi.php";
+            $curlHandle = curl_init();
+            curl_setopt($curlHandle, CURLOPT_URL, $url);
+            curl_setopt($curlHandle, CURLOPT_POSTFIELDS, 'userkey=' . $userkey . '&passkey=' . $passkey . '&nohp=' . $notelp . '&pesan=' . urlencode($msg));
+            curl_setopt($curlHandle, CURLOPT_HEADER, 0);
+            curl_setopt($curlHandle, CURLOPT_RETURNTRANSFER, 1);
+            curl_setopt($curlHandle, CURLOPT_SSL_VERIFYHOST, 2);
+            curl_setopt($curlHandle, CURLOPT_SSL_VERIFYPEER, 0);
+            curl_setopt($curlHandle, CURLOPT_TIMEOUT, 30);
+            curl_setopt($curlHandle, CURLOPT_POST, 1);
+            $results = curl_exec($curlHandle);
+            curl_close($curlHandle);
+
         } else if ($transaction == 'deny') {
             // TODO set payment status in merchant's database to 'Denied'
             echo "Payment using " . $type . " for transaction order_id: " . $order_id . " is denied.";

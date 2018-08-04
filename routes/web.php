@@ -25,3 +25,5 @@ Route::post('/inadmin', 'AuthT001\LoginController@login');
 // Route::get('/regadmin', 'AuthT001\RegisterController@regAdmin');
 // Route::post('/regadmin', 'AuthT001\RegisterController@create');
 
+Route::get('/finish', 'VTController@finishVT');
+Route::get('/fail', 'VTController@failVT');
