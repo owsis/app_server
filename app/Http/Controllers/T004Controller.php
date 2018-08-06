@@ -16,7 +16,7 @@ class T004Controller extends Controller
         ->collection($t004s)
         ->transformWith(new T004Transformer)
         ->addMeta([
-            'data_count' => $t004::where('email', $email)->where('branchcode', $branchcode)->count()
+            'data_count' => $t004::count()
         ])
         ->toArray();
     }
