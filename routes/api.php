@@ -35,8 +35,8 @@ Route::get('/customer/{email}/{branchcode}', 'T004Controller@get');
 Route::post('/customer', 'T004Controller@post');
 
 
-Route::post('/add/pm', 'T006Controller@post');
-Route::get('/add/pm', 'T006Controller@get');
+Route::post('/add/pm', 'T004Controller@post');
+Route::get('/add/pm', 'T004Controller@get');
 Route::get('/add/fp', 'T005Controller@get');
 Route::post('/add/fp', 'T005Controller@post');
 Route::get('/add/promo', 'T007Controller@get');

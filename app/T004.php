@@ -9,14 +9,7 @@ class T004 extends Model
     protected $table = 't004s';
 
     protected $fillable = [
-        'branchcode',
-        'code_customer',
-        'name',
-        'address',
-        'city_code',
-        'email',
-        'ktp',
-        'npwp',
-        'phone'
+        'code_payment',
+        'name_payment',
     ];
 }
