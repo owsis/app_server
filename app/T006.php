@@ -9,8 +9,9 @@ class T006 extends Model
     protected $table = 't006s';
 
     protected $fillable = [
-        'branchcode',
-        'name_payment',
-        'note_payment'
+        'type_unit',
+        'code_unit',
+        'code_payment',
+        'price'
     ];
 }

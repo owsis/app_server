@@ -10,12 +10,10 @@ class T006Transformer extends TransformerAbstract
      public function transform(T006 $t006)
      {
           return [
-          'branchcode'     => $t006->branchcode,
-          'name_payment'   => $t006->name_payment,
-          'note_payment'   => $t006->note_payment,
-          'dp'             => $t006->dp,
-          'kpr'            => $t006->kpr,
-          'disc'           => $t006->disc
+          'type_unit'      => $t006->type_unit,
+          'code_unit'      => $t006->code_unit,
+          'code_payment'   => $t006->code_payment,
+          'price'          => $t006->price
           ];
      }
 }
