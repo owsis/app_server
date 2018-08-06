@@ -67,8 +67,8 @@ class VTController extends Controller
             $userkey = "1xsbad";
             $passkey = "abc123";
             $notelp  = $t002_id[0]->phone;
-            $msg     = "Terima Kasih telah top up saldo pada aplikasi Smile In Properti. "+
-                    "Pembayaran Anda telah Sukses.";
+            $msg     = "Terima Kasih." . "\n" .
+                    "Nomor Virtual Account " . $va_number . " Sukses di-transfer";
 
 
             $url = "https://alpha.zenziva.net/apps/smsapi.php";
@@ -107,9 +107,9 @@ class VTController extends Controller
             $userkey = "1xsbad";
             $passkey = "abc123";
             $notelp  = $t002_id[0]->phone;
-            $msg     = "Terima Kasih telah top up saldo pada aplikasi Smile In Properti." . "\n" .
-                    "Nomor Virtual Account" . $va_number .
-                    " Segera selesaikan Pembayaran Anda.";
+            $msg     = "Terima Kasih." . "\n" .
+                    "Nomor Virtual Account " . $va_number . "\n" .
+                    "Silakan selesaikan Pembayaran Anda.";
 
             $url = "https://alpha.zenziva.net/apps/smsapi.php";
             $curlHandle = curl_init();

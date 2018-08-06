@@ -13,7 +13,7 @@
                         </div>
                         <h4>Hello! let's get started</h4>
                         <h6 class="font-weight-light">Sign in to continue.</h6>
-                        <form class="pt-3" role="form" method="POST" action="{{url('/inadmin') }}">
+                        <form class="pt-3" role="form" method="POST" action="{{url('/in') }}">
                             {{ csrf_field() }}
 
                             <div class="form-group{{ $errors->has('phone') ? 'has-error' : '' }}">
@@ -66,7 +66,7 @@
                                 </div>
                                 <a href="{{ url('/password/reset') }}" class="auth-link text-black">Lupa password</a>
                             </div>
-                            {{-- <div class="text-center mt-4 font-weight-light"> 
+                            {{-- <div class="text-center mt-4 font-weight-light">
                                 Belum Daftar?
                                 <a href="{{ url('/regadmin') }}" class="text-primary">Buat</a>
                             </div> --}}

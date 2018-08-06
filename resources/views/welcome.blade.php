@@ -76,7 +76,7 @@
                 </div>
 
                 <div class="links">
-                    <a href="{{ url('/public/inadmin') }}">MASUK</a>
+                    <a href="{{ url('/in') }}">MASUK</a>
                 </div>
             </div>
         </div>
