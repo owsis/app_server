@@ -79,13 +79,10 @@ class T101Controller extends Controller
             'price_unit'     => $req->price_unit,
             'first_payment'  => $req->first_payment,
             'type_payment'   => $req->type_payment,
-            'harga_trans'    => $req->harga_trans,
             'dp'             => $req->dp,
             'kpr'            => $req->kpr,
             'cash'           => $req->cash,
             'referral_from'  => $ref_from[0]->referral_from,
-            'tiket'          => $req->tiket,
-            'total_tiket'    => $req->total_tiket
         ]);
 
         return response()->json($t101s);

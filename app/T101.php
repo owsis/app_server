@@ -20,13 +20,10 @@ class T101 extends Model
         'price_unit',
         'first_payment',
         'type_payment',
-        'harga_trans',
         'dp',
         'kpr',
         'cash',
         'referral_from',
-        'tiket',
-        'total_tiket',
         'status',
         'status_fp'
     ];
