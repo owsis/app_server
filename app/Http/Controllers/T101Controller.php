@@ -52,11 +52,6 @@ class T101Controller extends Controller
     {
         $ref_from = \App\User::where('referral_from', $refFrom)->get();
 
-        $code_user = \App\User::where('code', $codeUser)->get();
-        \App\User::where('code', $codeUser)->update([
-            'saldo' => $code_user[0]->saldo - $req->first_payment
-        ]);
-
         $this->validate($req, [
             'branchcode'     => 'required',
             'booking_no'     => 'required',
