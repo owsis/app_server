@@ -51,10 +51,7 @@ class T101Controller extends Controller
     public function post(Request $req, T101 $t101, $refFrom, $unitCode, $codeUser)
     {
         $ref_from = \App\User::where('referral_from', $refFrom)->get();
-        $unit_code = \App\T003::where('code_unit', $unitCode)
-            ->update([
-                'status_unit' => 'close',
-            ]);
+
         $code_user = \App\User::where('code', $codeUser)->get();
         \App\User::where('code', $codeUser)->update([
             'saldo' => $code_user[0]->saldo - $req->first_payment
@@ -93,8 +90,7 @@ class T101Controller extends Controller
             'cash'           => $req->cash,
             'referral_from'  => $ref_from[0]->referral_from,
             'tiket'          => $req->tiket,
-            'total_tiket'    => $req->total_tiket,
-            'status'         => $req->status,
+            'total_tiket'    => $req->total_tiket
         ]);
 
         return response()->json($t101s);
