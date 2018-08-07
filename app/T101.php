@@ -12,6 +12,7 @@ class T101 extends Model
     protected $fillable = [
         'branchcode',
         'booking_no',
+        'order_id',
         'code_customer',
         'name_customer',
         'phone_customer',

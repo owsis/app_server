@@ -55,6 +55,7 @@ class T101Controller extends Controller
         $this->validate($req, [
             'branchcode'     => 'required',
             'booking_no'     => 'required',
+            'order_id'     => 'required',
             'code_customer'  => 'required',
             'name_customer'  => 'required',
             'phone_customer' => 'required',
@@ -71,6 +72,7 @@ class T101Controller extends Controller
         $t101s = $t101->create([
             'branchcode'     => $req->branchcode,
             'booking_no'     => $req->booking_no,
+            'order_id'       => $req->order_id,
             'code_customer'  => $req->code_customer,
             'name_customer'  => strtoupper($req->name_customer),
             'phone_customer' => $req->phone_customer,

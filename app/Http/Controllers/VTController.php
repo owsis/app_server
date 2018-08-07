@@ -62,8 +62,8 @@ class VTController extends Controller
         } else if ($transaction == 'settlement') {
             // TODO set payment status in merchant's database to 'Settlement'
 
-            $t101_id = T101::where('booking_no', $order_id)->get();
-            $t002_id = User::where('code', $t101_id[0]->code_user)->get();
+            $t101_id = T101::where('order_id', $order_id)->get();
+            $t002_id = User::where('code', $t101_id[0]->code_customer)->get();
 
             $userkey = "1xsbad";
             $passkey = "abc123";
@@ -85,7 +85,7 @@ class VTController extends Controller
             $results = curl_exec($curlHandle);
             curl_close($curlHandle);
 
-            T101::where('booking_no', $order_id)->update([
+            T101::where('order_id', $order_id)->update([
                 'status_fp' => 'SETTLEMENT FROM VT',
             ]);
 
@@ -97,10 +97,10 @@ class VTController extends Controller
             // TODO set payment status in merchant's database to 'Pending'
             echo "Waiting customer to finish transaction order_id: " . $order_id . " using " . $type;
 
-            $t101_id = T101::where('booking_no', $order_id)->get();
-            $t002_id = User::where('code', $t101_id[0]->code_user)->get();
+            $t101_id = T101::where('order_id', $order_id)->get();
+            $t002_id = User::where('code', $t101_id[0]->code_customer)->get();
 
-            T101::where('booking_no', $order_id)->update([
+            T101::where('order_id', $order_id)->update([
                 'status_fp' => 'PENDING FROM VT',
             ]);
 
@@ -132,10 +132,10 @@ class VTController extends Controller
             // TODO set payment status in merchant's database to 'Denied'
             echo "Payment using " . $type . " for transaction order_id: " . $order_id . " is denied.";
 
-            $t101_id = T101::where('booking_no', $order_id)->get();
-            $t002_id = User::where('code', $t101_id[0]->code_user)->get();
+            $t101_id = T101::where('order_id', $order_id)->get();
+            $t002_id = User::where('code', $t101_id[0]->code_customer)->get();
 
-            T101::where('booking_no', $order_id)->update([
+            T101::where('order_id', $order_id)->update([
                 'status_fp' => 'DENY FROM VT',
             ]);
 
@@ -167,8 +167,8 @@ class VTController extends Controller
             // TODO set payment status in merchant's database to 'Denied'
             echo "Payment using " . $type . " for transaction order_id: " . $order_id . " is denied.";
 
-            $t101_id = T101::where('booking_no', $order_id)->get();
-            $t002_id = User::where('code', $t101_id[0]->code_user)->get();
+            $t101_id = T101::where('order_id', $order_id)->get();
+            $t002_id = User::where('code', $t101_id[0]->code_customer)->get();
 
             T101::where('order_id', $order_id)->update([
                 'status_saldo' => 'EXPIRE FROM VT',
