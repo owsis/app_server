@@ -13,7 +13,10 @@ class T006Transformer extends TransformerAbstract
           'type_unit'      => $t006->type_unit,
           'code_unit'      => $t006->code_unit,
           'code_payment'   => $t006->code_payment,
-          'price'          => $t006->price
+          'price'          => $t006->price,
+          'dp'             => $t006->dp,
+          'kpr'            => $t006->kpr,
+          'disc'           => $t006->disc,
           ];
      }
 }
