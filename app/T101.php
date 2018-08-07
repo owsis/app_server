@@ -27,7 +27,8 @@ class T101 extends Model
         'referral_from',
         'tiket',
         'total_tiket',
-        'status'
+        'status',
+        'status_fp'
     ];
 
     public function t002()

@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\User;
-use App\T102;
+use App\T003;
+use App\T101;
 use App\Veritrans\Veritrans;
 use Illuminate\Http\Request;
 use App\Http\Requests;
@@ -61,8 +62,8 @@ class VTController extends Controller
         } else if ($transaction == 'settlement') {
             // TODO set payment status in merchant's database to 'Settlement'
 
-            $t102_id = T102::where('order_id', $order_id)->get();
-            $t002_id = User::where('code', $t102_id[0]->code_user)->get();
+            $t101_id = T101::where('booking_no', $order_id)->get();
+            $t002_id = User::where('code', $t101_id[0]->code_user)->get();
 
             $userkey = "1xsbad";
             $passkey = "abc123";
@@ -83,25 +84,28 @@ class VTController extends Controller
             curl_setopt($curlHandle, CURLOPT_POST, 1);
             $results = curl_exec($curlHandle);
             curl_close($curlHandle);
- 
-            T102::where('order_id', $order_id)->update([
-                'status_saldo' => 'SETTLEMENT FROM VT',
+
+            T101::where('booking_no', $order_id)->update([
+                'status_fp' => 'SETTLEMENT FROM VT',
             ]);
 
-            User::where('code', $t102_id[0]->code_user)->update([
-                'saldo' => $t002_id[0]->saldo + $gross_amount,
+            T003::where('code_unit', $t101_id[0]->code_unit)->update([
+                'status_unit' => 'close',
             ]);
 
         } else if ($transaction == 'pending') {
             // TODO set payment status in merchant's database to 'Pending'
             echo "Waiting customer to finish transaction order_id: " . $order_id . " using " . $type;
 
-            $t102_id = T102::where('order_id', $order_id)->get();
-            $t002_id = User::where('code', $t102_id[0]->code_user)->get();
+            $t101_id = T101::where('booking_no', $order_id)->get();
+            $t002_id = User::where('code', $t101_id[0]->code_user)->get();
 
-            
-            T102::where('order_id', $order_id)->update([
-                'status_saldo' => 'PENDING FROM VT',
+            T101::where('booking_no', $order_id)->update([
+                'status_fp' => 'PENDING FROM VT',
+            ]);
+
+            T003::where('code_unit', $t101_id[0]->code_unit)->update([
+                'status_unit' => 'order',
             ]);
 
             $userkey = "1xsbad";
@@ -128,19 +132,73 @@ class VTController extends Controller
             // TODO set payment status in merchant's database to 'Denied'
             echo "Payment using " . $type . " for transaction order_id: " . $order_id . " is denied.";
 
-            T102::where('order_id', $order_id)->update([
-                'status_saldo' => 'DENY FROM VT',
+            $t101_id = T101::where('booking_no', $order_id)->get();
+            $t002_id = User::where('code', $t101_id[0]->code_user)->get();
+
+            T101::where('booking_no', $order_id)->update([
+                'status_fp' => 'DENY FROM VT',
             ]);
+
+            T003::where('code_unit', $t101_id[0]->code_unit)->update([
+                'status_unit' => 'available',
+            ]);
+
+            $userkey = "1xsbad";
+            $passkey = "abc123";
+            $notelp  = $t002_id[0]->phone;
+            $msg     = "Mohon maaf." . "\n" .
+                    "Nomor Virtual Account " . $va_number . "\n" .
+                    "Pembayaran Anda tertolak.";
+
+            $url = "https://alpha.zenziva.net/apps/smsapi.php";
+            $curlHandle = curl_init();
+            curl_setopt($curlHandle, CURLOPT_URL, $url);
+            curl_setopt($curlHandle, CURLOPT_POSTFIELDS, 'userkey=' . $userkey . '&passkey=' . $passkey . '&nohp=' . $notelp . '&pesan=' . urlencode($msg));
+            curl_setopt($curlHandle, CURLOPT_HEADER, 0);
+            curl_setopt($curlHandle, CURLOPT_RETURNTRANSFER, 1);
+            curl_setopt($curlHandle, CURLOPT_SSL_VERIFYHOST, 2);
+            curl_setopt($curlHandle, CURLOPT_SSL_VERIFYPEER, 0);
+            curl_setopt($curlHandle, CURLOPT_TIMEOUT, 30);
+            curl_setopt($curlHandle, CURLOPT_POST, 1);
+            $results = curl_exec($curlHandle);
+            curl_close($curlHandle);
 
         } else if ($transaction == 'expire') {
             // TODO set payment status in merchant's database to 'Denied'
             echo "Payment using " . $type . " for transaction order_id: " . $order_id . " is denied.";
 
-            T102::where('order_id', $order_id)->update([
+            $t101_id = T101::where('booking_no', $order_id)->get();
+            $t002_id = User::where('code', $t101_id[0]->code_user)->get();
+
+            T101::where('order_id', $order_id)->update([
                 'status_saldo' => 'EXPIRE FROM VT',
             ]);
 
-        } 
+            T003::where('code_unit', $t101_id[0]->code_unit)->update([
+                'status_unit' => 'available',
+            ]);
+
+            $userkey = "1xsbad";
+            $passkey = "abc123";
+            $notelp  = $t002_id[0]->phone;
+            $msg     = "Mohon maaf." . "\n" .
+                    "Nomor Virtual Account " . $va_number . "\n" .
+                    "Telah melewati masa Pembayaran.";
+
+            $url = "https://alpha.zenziva.net/apps/smsapi.php";
+            $curlHandle = curl_init();
+            curl_setopt($curlHandle, CURLOPT_URL, $url);
+            curl_setopt($curlHandle, CURLOPT_POSTFIELDS, 'userkey=' . $userkey . '&passkey=' . $passkey . '&nohp=' . $notelp . '&pesan=' . urlencode($msg));
+            curl_setopt($curlHandle, CURLOPT_HEADER, 0);
+            curl_setopt($curlHandle, CURLOPT_RETURNTRANSFER, 1);
+            curl_setopt($curlHandle, CURLOPT_SSL_VERIFYHOST, 2);
+            curl_setopt($curlHandle, CURLOPT_SSL_VERIFYPEER, 0);
+            curl_setopt($curlHandle, CURLOPT_TIMEOUT, 30);
+            curl_setopt($curlHandle, CURLOPT_POST, 1);
+            $results = curl_exec($curlHandle);
+            curl_close($curlHandle);
+
+        }
 
     }
 }

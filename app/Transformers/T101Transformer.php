@@ -32,6 +32,7 @@ class T101Transformer extends TransformerAbstract
             'tiket'         => $t101->tiket,
             'total_tiket'   => $t101->total_tiket,
             'status'        => $t101->status,
+            'status_fp'     => $t101->status_fp,
         ];
     }
 
