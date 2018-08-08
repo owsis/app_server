@@ -56,7 +56,7 @@ class T101Controller extends Controller
             ->collection($t101s)
             ->transformWith(new T101Transformer)
             ->addMeta([
-                'data_count' => $t101::where('code_customer', $code)->where('status', 'BOOKED')->count(),
+                'data_count' => $t101::where('code_customer', $code)->where('status', 'ORDER')->where('status_fp', 'PENDING FROM VT')->count(),
             ])
             ->toArray();
     }
