@@ -50,13 +50,13 @@ class T101Controller extends Controller
 
     public function getOrder(T101 $t101, $code)
     {
-        $t101s = $t101::where('code_customer', $code)->where('status', 'ORDER')->where('status_fp', 'PENDING FROM VT')->get();
+        $t101s = $t101::where('code_customer', $code)->where('status_fp', 'PENDING FROM VT')->get();
 
         return fractal()
             ->collection($t101s)
             ->transformWith(new T101Transformer)
             ->addMeta([
-                'data_count' => $t101::where('code_customer', $code)->where('status', 'ORDER')->where('status_fp', 'PENDING FROM VT')->count(),
+                'data_count' => $t101::where('code_customer', $code)->where('status_fp', 'PENDING FROM VT')->count(),
             ])
             ->toArray();
     }
