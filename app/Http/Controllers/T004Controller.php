@@ -19,10 +19,10 @@ class T004Controller extends Controller
         ->collection($t004s)
         ->transformWith(new T004Transformer)
         ->addMeta([
-            'data_count' => $t004::where('code_payment', $t006->code_payment)->get()
+            'data_count' => $t004::where('code_payment', $t006->code_payment)->count()
         ])
         ->toArray();
-        
+
         }
     }
 
