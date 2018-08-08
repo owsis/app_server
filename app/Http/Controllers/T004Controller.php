@@ -12,8 +12,13 @@ class T004Controller extends Controller
     public function get(T004 $t004, $code)
     {
         $t006s = T006::where('code_unit', $code)->get();
-        foreach($t006s as $t006) {
-            $t004s = $t004::where('code_payment', $t006->code_payment)->get();
+
+        $t004s = $t004::where('code_payment', $t006s[0]->code_payment)
+        ->orWhere('code_payment', $t006s[1]->code_payment)
+        ->orWhere('code_payment', $t006s[2]->code_payment)
+        ->orWhere('code_payment', $t006s[3]->code_payment)
+        ->orWhere('code_payment', $t006s[4]->code_payment)
+        ->get();
 
         return fractal()
         ->collection($t004s)
@@ -23,7 +28,6 @@ class T004Controller extends Controller
         ])
         ->toArray();
 
-        }
     }
 
     public function post(Request $req, T004 $t004)
