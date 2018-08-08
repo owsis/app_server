@@ -4,13 +4,17 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\T004;
+use App\T006;
 use App\Transformers\T004Transformer;
 
 class T004Controller extends Controller
 {
-    public function get(T004 $t004)
+    public function get(T004 $t004, $code)
     {
-        $t004s = $t004::all();
+        $t006s = T006::where('code_unit', $code)->get();
+        foreach($t006s as $t006) {
+            $t004s = $t004::where('code_payment', $t006->code_payment)->get();
+        }
 
         return fractal()
         ->collection($t004s)

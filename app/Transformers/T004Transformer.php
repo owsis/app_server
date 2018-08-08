@@ -12,6 +12,9 @@ class T004Transformer extends TransformerAbstract
           return [
           'code_payment' => $t004->code_payment,
           'name_payment' => $t004->name_payment,
+          'dp' => $t004->dp,
+          'kpr' => $t004->kpr,
+          'disc' => $t004->disc,
           ];
      }
 }

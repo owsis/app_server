@@ -11,5 +11,8 @@ class T004 extends Model
     protected $fillable = [
         'code_payment',
         'name_payment',
+        'dp',
+        'kpr',
+        'disc'
     ];
 }
