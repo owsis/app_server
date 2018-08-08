@@ -17,6 +17,7 @@ class T101Transformer extends TransformerAbstract
         return [
             'branchcode'    => $t101->branchcode,
             'booking_no'    => $t101->booking_no,
+            'order_id'      => $t101->order_id,
             'code_customer' => $t101->code_customer,
             'name_customer' => $t101->name_customer,
             'code_unit'     => $t101->code_unit,

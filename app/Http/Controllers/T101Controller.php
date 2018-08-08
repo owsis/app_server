@@ -55,7 +55,7 @@ class T101Controller extends Controller
         $this->validate($req, [
             'branchcode'     => 'required',
             'booking_no'     => 'required',
-            'order_id'     => 'required',
+            'order_id'       => 'required',
             'code_customer'  => 'required',
             'name_customer'  => 'required',
             'phone_customer' => 'required',

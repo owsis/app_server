@@ -87,6 +87,7 @@ class VTController extends Controller
 
             T101::where('order_id', $order_id)->update([
                 'status_fp' => 'SETTLEMENT FROM VT',
+                'status'  => 'BOOKED'
             ]);
 
             T003::where('code_unit', $t101_id[0]->code_unit)->update([
