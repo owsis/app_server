@@ -14,7 +14,8 @@ class T004Controller extends Controller
         $t006s = T006::where('code_unit', $code)->get();
 
         $t004s = $t004::where('code_payment', $t006s[0]->code_payment)
-        ->orWhere('code_payment', $t006s[1]->code_payment);
+        ->orWhere('code_payment', $t006s[1]->code_payment)
+        ->get();
 
         return fractal()
         ->collection($t004s)
