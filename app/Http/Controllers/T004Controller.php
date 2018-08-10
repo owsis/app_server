@@ -15,6 +15,7 @@ class T004Controller extends Controller
 
         $t004s = $t004::where('code_payment', $t006s[0]->code_payment)
         ->orWhere('code_payment', $t006s[1]->code_payment)
+        ->orWhere('code_payment', $t006s[2]->code_payment)
         ->get();
 
         return fractal()
@@ -22,7 +23,9 @@ class T004Controller extends Controller
         ->transformWith(new T004Transformer)
         ->addMeta([
             'data_count' => $t004::where('code_payment', $t006s[0]->code_payment)
-            ->orWhere('code_payment', $t006s[1]->code_payment)->count()
+            ->orWhere('code_payment', $t006s[1]->code_payment)
+            ->orWhere('code_payment', $t006s[2]->code_payment)
+            ->count()
         ])
         ->toArray();
 
