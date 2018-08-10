@@ -20,7 +20,7 @@ class T002Transformer extends TransformerAbstract
             'address'       => $t002->address,
             'phone'         => $t002->phone,
             'ktp'           => $t002->ktp,
-            'image_ktp'     => public_path() . $t002->image_ktp,
+            'image_ktp'     => public_path() .'/storage/app/images_ktp/'. $t002->image_ktp,
             'npwp'          => $t002->npwp,
             'referral_code' => $t002->referral_code,
             'referral_from' => $t002->referral_from,
