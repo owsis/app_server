@@ -35,4 +35,16 @@ class T003Controller extends Controller
             ->toArray();
 
     }
+
+    public function update() {
+      $t003s = T003::where('name_unit', 'LOTUS')->update([
+        'branchcode' => 'LS',
+        'type_unit' => 'LS'
+      ]);
+
+      return fractal()
+          ->collection($t003s)
+          ->transformWith(new T003Transformer)
+          ->toArray();
+    }
 }

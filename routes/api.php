@@ -29,6 +29,7 @@ Route::get('/developer', 'T009Controller@get');
 Route::get('/newunits', 'T008Controller@get');
 Route::get('/units/{type}/{block}', 'T003Controller@get');
 Route::get('/unitblocks/{type}', 'T003Controller@getBlock');
+Route::post('/unitupdate', 'T003Controller@update');
 
 
 Route::get('/customer/{email}/{branchcode}', 'T004Controller@get');
