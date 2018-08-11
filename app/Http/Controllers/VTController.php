@@ -112,7 +112,7 @@ class VTController extends Controller
             $userkey = "1xsbad";
             $passkey = "abc123";
             $notelp  = $t002_id[0]->phone;
-            $msg     = $t101_id[0]->code_unit . "telah dibooking oleh" . $t101_id[0]->name_customer . "\n" .
+            $msg     = $t101_id[0]->code_unit . "telah dibooking oleh " . $t101_id[0]->name_customer . "\n" .
             "lakukan pembayaran dengan Nomor Virtual Account " . $va_number;
 
 
@@ -132,7 +132,7 @@ class VTController extends Controller
             $userkey = "1xsbad";
             $passkey = "abc123";
             $notelp  = "6282177778055";
-            $msg     = $t101_id[0]->code_unit . "telah dibooking oleh" . $t101_id[0]->name_customer . "\n" .
+            $msg     = $t101_id[0]->code_unit . "telah dibooking oleh " . $t101_id[0]->name_customer . "\n" .
             "lakukan pembayaran dengan Nomor Virtual Account " . $va_number;
 
 
@@ -152,7 +152,7 @@ class VTController extends Controller
             $userkey = "1xsbad";
             $passkey = "abc123";
             $notelp  = "6285333333354";
-            $msg     = $t101_id[0]->code_unit . "telah dibooking oleh" . $t101_id[0]->name_customer . "\n" .
+            $msg     = $t101_id[0]->code_unit . "telah dibooking oleh " . $t101_id[0]->name_customer . "\n" .
             "lakukan pembayaran dengan Nomor Virtual Account " . $va_number;
 
 
@@ -172,7 +172,7 @@ class VTController extends Controller
             $userkey = "1xsbad";
             $passkey = "abc123";
             $notelp  = "6281316803664";
-            $msg     = $t101_id[0]->code_unit . "telah dibooking oleh" . $t101_id[0]->name_customer . "\n" .
+            $msg     = $t101_id[0]->code_unit . "telah dibooking oleh " . $t101_id[0]->name_customer . "\n" .
                     "lakukan pembayaran dengan Nomor Virtual Account " . $va_number;
 
             $url = "https://alpha.zenziva.net/apps/smsapi.php";
