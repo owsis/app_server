@@ -37,13 +37,13 @@ class T003Controller extends Controller
     }
 
     public function update() {
-      $t003s = T003::where('name_unit', 'LOTUS')->update([
-        'lb_unit' => '30'
+      App\T006::where('price', '469411765')->update([
+        'code_payment' => '5'
       ]);
 
-      return fractal()
-          ->collection($t003s)
-          ->transformWith(new T003Transformer)
-          ->toArray();
+      App\T006::where('price', '483636364')->update([
+        'code_payment' => '4'
+      ]);
+
     }
 }
