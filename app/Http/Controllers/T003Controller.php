@@ -37,11 +37,11 @@ class T003Controller extends Controller
     }
 
     public function update() {
-      App\T006::where('price', '469411765')->update([
+      \App\T006::where('price', '469411765')->update([
         'code_payment' => '5'
       ]);
 
-      App\T006::where('price', '483636364')->update([
+      \App\T006::where('price', '483636364')->update([
         'code_payment' => '4'
       ]);
 
