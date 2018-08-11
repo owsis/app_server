@@ -38,8 +38,7 @@ class T003Controller extends Controller
 
     public function update() {
       $t003s = T003::where('name_unit', 'LOTUS')->update([
-        'branchcode' => 'LS',
-        'type_unit' => 'LS'
+        'lb_unit' => '30'
       ]);
 
       return fractal()
