@@ -58,6 +58,7 @@ Route::post('/saldo/update/{orderId}', 'T102Controller@update');
 Route::delete('/saldodelete/{code_u}', 'T102Controller@delete');
 
 Route::post('/vt_notif', 'VTController@notif');
+Route::post('/vt_cancel/{orderid}', 'VTController@cancelVT');
 
 Route::get('/saldomidtrans/{codeUser}', 'T102Controller@getMidtrans');
 Route::post('/saldomidtrans/{codeUser}', 'T102Controller@postMidtrans');
