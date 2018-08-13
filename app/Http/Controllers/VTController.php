@@ -27,6 +27,12 @@ class VTController extends Controller
         return view('gagal-midtrans');
     }
 
+    public function cancelVT($orderid) {
+      $t101s = T101::where('order_id', $orderid)->update([
+        'status_fp' => 'Payment Canceled'
+      ]);
+    }
+
     public function notif()
     {
         $vt = new Veritrans;
