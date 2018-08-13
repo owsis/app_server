@@ -14,8 +14,8 @@ class VTController extends Controller
 {
     public function __construct()
     {
-        Veritrans::$serverKey = 'SB-Mid-server-iykXrCTadcrXdN-4RhB9TS6n';
-        Veritrans::$isProduction = false;
+        Veritrans::$serverKey = 'Mid-server-mn8OGvaWPvKYm5RloWUIvJBN';
+        Veritrans::$isProduction = true;
 
     }
 
