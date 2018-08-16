@@ -28,7 +28,10 @@ Route::post('/in', 'AuthT001\LoginController@login');
 Route::get('/finish', 'VTController@finishVT');
 Route::get('/fail', 'VTController@failVT');
 
+//TABLE MASTER
 Route::get('/unit', 'UnitController@index');
+Route::get('/harga', 'HargaController@index');
+
 Route::get('/paymentype', function (){
 
     return view ('paymentype');

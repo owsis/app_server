@@ -43,11 +43,11 @@
     <link href="{{ URL::asset('assets/demo/default/media/img/logo/favicon.ico') }}"  />
 </head>
 <!-- begin::Body -->
-<body class="m-page--fluid m--skin- m-content--skin-light2 m-header--fixed m-header--fixed-mobile m-aside-left--enabled m-aside-left--skin-dark m-aside-left--fixed m-aside-left--offcanvas m-footer--push m-aside--offcanvas-default">
+<body class="m-page--fluid m--skin- m-content--skin-light2 m-header--fixed m-header--fixed-mobile m-aside-left--enabled m-aside-left--skin-dark m-aside-left--fixed m-aside-left--offcanvas m-aside-left--minimize m-brand--minimize m-footer--push m-aside--offcanvas-default">
 
 <div class="m-grid m-grid--hor m-grid--root m-page">
     <!-- ini awal header -->
-@extends('layouts.header')
+    @extends('layouts.header')
 
 <!-- ini awal body -->
     <div class="m-grid__item m-grid__item--fluid m-grid m-grid--ver-desktop m-grid--desktop m-body">
@@ -68,19 +68,13 @@
                             <li class="m-nav__separator">-</li>
                             <li class="m-nav__item">
                                 <a href="" class="m-nav__link">
-                                    <span class="m-nav__link-text">DataTables</span>
+                                    <span class="m-nav__link-text">Master</span>
                                 </a>
                             </li>
                             <li class="m-nav__separator">-</li>
                             <li class="m-nav__item">
                                 <a href="" class="m-nav__link">
-                                    <span class="m-nav__link-text">Basic</span>
-                                </a>
-                            </li>
-                            <li class="m-nav__separator">-</li>
-                            <li class="m-nav__item">
-                                <a href="" class="m-nav__link">
-                                    <span class="m-nav__link-text">Scrollable Tables</span>
+                                    <span class="m-nav__link-text">Unit</span>
                                 </a>
                             </li>
                         </ul>
@@ -95,7 +89,7 @@
                         <i class="flaticon-exclamation m--font-brand"></i>
                     </div>
                     <div class="m-alert__text">
-                        This example shows a vertically scrolling DataTable that makes use of the CSS3 vh unit in order to dynamically resize the viewport based on the browser window height.
+                        Master Unit Tombak Intan Developer
                     </div>
                 </div>
                 <div class="m-portlet m-portlet--mobile">

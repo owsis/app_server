@@ -19,12 +19,10 @@ class TransaksiController extends Controller
      */
     public function index()
     {
-//        $transaksi = transaksi::join('t002s', 't002s.referral_code', '=', 'transaksi.referral_from')
-//           ->orderBy('transaksi.referral_from');
          $transaksi = T101::all();
          $t002s = User::all();
 
-        return view('sample', compact('transaksi','t002s'));
+        return view('booking', compact('transaksi','t002s'));
 
     }
 
