@@ -6,10 +6,11 @@ use Illuminate\Http\Request;
 
 use App\T003;
 use App\T006;
+use App\T004;
 use redirect;
 
 
-class Unitcontroller extends Controller
+class Hargacontroller extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,9 +19,11 @@ class Unitcontroller extends Controller
      */
     public function index()
     {
-        $unit = T003::all();
+        $no = 1;
+        $price = T006::all();
+        $code_p = T004::all();
 
-        return view('master.unit', compact('unit'));
+        return view('master.harga', compact('price', 'no', 'code_p'));
 
     }
 
