@@ -1,72 +1,219 @@
-<!-- partial:../../partials/_sidebar.html -->
-<nav class="sidebar sidebar-offcanvas" id="sidebar">
-    <ul class="nav">
-        <li class="nav-item nav-profile">
-            <a href="#" class="nav-link">
-                <div class="nav-profile-image">
-                    <img src="{{URL::asset('images/faces/face1.jpg')}}" alt="profile">
-                    <span class="login-status online"></span>
-                    <!--change to offline or busy as needed-->
+@section('content')
+
+<!-- begin::Body -->
+<div class="m-grid__item m-grid__item--fluid m-grid m-grid--ver-desktop m-grid--desktop m-body">
+
+  <!-- BEGIN: Left Aside -->
+  <button class="m-aside-left-close  m-aside-left-close--skin-dark " id="m_aside_left_close_btn">
+    <i class="la la-close"></i>
+  </button>
+  <div id="m_aside_left" class="m-grid__item	m-aside-left  m-aside-left--skin-dark ">
+
+    <!-- BEGIN: Aside Menu -->
+    <div id="m_ver_menu" class="m-aside-menu  m-aside-menu--skin-dark m-aside-menu--submenu-skin-dark " m-menu-vertical="1" m-menu-scrollable="1" m-menu-dropdown-timeout="500" style="position: relative;">
+      <ul class="m-menu__nav  m-menu__nav--dropdown-submenu-arrow ">
+
+        <li class="m-menu__section ">
+          <h4 class="m-menu__section-text">Menus</h4>
+          <i class="m-menu__section-icon flaticon-more-v2"></i>
+        </li>
+        <li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true">
+          <a href="javascript:;" class="m-menu__link m-menu__toggle">
+            <i class="m-menu__link-icon flaticon-layers"></i>
+            <span class="m-menu__link-text">Master</span>
+            <i class="m-menu__ver-arrow la la-angle-right"></i>
+          </a>
+          <div class="m-menu__submenu ">
+            <span class="m-menu__arrow"></span>
+            <ul class="m-menu__subnav">
+              <li class="m-menu__item  m-menu__item--parent" aria-haspopup="true">
+                <span class="m-menu__link">
+                  <span class="m-menu__link-text">Master</span>
+                </span>
+              </li>
+              <li class="m-menu__item " aria-haspopup="true">
+                <a href="components/base/state.html" class="m-menu__link ">
+                  <i class="m-menu__link-bullet m-menu__link-bullet--dot">
+                    <span></span>
+                  </i>
+                  <span class="m-menu__link-text">Unit</span>
+                </a>
+              </li>
+              <li class="m-menu__item " aria-haspopup="true">
+                <a href="components/base/typography.html" class="m-menu__link ">
+                  <i class="m-menu__link-bullet m-menu__link-bullet--dot">
+                    <span></span>
+                  </i>
+                  <span class="m-menu__link-text">Cara Bayar</span>
+                </a>
+              </li>
+              <li class="m-menu__item " aria-haspopup="true">
+                <a href="components/base/stack.html" class="m-menu__link ">
+                  <i class="m-menu__link-bullet m-menu__link-bullet--dot">
+                    <span></span>
+                  </i>
+                  <span class="m-menu__link-text">Promo</span>
+                </a>
+              </li>
+              <li class="m-menu__item " aria-haspopup="true">
+                <a href="components/base/tables.html" class="m-menu__link ">
+                  <i class="m-menu__link-bullet m-menu__link-bullet--dot">
+                    <span></span>
+                  </i>
+                  <span class="m-menu__link-text">Marketing</span>
+                </a>
+              </li>
+              <li class="m-menu__item " aria-haspopup="true">
+                <a href="components/base/progress.html" class="m-menu__link ">
+                  <i class="m-menu__link-bullet m-menu__link-bullet--dot">
+                    <span></span>
+                  </i>
+                  <span class="m-menu__link-text">User</span>
+                </a>
+              </li>
+
+            </ul>
+          </div>
+        </li>
+        <li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true">
+          <a href="javascript:;" class="m-menu__link m-menu__toggle">
+            <i class="m-menu__link-icon flaticon-share"></i>
+            <span class="m-menu__link-text">Transaksi</span>
+            <i class="m-menu__ver-arrow la la-angle-right"></i>
+          </a>
+          <div class="m-menu__submenu ">
+            <span class="m-menu__arrow"></span>
+            <ul class="m-menu__subnav">
+              <li class="m-menu__item " aria-haspopup="true">
+                <a href="components/icons/flaticon.html" class="m-menu__link ">
+                  <i class="m-menu__link-bullet m-menu__link-bullet--dot">
+                    <span></span>
+                  </i>
+                  <span class="m-menu__link-text">Close Unit</span>
+                </a>
+              </li>
+              <li class="m-menu__item " aria-haspopup="true">
+                <a href="components/icons/fontawesome5.html" class="m-menu__link ">
+                  <i class="m-menu__link-bullet m-menu__link-bullet--dot">
+                    <span></span>
+                  </i>
+                  <span class="m-menu__link-text">Berkas Konsumen</span>
+                </a>
+              </li>
+              <li class="m-menu__item " aria-haspopup="true">
+                <a href="components/icons/lineawesome.html" class="m-menu__link ">
+                  <i class="m-menu__link-bullet m-menu__link-bullet--dot">
+                    <span></span>
+                  </i>
+                  <span class="m-menu__link-text">SP3K Konsumen</span>
+                </a>
+              </li>
+              <li class="m-menu__item " aria-haspopup="true">
+                <a href="components/icons/socicons.html" class="m-menu__link ">
+                  <i class="m-menu__link-bullet m-menu__link-bullet--dot">
+                    <span></span>
+                  </i>
+                  <span class="m-menu__link-text">Akad Kredit</span>
+                </a>
+              </li>
+              <li class="m-menu__item " aria-haspopup="true">
+                <a href="components/icons/socicons.html" class="m-menu__link ">
+                  <i class="m-menu__link-bullet m-menu__link-bullet--dot">
+                    <span></span>
+                  </i>
+                  <span class="m-menu__link-text">Pembatalan</span>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </li>
+        <li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true">
+          <a href="javascript:;" class="m-menu__link m-menu__toggle">
+            <i class="m-menu__link-icon flaticon-multimedia-1"></i>
+            <span class="m-menu__link-text">Komisi</span>
+            <i class="m-menu__ver-arrow la la-angle-right"></i>
+          </a>
+          <div class="m-menu__submenu ">
+            <span class="m-menu__arrow"></span>
+            <ul class="m-menu__subnav">
+              <li class="m-menu__item  m-menu__item--parent" aria-haspopup="true">
+                <span class="m-menu__link">
+                  <span class="m-menu__link-text">Komisi</span>
+                </span>
+              </li>
+              <li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true">
+                <a href="javascript:;" class="m-menu__link m-menu__toggle">
+                  <i class="m-menu__link-bullet m-menu__link-bullet--dot">
+                    <span></span>
+                  </i>
+                  <span class="m-menu__link-text">Komisi</span>
+                  <i class="m-menu__ver-arrow la la-angle-right"></i>
+                </a>
+                <div class="m-menu__submenu ">
+                  <span class="m-menu__arrow"></span>
+                  <ul class="m-menu__subnav">
+                    <li class="m-menu__item " aria-haspopup="true">
+                      <a href="components/buttons/base/default.html" class="m-menu__link ">
+                        <i class="m-menu__link-bullet m-menu__link-bullet--dot">
+                          <span></span>
+                        </i>
+                        <span class="m-menu__link-text">Komisi Dibayarkan</span>
+                      </a>
+                    </li>
+                    <li class="m-menu__item " aria-haspopup="true">
+                      <a href="components/buttons/base/square.html" class="m-menu__link ">
+                        <i class="m-menu__link-bullet m-menu__link-bullet--dot">
+                          <span></span>
+                        </i>
+                        <span class="m-menu__link-text">Komisi Pending</span>
+                      </a>
+                    </li>
+
+
+                  </ul>
                 </div>
-                <div class="nav-profile-text d-flex flex-column">
-                    <span class="font-weight-bold mb-2">David Grey. H</span>
-                    <span class="text-secondary text-small">Project
-                                Manager</span>
-                </div>
-                <i class="mdi mdi-bookmark-check text-success
-                            nav-profile-badge"></i>
-            </a>
+              </li>
+              <li class="m-menu__item " aria-haspopup="true">
+                <a href="components/buttons/group.html" class="m-menu__link ">
+                  <i class="m-menu__link-bullet m-menu__link-bullet--dot">
+                    <span></span>
+                  </i>
+                  <span class="m-menu__link-text">AR-Card</span>
+                </a>
+              </li>
+            </ul>
+          </div>
         </li>
-        <li class="nav-item">
-            <a class="nav-link" href="../../index.html">
-                        <span class="menu-title">Dashboard</span>
-                        <i class="mdi mdi-home menu-icon"></i>
-                    </a>
+        <li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true">
+          <a href="javascript:;" class="m-menu__link m-menu__toggle">
+            <i class="m-menu__link-icon flaticon-interface-1"></i>
+            <span class="m-menu__link-text">Fixed Asset</span>
+            <i class="m-menu__ver-arrow la la-angle-right"></i>
+          </a>
+          <div class="m-menu__submenu ">
+            <span class="m-menu__arrow"></span>
+            <ul class="m-menu__subnav">
+              <li class="m-menu__item  m-menu__item--parent" aria-haspopup="true">
+                <span class="m-menu__link">
+                  <span class="m-menu__link-text">Asset</span>
+                </span>
+              </li>
+            </ul>
+          </div>
         </li>
-        <li class="nav-item">
-            <a class="nav-link" href="../../pages/icons/mdi.html">
-                        <span class="menu-title">Icons</span>
-                        <i class="mdi mdi-contacts menu-icon"></i>
-                    </a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#general-pages" aria-expanded="false" aria-controls="general-pages">
-                        <span class="menu-title">Sample Pages</span>
-                        <i class="menu-arrow"></i>
-                        <i class="mdi mdi-medical-bag menu-icon"></i>
-                    </a>
-            <div class="collapse" id="general-pages">
-                <ul class="nav flex-column sub-menu">
-                    <li class="nav-item"> <a class="nav-link" href="../../pages/samples/blank-page.html">
-                                    Blank Page </a></li>
-                    <li class="nav-item"> <a class="nav-link" href="../../pages/samples/login.html"> Login
-                                </a></li>
-                    <li class="nav-item"> <a class="nav-link" href="../../pages/samples/register.html">
-                                    Register </a></li>
-                    <li class="nav-item"> <a class="nav-link" href="../../pages/samples/error-404.html">
-                                    404 </a></li>
-                    <li class="nav-item"> <a class="nav-link" href="../../pages/samples/error-500.html">
-                                    500 </a></li>
-                </ul>
-            </div>
-        </li>
-        <li class="nav-item sidebar-actions">
-            <span class="nav-link">
-                        <div class="border-bottom">
-                            <h6 class="font-weight-normal mb-3">Projects</h6>
-                        </div>
-                        <button class="btn btn-block btn-lg btn-gradient-primary
-                            mt-4">+ Add a project</button>
-                        <div class="mt-4">
-                            <div class="border-bottom">
-                                <p class="text-secondary">Categories</p>
-                            </div>
-                            <ul class="gradient-bullet-list mt-4">
-                                <li>Free</li>
-                                <li>Pro</li>
-                            </ul>
-                        </div>
-                    </span>
-        </li>
-    </ul>
-</nav>
+      </ul>
+    </div>
+
+    <!-- END: Aside Menu -->
+  </div>
+
+  <!-- END: Left Aside -->
+
+  <div class="m-grid__item m-grid__item--fluid m-wrapper">
+    @yield('sub-content')
+  </div>
+
+</div>
+
+<!-- end:: Body -->
+@endsection

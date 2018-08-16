@@ -2,81 +2,128 @@
 
 @section('content')
 
-<div class="container-scroller">
-    <div class="container-fluid page-body-wrapper full-page-wrapper">
-        <div class="content-wrapper d-flex align-items-center auth">
-            <div class="row w-100">
-                <div class="col-lg-4 mx-auto">
-                    <div class="auth-form-light text-left p-5">
-                        <div class="brand-logo">
-                            <img src="{{ URL::asset('images/logo.svg') }}">
-                        </div>
-                        <h4>Hello! let's get started</h4>
-                        <h6 class="font-weight-light">Sign in to continue.</h6>
-                        <form class="pt-3" role="form" method="POST" action="{{url('/in') }}">
-                            {{ csrf_field() }}
+  <!-- begin:: Page -->
+  		<div class="m-grid m-grid--hor m-grid--root m-page">
+  			<div class="m-grid__item m-grid__item--fluid m-grid m-grid--ver-desktop m-grid--desktop m-grid--tablet-and-mobile m-grid--hor-tablet-and-mobile m-login m-login--1 m-login--signin" id="m_login">
+  				<div class="m-grid__item m-grid__item--order-tablet-and-mobile-2 m-login__aside">
+  					<div class="m-stack m-stack--hor m-stack--desktop">
+  						<div class="m-stack__item m-stack__item--fluid">
+  							<div class="m-login__wrapper">
+  								<div class="m-login__logo">
+  									<a href="#">
+  										<img src="{{URL::asset('assets/app/media/img/logos/logo-2.png')}}">
+  									</a>
+  								</div>
+  								<div class="m-login__signin">
+  									<div class="m-login__head">
+  										<h3 class="m-login__title">Sign In To Admin</h3>
+  									</div>
+  									<form class="m-login__form m-form" role="form" method="POST" action="{{ url('/inadmin') }}">
+                      {{ csrf_field() }}
+  										<div class="form-group m-form__group">
+  											<input class="form-control m-input" type="text" placeholder="Phone" name="phone" autocomplete="off" required>
+                      </div>
+  										<div class="form-group m-form__group">
+  											<input class="form-control m-input m-login__form-input--last" type="password" placeholder="Password" name="password" required>
+                      </div>
+  										<div class="row m-login__form-sub">
+  											<div class="col m--align-left">
+  												<label class="m-checkbox m-checkbox--focus">
+  													<input type="checkbox" name="remember"> Remember me
+  													<span></span>
+  												</label>
+  											</div>
+  											<div class="col m--align-right">
+  												<a href="javascript:;" id="m_login_forget_password" class="m-link">Forget Password ?</a>
+  											</div>
+  										</div>
+  										<div class="m-login__form-action">
+  											<input type="submit" class="btn btn-focus m-btn m-btn--pill m-btn--custom m-btn--air" value="Sign In"/>
+  										</div>
+  									</form>
+  								</div>
 
-                            <div class="form-group{{ $errors->has('phone') ? 'has-error' : '' }}">
-                                <input
-                                    type="text"
-                                    class="form-control form-control-lg"
-                                    id="phone"
-                                    name="phone"
-                                    placeholder="Phone"
-                                    value="{{ old('phone') }}"
-                                    required
-                                    />
-                                @if ($errors->has('phone'))
-                                <span class="help-block">
-                                    <strong>{{ $errors->first('phone') }}</strong>
-                                </span>
-                                @endif
-                            </div>
+  								<div class="m-login__signup">
+  									<div class="m-login__head">
+  										<h3 class="m-login__title">Sign Up</h3>
+  										<div class="m-login__desc">Enter your details to create your account:</div>
+  									</div>
 
-                            <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                                <input
-                                    type="password"
-                                    class="form-control form-control-lg"
-                                    id="pass"
-                                    name="password"
-                                    placeholder="Password"
-                                    required
-                                    />
-                                @if ($errors->has('password'))
-                                <span class="help-block">
-                                    <strong>{{ $errors->first('password') }}</strong>
-                                </span>
-                                @endif
-                            </div>
+  									<form class="m-login__form m-form" role="form" method="POST" action="">
+                      {{ csrf_field() }}
+  										<div class="form-group m-form__group">
+  											<input class="form-control m-input" type="text" placeholder="Phone" name="phone">
+  										</div>
+  										<div class="form-group m-form__group">
+  											<input class="form-control m-input" type="text" placeholder="Email" name="email" autocomplete="off">
+  										</div>
+  										<div class="form-group m-form__group">
+  											<input class="form-control m-input" type="text" placeholder="Name" name="name" autocomplete="off">
+  										</div>
+  										<div class="form-group m-form__group">
+  											<input class="form-control m-input" type="text" placeholder="KTP" name="ktp" autocomplete="off">
+  										</div>
+  										<div class="form-group m-form__group">
+  											<input class="form-control m-input" type="password" placeholder="Password" name="password">
+  										</div>
+  										<div class="form-group m-form__group">
+  											<input class="form-control m-input m-login__form-input--last" type="password" placeholder="Confirm Password" name="rpassword">
+  										</div>
+  										<div class="row form-group m-form__group m-login__form-sub">
+  											<div class="col m--align-left">
+  												<label class="m-checkbox m-checkbox--focus">
+  													<input type="checkbox" name="agree"> I Agree the
+  													<a href="#" class="m-link m-link--focus">terms and conditions</a>.
+  													<span></span>
+  												</label>
+  												<span class="m-form__help"></span>
+  											</div>
+  										</div>
+  										<div class="m-login__form-action">
+  											<button id="m_login_signup_submit" class="btn btn-focus m-btn m-btn--pill m-btn--custom m-btn--air">Sign Up</button>
+  											<button id="m_login_signup_cancel" class="btn btn-outline-focus  m-btn m-btn--pill m-btn--custom">Cancel</button>
+  										</div>
+  									</form>
+  								</div>
+  								<div class="m-login__forget-password">
+  									<div class="m-login__head">
+  										<h3 class="m-login__title">Forgotten Password ?</h3>
+  										<div class="m-login__desc">Enter your email to reset your password:</div>
+  									</div>
+  									<form class="m-login__form m-form" action="">
+  										<div class="form-group m-form__group">
+  											<input class="form-control m-input" type="text" placeholder="Email" name="email" id="m_email" autocomplete="off">
+  										</div>
+  										<div class="m-login__form-action">
+  											<button id="m_login_forget_password_submit" class="btn btn-focus m-btn m-btn--pill m-btn--custom m-btn--air">Request</button>
+  											<button id="m_login_forget_password_cancel" class="btn btn-outline-focus m-btn m-btn--pill m-btn--custom">Cancel</button>
+  										</div>
+  									</form>
+  								</div>
+  							</div>
+  						</div>
+  						<div class="m-stack__item m-stack__item--center">
+  							<div class="m-login__account">
+  								<span class="m-login__account-msg">
+  									Don't have an account yet ?
+  								</span>&nbsp;&nbsp;
+  								<a href="javascript:;" id="m_login_signup" class="m-link m-link--focus m-login__account-link">Sign Up</a>
+  							</div>
+  						</div>
+  					</div>
+  				</div>
+  				<div class="m-grid__item m-grid__item--fluid m-grid m-grid--center m-grid--hor m-grid__item--order-tablet-and-mobile-1	m-login__content m-grid-item--center" style="background-image: url({{URL::asset('assets/app/media/img/bg/bg-4.jpg')}})">
+  					<div class="m-grid__item">
+  						<h3 class="m-login__welcome">Smile in Properti</h3>
+  						<p class="m-login__msg">
+  							Sistem informasi
+  							<br>Penjualan - administrasi - Property
+  						</p>
+  					</div>
+  				</div>
+  			</div>
+  		</div>
 
-                            <div class="mt-3">
-                                <input class="btn btn-block btn-gradient-primary
-                                    btn-lg font-weight-medium auth-form-btn"
-                                    type="submit" value="MASUK">
-                            </div>
-                            <div class="my-2 d-flex justify-content-between
-                                align-items-center">
-                                <div class="form-check">
-                                    <label class="form-check-label text-muted">
-                                        <input type="checkbox"
-                                            class="form-check-input" {{
-                                            old('remember') ? 'checked' : ''}}>
-                                        Tetap Masuk
-                                    </label>
-                                </div>
-                                <a href="{{ url('/password/reset') }}" class="auth-link text-black">Lupa password</a>
-                            </div>
-                            {{-- <div class="text-center mt-4 font-weight-light">
-                                Belum Daftar?
-                                <a href="{{ url('/regadmin') }}" class="text-primary">Buat</a>
-                            </div> --}}
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- content-wrapper ends -->
-    </div>
-    <!-- page-body-wrapper ends -->
-</div>
+  		<!-- end:: Page -->
+
 @endsection
