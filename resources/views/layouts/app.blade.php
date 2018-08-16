@@ -1,43 +1,95 @@
-<!DOCTYPE html>
 <html lang="en">
-    <head>
-        <!-- Required meta tags -->
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <title>{{ config('app.name', 'Laravel') }}</title>
-        <!-- CSRF Token -->
-        <meta name="csrf-token" content="{{ csrf_token() }}"/>
-        <!-- plugins:css -->
-        <link rel="stylesheet" href="{{ URL::asset('vendors/iconfonts/mdi/css/materialdesignicons.min.css') }}">
-        <link rel="stylesheet" href="{{ URL::asset('vendors/css/vendor.bundle.base.css') }}">
-        <!-- endinject -->
-        <!-- plugin css for this page -->
-        <!-- End plugin css for this page -->
-        <!-- inject:css -->
-        <link rel="stylesheet" href="{{ URL::asset('css/style.css') }}"/>
-        <!-- endinject -->
-        <link rel="shortcut icon" href="{{ URL::asset('images/favicon.png') }}" />
 
-        <!-- Scripts -->
-        <script>
-            window.Laravel = <?php echo json_encode([
-                'csrfToken' => csrf_token(),
-            ]); ?>
-        </script>
-    </head>
+<!-- begin::Head -->
+<head>
+  <meta charset="utf-8" />
+  <title>Metronic | Dashboard</title>
+  <meta name="description" content="Latest updates and statistic charts">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no">
+  <!-- CSRF Token -->
+  <meta name="csrf-token" content="{{ csrf_token() }}"/>
+  <!--begin::Web font -->
+  <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.16/webfont.js"></script>
+  <script>
+  WebFont.load({
+    google: {
+      "families": ["Poppins:300,400,500,600,700", "Roboto:300,400,500,600,700"]
+    },
+    active: function() {
+      sessionStorage.fonts = true;
+    }
+  });
+  </script>
+  <!-- Scripts -->
+  <script>
+  window.Laravel = <?php echo json_encode([
+    'csrfToken' => csrf_token(),
+  ]); ?>
+  </script>
 
-    <body>
+  <!--end::Web font -->
 
-        @yield('content')
+  <!--begin::Page Vendors Styles -->
+  @yield('vendor-style')
 
-        <!-- container-scroller -->
-        <!-- plugins:js -->
-        <script src="{{URL::asset('vendors/js/vendor.bundle.base.js')}}"></script>
-        <script src="{{URL::asset('vendors/js/vendor.bundle.addons.js')}}"></script>
-        <!-- endinject -->
-        <!-- inject:js -->
-        <script src="{{URL::asset('js/off-canvas.js')}}"></script>
-        <script src="{{URL::asset('js/misc.js')}}"></script>
-        <!-- endinject -->
-    </body>
+  <!--RTL version:<link href="assets/vendors/custom/fullcalendar/fullcalendar.bundle.rtl.css" rel="stylesheet" type="text/css" />-->
+
+  <!--end::Page Vendors Styles -->
+
+  <!--begin::Base Styles -->
+  <link href="{{URL::asset('assets/vendors/base/vendors.bundle.css')}}" rel="stylesheet" type="text/css" />
+
+  <!--RTL version:<link href="assets/vendors/base/vendors.bundle.rtl.css" rel="stylesheet" type="text/css" />-->
+  <link href="{{URL::asset('assets/demo/default/base/style.bundle.css')}}" rel="stylesheet" type="text/css" />
+
+  <!--RTL version:<link href="assets/demo/default/base/style.bundle.rtl.css" rel="stylesheet" type="text/css" />-->
+
+  <!--end::Base Styles -->
+  <link rel="shortcut icon" href="{{URL::asset('assets/demo/default/media/img/logo/favicon.ico')}}" />
+
+</head>
+<!-- end::Body -->
+
+<body class="m-page--fluid m--skin- m-content--skin-light2 m-header--fixed m-header--fixed-mobile m-aside-left--enabled m-aside-left--skin-dark m-aside-left--fixed m-aside-left--offcanvas m-footer--push m-aside--offcanvas-default">
+
+  <!-- begin:: Page -->
+  <div class="m-grid m-grid--hor m-grid--root m-page">
+    @yield('header')
+    @yield('content')
+  </div>
+  <!-- end:: Page -->
+
+  <!-- begin::Quick Sidebar -->
+
+
+  <!-- end::Quick Sidebar -->
+
+  <!-- begin::Scroll Top -->
+
+
+  <!-- end::Scroll Top -->
+
+  <!-- begin::Quick Nav -->
+
+
+  <!-- begin::Quick Nav -->
+
+  <!--begin::Base Scripts -->
+  <script src="{{URL::asset('assets/vendors/base/vendors.bundle.js')}}" type="text/javascript"></script>
+  <script src="{{URL::asset('assets/demo/default/base/scripts.bundle.js')}}" type="text/javascript"></script>
+
+  <!--end::Base Scripts -->
+
+  <!--begin::Page Vendors Scripts -->
+  @yield('vendor-script')
+  <!--end::Page Vendors Scripts -->
+
+  <!--begin::Page Snippets -->
+  @yield('page-snippets')
+  <!--end::Page Snippets -->
+
+  <!-- end::Head -->
+
+
+</body>
 </html>
