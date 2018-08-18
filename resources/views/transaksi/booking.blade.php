@@ -84,14 +84,21 @@
 
             <!-- END: Subheader -->
             <div class="m-content">
-                <div class="m-alert m-alert--icon m-alert--air m-alert--square alert alert-dismissible m--margin-bottom-30" role="alert">
-                    <div class="m-alert__icon">
-                        <i class="flaticon-exclamation m--font-brand"></i>
-                    </div>
-                    <div class="m-alert__text">
-                        Master Harga Unit Tombak Intan Developer
-                    </div>
+              @if(session()->has('msg'))
+              <div class="m-alert m-alert--icon m-alert--icon-solid m-alert--outline alert alert-success alert-dismissible fade show" role="alert">
+                <div class="m-alert__icon">
+                  <i class="flaticon-close"></i>
+                  <span></span>
                 </div>
+                <div class="m-alert__text">
+                    <strong>Sukses!</strong> Data telah dihapus.
+                </div>
+                <div class="m-alert__close">
+                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  </button>
+                </div>
+              </div>
+              @endif
                 <div class="m-portlet m-portlet--mobile">
                     <div class="m-portlet__head">
                         <div class="m-portlet__head-caption">
@@ -163,8 +170,51 @@
                                 <td>{{ $data->referral_from }}</td>
                                 <td>{{ $data->status_fp }}</td>
                                 <td>{{ $data->status }}</td>
-                                <td nowrap></td>
+                                <td nowrap>
+                                  <span class="dropdown">
+                                    <a href="#" class="btn m-btn m-btn--hover-brand m-btn--icon m-btn--icon-only m-btn--pill" data-toggle="dropdown" aria-expanded="true">
+                                      <i class="la la-ellipsis-h"></i>
+                                    </a>
+                                    <div class="dropdown-menu dropdown-menu-right">
+                                      <a class="dropdown-item" href="#"><i class="la la-edit"></i> Edit Details</a>
+                                      <a class="dropdown-item" href="#"><i class="la la-leaf"></i> Update Status</a>
+                                      <button class="dropdown-item" type="button" data-toggle="modal" data-target="#m_modal_{{ $data->id }}"><i class="la la-trash"></i> Delete Data</button>
+                                      <a class="dropdown-item" href="#"><i class="la la-print"></i> Generate Report</a>
+                                    </div>
+                                  </span>
+                                  <a href="#" class="m-portlet__nav-link btn m-btn m-btn--hover-brand m-btn--icon m-btn--icon-only m-btn--pill" title="View">
+                                    <i class="la la-edit"></i>
+                                  </a>
+                                </td>
                             </tr>
+
+                            <!-- BEGIN MODAL -->
+                            <div class="modal fade" id="m_modal_{{ $data->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                              <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                  <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Hapus Data</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                      <span aria-hidden="true">&times;</span>
+                                    </button>
+                                  </div>
+                                  <div class="modal-body">
+                                    <p>Kode Booking </p><p class="lead m--font-primary">{{ $data->booking_no }}</p><br>
+                                    <p>Nama Konsumen </p><p class="lead m--font-primary">{{ $data->name_customer }}</p><br>
+                                    <p>Unit Dipesan </p><p class="lead m--font-primary">{{ $data->code_unit }}</p><br>
+                                  </div>
+                                  <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Tidak</button>
+                                    <form method="POST" action="{{ route('booking.del', $data->id ) }}">
+                                      {{ csrf_field() }}
+                                      <button type="submit" class="btn btn-primary delete-id" value="{{ $data->id }}">Ya</button>
+                                    </form>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <!-- END MODAL -->
+
                             @endforeach
                           </tbody>
                           <tfoot>
@@ -188,8 +238,8 @@
                       </table>
                     </div>
                 </div>
-
                 <!-- END EXAMPLE TABLE PORTLET-->
+
             </div>
 
         </div>
@@ -284,29 +334,8 @@ $(document).ready( function () {
               }, 0);
           $(o.column(9).footer()).html("Rp. " + mUtil.numberString(i.toFixed(0)));
       },
-      columnDefs: [
-        {
-          targets: -1,
-          title: "Aksi",
-          orderable: !1,
-          render: function(l) {
-            return '\n<span class="dropdown">\n' +
-            '<a href="#" class="btn m-btn m-btn--hover-brand m-btn--icon m-btn--icon-only m-btn--pill" data-toggle="dropdown" aria-expanded="true">\n' +
-              '<i class="la la-ellipsis-h"></i>\n' +
-            '</a>\n' +
-            '<div class="dropdown-menu dropdown-menu-right">\n' +
-              '<a class="dropdown-item" href="#"><i class="la la-edit"></i> Edit Details</a>\n' +
-              '<a class="dropdown-item" href="#"><i class="la la-leaf"></i> Update Status</a>\n' +
-              '<a class="dropdown-item" href="#"><i class="la la-print"></i> Generate Report</a>\n' +
-            '</div>\n' +
-            '</span>\n' +
-            '<a href="#" class="m-portlet__nav-link btn m-btn m-btn--hover-brand m-btn--icon m-btn--icon-only m-btn--pill" title="View">\n' +
-            '<i class="la la-edit"></i>\n' +
-            '</a>'
-          }
-        }
-      ]
     });
+
 });
 </script>
 
