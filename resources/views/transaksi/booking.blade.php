@@ -132,35 +132,58 @@
                           <thead>
                             <tr>
                                 <th>#</th>
-                                <th>Tipe Unit</th>
+                                <th>No. Booking</th>
+                                <th>Nama Konsumen</th>
+                                <th>Tlp. Konsumen</th>
                                 <th>Kode Unit</th>
-                                <th>Pembayaran</th>
-                                <th>Harga</th>
+                                <th>Harga Unit</th>
+                                <th>UTJ</th>
+                                <th>DP</th>
+                                <th>KPR</th>
+                                <th>CASH</th>
+                                <th>Marketing</th>
+                                <th>Status UTJ</th>
+                                <th>Status Unit</th>
+                                <th>Aksi</th>
                             </tr>
                           </thead>
                           <tbody>
-                            @foreach($price as $data)
+                            @foreach($transaksi as $data)
                             <tr>
                                 <td>{{ $no++ }}</td>
-                                <td>{{ $data->type_unit }}</td>
+                                <td>{{ $data->booking_no }}</td>
+                                <td>{{ $data->name_customer }}</td>
+                                <td>{{ $data->phone_customer }}</td>
                                 <td>{{ $data->code_unit }}</td>
-                                @foreach($code_p as $code)
-                                  @if($data->type_unit == $code->type_unit && $data->code_payment == $code->code_payment)
-                                  <td>{{ $code->name_payment }}</td>
-                                  @endif
-                                @endforeach
-                                <td>Rp. {{ number_format($data->price) }}</td>
+                                <td>Rp. {{ number_format($data->price_unit) }}</td>
+                                <td>Rp. {{ number_format($data->first_payment) }}</td>
+                                <td>Rp. {{ number_format($data->dp) }}</td>
+                                <td>Rp. {{ number_format($data->kpr) }}</td>
+                                <td>Rp. {{ number_format($data->cash) }}</td>
+                                <td>{{ $data->referral_from }}</td>
+                                <td>{{ $data->status_fp }}</td>
+                                <td>{{ $data->status }}</td>
+                                <td nowrap></td>
                             </tr>
                             @endforeach
                           </tbody>
                           <tfoot>
-                          <tr>
-                            <th>#</th>
-                            <th>Tipe Unit</th>
-                            <th>Kode Unit</th>
-                            <th>Pembayaran</th>
-                            <th>Harga</th>
-                          </tr>
+                            <tr>
+                              <th>#</th>
+                              <th>No. Booking</th>
+                              <th>Nama Konsumen</th>
+                              <th>Tlp. Konsumen</th>
+                              <th>Kode Unit</th>
+                              <th class="sumFooter">Harga Unit</th>
+                              <th class="sumFooter">UTJ</th>
+                              <th class="sumFooter">DP</th>
+                              <th class="sumFooter">KPR</th>
+                              <th class="sumFooter">CASH</th>
+                              <th>Marketing</th>
+                              <th>Status UTJ</th>
+                              <th>Status Unit</th>
+                              <th>Aksi</th>
+                            </tr>
                           </tfoot>
                       </table>
                     </div>
@@ -189,39 +212,100 @@
 <script type="text/javascript">
 $(document).ready( function () {
     $('#m_table_1').DataTable({
+      scrollX: true,
+      footerCallback: function(a, b) {
+          var o = this.api(),
+              l = function(a) {
+                  return "string" == typeof a ? 1 * a.replace(/[\Rp.,]/g, "") : "number" == typeof a ? a : 0
+              },
+              u = o.column(5).data().reduce(function(a, b) {
+                  return l(a) + l(b)
+              }, 0),
+              i = o.column(5, {
+                  page: "current"
+              }).data().reduce(function(a, b) {
+                  return l(a) + l(b)
+              }, 0);
+          $(o.column(5).footer()).html("Rp. " + mUtil.numberString(i.toFixed(0)));
+
+          var o = this.api(),
+              l = function(a) {
+                  return "string" == typeof a ? 1 * a.replace(/[\Rp.,]/g, "") : "number" == typeof a ? a : 0
+              },
+              u = o.column(6).data().reduce(function(a, b) {
+                  return l(a) + l(b)
+              }, 0),
+              i = o.column(6, {
+                  page: "current"
+              }).data().reduce(function(a, b) {
+                  return l(a) + l(b)
+              }, 0);
+          $(o.column(6).footer()).html("Rp. " + mUtil.numberString(i.toFixed(0)));
+
+          var o = this.api(),
+              l = function(a) {
+                  return "string" == typeof a ? 1 * a.replace(/[\Rp.,]/g, "") : "number" == typeof a ? a : 0
+              },
+              u = o.column(7).data().reduce(function(a, b) {
+                  return l(a) + l(b)
+              }, 0),
+              i = o.column(7, {
+                  page: "current"
+              }).data().reduce(function(a, b) {
+                  return l(a) + l(b)
+              }, 0);
+          $(o.column(7).footer()).html("Rp. " + mUtil.numberString(i.toFixed(0)));
+
+          var o = this.api(),
+              l = function(a) {
+                  return "string" == typeof a ? 1 * a.replace(/[\Rp.,]/g, "") : "number" == typeof a ? a : 0
+              },
+              u = o.column(8).data().reduce(function(a, b) {
+                  return l(a) + l(b)
+              }, 0),
+              i = o.column(8, {
+                  page: "current"
+              }).data().reduce(function(a, b) {
+                  return l(a) + l(b)
+              }, 0);
+          $(o.column(8).footer()).html("Rp. " + mUtil.numberString(i.toFixed(0)));
+
+          var o = this.api(),
+              l = function(a) {
+                  return "string" == typeof a ? 1 * a.replace(/[\Rp.,]/g, "") : "number" == typeof a ? a : 0
+              },
+              u = o.column(9).data().reduce(function(a, b) {
+                  return l(a) + l(b)
+              }, 0),
+              i = o.column(9, {
+                  page: "current"
+              }).data().reduce(function(a, b) {
+                  return l(a) + l(b)
+              }, 0);
+          $(o.column(9).footer()).html("Rp. " + mUtil.numberString(i.toFixed(0)));
+      },
       columnDefs: [
         {
-          targets: 3,
-          render: function(s) {
-            if (s === 'CASH') {
-              return '<span class="m-badge m-badge--danger m-badge--wide">CASH</span>'
-            } else if (s === 'KPR') {
-              return '<span class="m-badge m-badge--primary m-badge--wide">KPR</span>'
-            } else if (s === 'BERTAHAP 12x') {
-              return '<span class="m-badge m-badge--success m-badge--wide">BERTAHAP 12x</span>'
-            } else if (s === 'BERTAHAP 24x') {
-              return '<span class="m-badge m-badge--warning m-badge--wide">BERTAHAP 24x</span>'
-            } else if (s === 'BERTAHAP 36x') {
-              return '<span class="m-badge m-badge--info m-badge--wide">BERTAHAP 36x</span>'
-            }
+          targets: -1,
+          title: "Aksi",
+          orderable: !1,
+          render: function(l) {
+            return '\n<span class="dropdown">\n' +
+            '<a href="#" class="btn m-btn m-btn--hover-brand m-btn--icon m-btn--icon-only m-btn--pill" data-toggle="dropdown" aria-expanded="true">\n' +
+              '<i class="la la-ellipsis-h"></i>\n' +
+            '</a>\n' +
+            '<div class="dropdown-menu dropdown-menu-right">\n' +
+              '<a class="dropdown-item" href="#"><i class="la la-edit"></i> Edit Details</a>\n' +
+              '<a class="dropdown-item" href="#"><i class="la la-leaf"></i> Update Status</a>\n' +
+              '<a class="dropdown-item" href="#"><i class="la la-print"></i> Generate Report</a>\n' +
+            '</div>\n' +
+            '</span>\n' +
+            '<a href="#" class="m-portlet__nav-link btn m-btn m-btn--hover-brand m-btn--icon m-btn--icon-only m-btn--pill" title="View">\n' +
+            '<i class="la la-edit"></i>\n' +
+            '</a>'
           }
         }
-      ],
-      footerCallback: function(t, e) {
-          var o = this.api(),
-              l = function(t) {
-                  return "string" == typeof t ? 1 * t.replace(/[\Rp.,]/g, "") : "number" == typeof t ? t : 0
-              },
-              u = o.column(4).data().reduce(function(t, e) {
-                  return l(t) + l(e)
-              }, 0),
-              i = o.column(4, {
-                  page: "current"
-              }).data().reduce(function(t, e) {
-                  return l(t) + l(e)
-              }, 0);
-          $(o.column(4).footer()).html("Rp. " + mUtil.numberString(i.toFixed(0)) + "<br/>(Grand Total Rp. " + mUtil.numberString(u.toFixed(0)) + ")")
-      }
+      ]
     });
 });
 </script>

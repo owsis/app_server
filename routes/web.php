@@ -32,6 +32,10 @@ Route::get('/fail', 'VTController@failVT');
 Route::get('/unit', 'UnitController@index');
 Route::get('/harga', 'HargaController@index');
 
+//TABLE TRANSAKSI
+Route::get('/booking', 'TransaksiController@index');
+
+
 Route::get('/paymentype', function (){
 
     return view ('paymentype');
