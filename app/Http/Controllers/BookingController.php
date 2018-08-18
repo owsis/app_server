@@ -10,7 +10,7 @@ use App\User;
 use redirect;
 
 
-class TransaksiController extends Controller
+class BookingController extends Controller
 {
     /**
      * Display a listing of the resource.
