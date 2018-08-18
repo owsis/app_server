@@ -19,10 +19,11 @@ class TransaksiController extends Controller
      */
     public function index()
     {
-         $transaksi = T101::all();
-         $t002s = User::all();
+        $no = 1;
+        $transaksi = T101::all();
+        $t002s = User::all();
 
-        return view('booking', compact('transaksi','t002s'));
+        return view('transaksi.booking', compact('transaksi', 't002s', 'no'));
 
     }
 
