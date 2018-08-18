@@ -33,7 +33,7 @@ Route::get('/unit', 'UnitController@index');
 Route::get('/harga', 'HargaController@index');
 
 //TABLE TRANSAKSI
-Route::get('/booking', 'TransaksiController@index');
+Route::get('/booking', 'BookingController@index');
 
 
 Route::get('/paymentype', function (){
