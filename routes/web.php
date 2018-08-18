@@ -34,6 +34,7 @@ Route::get('/harga', 'HargaController@index');
 
 //TABLE TRANSAKSI
 Route::get('/booking', 'BookingController@index');
+Route::post('/booking/del/{id}', 'BookingController@destroy')->name('booking.del');
 
 
 Route::get('/paymentype', function (){

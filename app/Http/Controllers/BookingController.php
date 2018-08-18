@@ -90,6 +90,8 @@ class BookingController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $t101s = T101::destroy($id);
+
+        return redirect()->back()->with('msg', 'Data dihapus');
     }
 }
