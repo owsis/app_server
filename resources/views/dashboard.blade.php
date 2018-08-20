@@ -40,7 +40,7 @@
     <!--RTL version:<link href="../../../assets/demo/default/base/style.bundle.rtl.css" rel="stylesheet" type="text/css" />-->
 
     <!--end::Base Styles -->
-    <link href="{{ URL::asset('assets/images/icon-biru.png') }}" />
+    <link href="{{ URL::asset('images/icon-biru.png') }}" />
 
 </head>
 <!-- begin::Body -->
@@ -59,7 +59,7 @@
             <div class="m-subheader ">
                 <div class="d-flex align-items-center">
                     <div class="mr-auto">
-                        <h3 class="m-subheader__title m-subheader__title--separator">DATA HARGA UNIT</h3>
+                        <h3 class="m-subheader__title m-subheader__title--separator">DATA UNIT</h3>
                         <ul class="m-subheader__breadcrumbs m-nav m-nav--inline">
                             <li class="m-nav__item m-nav__item--home">
                                 <a href="#" class="m-nav__link m-nav__link--icon">
@@ -75,7 +75,7 @@
                             <li class="m-nav__separator">-</li>
                             <li class="m-nav__item">
                                 <a href="" class="m-nav__link">
-                                    <span class="m-nav__link-text">Harga</span>
+                                    <span class="m-nav__link-text">Unit</span>
                                 </a>
                             </li>
                         </ul>
@@ -91,16 +91,23 @@
                         <div class="m-portlet__head-caption">
                             <div class="m-portlet__head-title">
                                 <h3 class="m-portlet__head-text">
-                                    Master Harga Unit
+                                    Master Unit
                                 </h3>
                             </div>
                         </div>
                         <div class="m-portlet__head-tools">
                             <ul class="m-portlet__nav">
-
+                                <li class="m-portlet__nav-item">
+                                    <a href="#" class="btn btn-accent m-btn m-btn--custom m-btn--icon m-btn--air">
+                                        <span>
+                                            <i class="la la-plus"></i>
+                                            <span>Tambah Data</span>
+                                        </span>
+                                    </a>
+                                </li>
                                 <li class="m-portlet__nav-item"></li>
                                 <li class="m-portlet__nav-item">
-                                    <div class="m-dropdown m-dropdown--inline m-dropdown--arrow m-dropdown--align-right m-dropdown--align-push" m-dropdown-toggle="hover" aria-expanded="true">
+                                    <!-- <div class="m-dropdown m-dropdown--inline m-dropdown--arrow m-dropdown--align-right m-dropdown--align-push" m-dropdown-toggle="hover" aria-expanded="true">
                                         <a href="#" class="m-portlet__nav-link btn btn-lg btn-secondary  m-btn m-btn--icon m-btn--icon-only m-btn--pill  m-dropdown__toggle">
                                             <i class="la la-ellipsis-h m--font-brand"></i>
                                         </a>
@@ -109,54 +116,29 @@
                                             <div class="m-dropdown__inner">
                                                 <div class="m-dropdown__body">
                                                     <div class="m-dropdown__content">
-
+                                                        <ul class="m-nav">
+                                                            <li class="m-nav__section m-nav__section--first">
+                                                                <span class="m-nav__section-text">Quick Actions</span>
+                                                            </li>
+                                                            <li class="m-nav__item">
+                                                                <a href="" class="m-nav__link">
+                                                                <i class="m-nav__link-icon flaticon-plus"></i>
+                                                                <span class="m-nav__link-text">Tambah Data</span>
+                                                                </a>
+                                                            </li>
+                                                        </ul>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
+                                    </div> -->
                                 </li>
                             </ul>
                         </div>
                     </div>
                     <div class="m-portlet__body">
                       <!--begin: Datatable -->
-                      <div id="table-1"></div>
-                      <table class="table table-striped- table-bordered table-hover table-checkable" id="m_table_1">
-                          <thead>
-                            <tr>
-                                <th>#</th>
-                                <th>Tipe Unit</th>
-                                <th>Kode Unit</th>
-                                <th>Pembayaran</th>
-                                <th>Harga</th>
-                            </tr>
-                          </thead>
-                          <tbody>
-                            @foreach($price as $data)
-                            <tr>
-                                <td>{{ $no++ }}</td>
-                                <td>{{ $data->type_unit }}</td>
-                                <td>{{ $data->code_unit }}</td>
-                                @foreach($code_p as $code)
-                                  @if($data->type_unit == $code->type_unit && $data->code_payment == $code->code_payment)
-                                  <td>{{ $code->name_payment }}</td>
-                                  @endif
-                                @endforeach
-                                <td>Rp. {{ number_format($data->price) }}</td>
-                            </tr>
-                            @endforeach
-                          </tbody>
-                          <tfoot>
-                          <tr>
-                            <th>#</th>
-                            <th>Tipe Unit</th>
-                            <th>Kode Unit</th>
-                            <th>Pembayaran</th>
-                            <th>Harga</th>
-                          </tr>
-                          </tfoot>
-                      </table>
+
                     </div>
                 </div>
 
@@ -185,37 +167,20 @@ $(document).ready( function () {
     $('#m_table_1').DataTable({
       columnDefs: [
         {
-          targets: 3,
+          targets: 7,
           render: function(s) {
-            if (s === 'CASH') {
-              return '<span class="m-badge m-badge--danger m-badge--wide">CASH</span>'
-            } else if (s === 'KPR') {
-              return '<span class="m-badge m-badge--primary m-badge--wide">KPR</span>'
-            } else if (s === 'BERTAHAP 12x') {
-              return '<span class="m-badge m-badge--success m-badge--wide">BERTAHAP 12x</span>'
-            } else if (s === 'BERTAHAP 24x') {
-              return '<span class="m-badge m-badge--warning m-badge--wide">BERTAHAP 24x</span>'
-            } else if (s === 'BERTAHAP 36x') {
-              return '<span class="m-badge m-badge--info m-badge--wide">BERTAHAP 36x</span>'
+            if (s === 'available') {
+              return '<span class="m-badge m-badge--success m-badge--wide">AVAILABLE</span>'
+            } else if (s === 'close') {
+              return '<span class="m-badge m-badge--warning m-badge--wide">CLOSE</span>'
+            } else if (s === 'sold') {
+              return '<span class="m-badge m-badge--danger m-badge--wide">SOLD</span>'
+            } else if (s === 'order') {
+              return '<span class="m-badge m-badge--info m-badge--wide">ORDER</span>'
             }
           }
         }
-      ],
-      footerCallback: function(t, e) {
-          var o = this.api(),
-              l = function(t) {
-                  return "string" == typeof t ? 1 * t.replace(/[\Rp.,]/g, "") : "number" == typeof t ? t : 0
-              },
-              u = o.column(4).data().reduce(function(t, e) {
-                  return l(t) + l(e)
-              }, 0),
-              i = o.column(4, {
-                  page: "current"
-              }).data().reduce(function(t, e) {
-                  return l(t) + l(e)
-              }, 0);
-          $(o.column(4).footer()).html("Rp. " + mUtil.numberString(i.toFixed(0)) + "<br/>(Grand Total Rp. " + mUtil.numberString(u.toFixed(0)) + ")")
-      }
+      ]
     });
 });
 </script>

@@ -1,13 +1,50 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Master;
 
-use App\T101;
-use App\User;
+use App\Http\Controllers\Controller;
+use App\T003;
 use Illuminate\Http\Request;
-use redirect;
 
-class BookingController extends Controller {
+class UnitController extends Controller {
+
+	public function __construct() {
+		$this->middleware('auth:t001');
+	}
+
+	public function csvToArray($filename = '', $delimiter = ',') {
+		if (!file_exists($filename) || !is_readable($filename)) {
+			return false;
+		}
+
+		$header = null;
+		$data = array();
+		if (($handle = fopen($filename, 'r')) !== false) {
+			while (($row = fgetcsv($handle, 1000, $delimiter)) !== false) {
+				if (!$header) {
+					$header = $row;
+				} else {
+					$data[] = array_combine($header, $row);
+				}
+
+			}
+			fclose($handle);
+		}
+
+		return $data;
+	}
+
+	public function importCsv(Request $req) {
+		$file = public_path('file/test.csv');
+
+		$customerArr = $this->csvToArray($file);
+
+		for ($i = 0; $i < count($customerArr); $i++) {
+			User::firstOrCreate($customerArr[$i]);
+		}
+
+		return 'Jobi done or what ever';
+	}
 	/**
 	 * Display a listing of the resource.
 	 *
@@ -15,10 +52,9 @@ class BookingController extends Controller {
 	 */
 	public function index() {
 		$no = 1;
-		$transaksi = T101::all();
-		$t002s = User::all();
+		$unit = T003::all();
 
-		return view('transaksi.booking', compact('transaksi', 't002s', 'no'));
+		return view('master.unit', compact('unit', 'no'));
 
 	}
 
@@ -79,8 +115,6 @@ class BookingController extends Controller {
 	 * @return \Illuminate\Http\Response
 	 */
 	public function destroy($id) {
-		$t101s = T101::destroy($id);
-
-		return redirect()->back()->with('msg', 'Data dihapus');
+		//
 	}
 }

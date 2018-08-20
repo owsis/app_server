@@ -5,7 +5,7 @@
 <!-- begin::Head -->
 <head>
     <meta charset="utf-8" />
-    <title>Metronic | Scrollable Examples</title>
+    <title>Smile In Properti</title>
     <meta name="description" content="Scrollable datatables examples">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no">
 
@@ -40,7 +40,8 @@
     <!--RTL version:<link href="../../../assets/demo/default/base/style.bundle.rtl.css" rel="stylesheet" type="text/css" />-->
 
     <!--end::Base Styles -->
-    <link href="{{ URL::asset('assets/demo/default/media/img/logo/favicon.ico') }}"  />
+    <link href="{{ URL::asset('images/icon-biru.png') }}" />
+
 </head>
 <!-- begin::Body -->
 <body class="m-page--fluid m--skin- m-content--skin-light2 m-header--fixed m-header--fixed-mobile m-aside-left--enabled m-aside-left--skin-dark m-aside-left--fixed m-aside-left--offcanvas m-aside-left--minimize m-brand--minimize m-footer--push m-aside--offcanvas-default">
@@ -84,14 +85,7 @@
 
             <!-- END: Subheader -->
             <div class="m-content">
-                <div class="m-alert m-alert--icon m-alert--air m-alert--square alert alert-dismissible m--margin-bottom-30" role="alert">
-                    <div class="m-alert__icon">
-                        <i class="flaticon-exclamation m--font-brand"></i>
-                    </div>
-                    <div class="m-alert__text">
-                        Master Unit Tombak Intan Developer
-                    </div>
-                </div>
+
                 <div class="m-portlet m-portlet--mobile">
                     <div class="m-portlet__head">
                         <div class="m-portlet__head-caption">
@@ -103,10 +97,17 @@
                         </div>
                         <div class="m-portlet__head-tools">
                             <ul class="m-portlet__nav">
-
+                                <li class="m-portlet__nav-item">
+                                    <a href="#" class="btn btn-accent m-btn m-btn--custom m-btn--icon m-btn--air">
+                                        <span>
+                                            <i class="la la-plus"></i>
+                                            <span>Tambah Data</span>
+                                        </span>
+                                    </a>
+                                </li>
                                 <li class="m-portlet__nav-item"></li>
                                 <li class="m-portlet__nav-item">
-                                    <div class="m-dropdown m-dropdown--inline m-dropdown--arrow m-dropdown--align-right m-dropdown--align-push" m-dropdown-toggle="hover" aria-expanded="true">
+                                    <!-- <div class="m-dropdown m-dropdown--inline m-dropdown--arrow m-dropdown--align-right m-dropdown--align-push" m-dropdown-toggle="hover" aria-expanded="true">
                                         <a href="#" class="m-portlet__nav-link btn btn-lg btn-secondary  m-btn m-btn--icon m-btn--icon-only m-btn--pill  m-dropdown__toggle">
                                             <i class="la la-ellipsis-h m--font-brand"></i>
                                         </a>
@@ -115,12 +116,22 @@
                                             <div class="m-dropdown__inner">
                                                 <div class="m-dropdown__body">
                                                     <div class="m-dropdown__content">
-
+                                                        <ul class="m-nav">
+                                                            <li class="m-nav__section m-nav__section--first">
+                                                                <span class="m-nav__section-text">Quick Actions</span>
+                                                            </li>
+                                                            <li class="m-nav__item">
+                                                                <a href="" class="m-nav__link">
+                                                                <i class="m-nav__link-icon flaticon-plus"></i>
+                                                                <span class="m-nav__link-text">Tambah Data</span>
+                                                                </a>
+                                                            </li>
+                                                        </ul>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
+                                    </div> -->
                                 </li>
                             </ul>
                         </div>
@@ -131,6 +142,7 @@
                       <table class="table table-striped- table-bordered table-hover table-checkable" id="m_table_1">
                           <thead>
                             <tr>
+                                <th>#</th>
                                 <th>Cluster</th>
                                 <th>Unit Id</th>
                                 <th>Blok</th>
@@ -143,6 +155,7 @@
                           <tbody>
                             @foreach($unit as $data)
                             <tr>
+                                <td>{{ $no++ }}</td>
                                 <td>{{ $data->name_unit }}</td>
                                 <td>{{ $data->code_unit }}</td>
                                 <td>{{ $data->block_unit }}</td>
@@ -193,7 +206,7 @@ $(document).ready( function () {
     $('#m_table_1').DataTable({
       columnDefs: [
         {
-          targets: 6,
+          targets: 7,
           render: function(s) {
             if (s === 'available') {
               return '<span class="m-badge m-badge--success m-badge--wide">AVAILABLE</span>'

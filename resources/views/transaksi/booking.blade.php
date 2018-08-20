@@ -5,7 +5,7 @@
 <!-- begin::Head -->
 <head>
     <meta charset="utf-8" />
-    <title>Metronic | Scrollable Examples</title>
+    <title>Smile In Properti</title>
     <meta name="description" content="Scrollable datatables examples">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no">
 
@@ -40,7 +40,7 @@
     <!--RTL version:<link href="../../../assets/demo/default/base/style.bundle.rtl.css" rel="stylesheet" type="text/css" />-->
 
     <!--end::Base Styles -->
-    <link href="{{ URL::asset('assets/demo/default/media/img/logo/favicon.ico') }}"  />
+    <link href="{{ URL::asset('assets/images/icon-biru.png') }}" />
 </head>
 <!-- begin::Body -->
 <body class="m-page--fluid m--skin- m-content--skin-light2 m-header--fixed m-header--fixed-mobile m-aside-left--enabled m-aside-left--skin-dark m-aside-left--fixed m-aside-left--offcanvas m-aside-left--minimize m-brand--minimize m-footer--push m-aside--offcanvas-default">
@@ -262,6 +262,9 @@
 <script type="text/javascript">
 $(document).ready( function () {
     $('#m_table_1').DataTable({
+      buttons: [
+        'copy', 'excel', 'pdf'
+      ],
       scrollX: true,
       footerCallback: function(a, b) {
           var o = this.api(),
@@ -334,6 +337,7 @@ $(document).ready( function () {
               }, 0);
           $(o.column(9).footer()).html("Rp. " + mUtil.numberString(i.toFixed(0)));
       },
+
     });
 
 });

@@ -1,13 +1,17 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Master;
 
-use App\T101;
-use App\User;
+use App\Http\Controllers\Controller;
+use App\T004;
+use App\T006;
 use Illuminate\Http\Request;
-use redirect;
 
-class BookingController extends Controller {
+class HargaController extends Controller {
+
+	public function __construct() {
+		$this->middleware('auth:t001');
+	}
 	/**
 	 * Display a listing of the resource.
 	 *
@@ -15,10 +19,10 @@ class BookingController extends Controller {
 	 */
 	public function index() {
 		$no = 1;
-		$transaksi = T101::all();
-		$t002s = User::all();
+		$price = T006::all();
+		$code_p = T004::all();
 
-		return view('transaksi.booking', compact('transaksi', 't002s', 'no'));
+		return view('master.harga', compact('price', 'no', 'code_p'));
 
 	}
 
@@ -79,8 +83,6 @@ class BookingController extends Controller {
 	 * @return \Illuminate\Http\Response
 	 */
 	public function destroy($id) {
-		$t101s = T101::destroy($id);
-
-		return redirect()->back()->with('msg', 'Data dihapus');
+		//
 	}
 }
