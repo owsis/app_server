@@ -1,13 +1,16 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Master;
 
-use App\T101;
-use App\User;
+use App\Http\Controllers\Controller;
+use App\T004;
 use Illuminate\Http\Request;
-use redirect;
 
-class BookingController extends Controller {
+class CarabayarController extends Controller {
+
+	public function __construct() {
+		$this->middleware('auth:t001');
+	}
 	/**
 	 * Display a listing of the resource.
 	 *
@@ -15,10 +18,9 @@ class BookingController extends Controller {
 	 */
 	public function index() {
 		$no = 1;
-		$transaksi = T101::all();
-		$t002s = User::all();
+		$carabayar = T004::all();
 
-		return view('transaksi.booking', compact('transaksi', 't002s', 'no'));
+		return view('master.carabayar', compact('carabayar', 'no'));
 
 	}
 
@@ -38,7 +40,15 @@ class BookingController extends Controller {
 	 * @return \Illuminate\Http\Response
 	 */
 	public function store(Request $request) {
-		//
+		$t004s = T004::create([
+			'type_unit' => $request->type_unit,
+			'code_payment' => $request->code_payment,
+			'name_payment' => $request->name_payment,
+			'dp' => $request->dp,
+			'kpr' => $request->kpr,
+			'disc' => $request->disc,
+		]);
+		return redirect()->back()->with('msg', 'Data berhasil ditambah');
 	}
 
 	/**
@@ -69,7 +79,15 @@ class BookingController extends Controller {
 	 * @return \Illuminate\Http\Response
 	 */
 	public function update(Request $request, $id) {
-		//
+		$t004s = T004::find($id)->update([
+			'type_unit' => $request->type_unit,
+			'code_payment' => $request->code_payment,
+			'name_payment' => $request->name_payment,
+			'dp' => $request->dp,
+			'kpr' => $request->kpr,
+			'disc' => $request->disc,
+		]);
+		return redirect()->back()->with('msg', 'Data berhasil diupdate');
 	}
 
 	/**
@@ -79,7 +97,7 @@ class BookingController extends Controller {
 	 * @return \Illuminate\Http\Response
 	 */
 	public function destroy($id) {
-		$t101s = T101::destroy($id);
+		$t004s = T004::destroy($id);
 
 		return redirect()->back()->with('msg', 'Data dihapus');
 	}

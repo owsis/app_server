@@ -9,6 +9,7 @@
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:400,700" rel="stylesheet" type="text/css">
+        <link rel="shortcut icon" href="{{URL::asset('images/icon-biru.png')}}" />
 
         <!-- Styles -->
         <style>
@@ -76,7 +77,7 @@
                 </div>
 
                 <div class="links">
-                    <a href="{{ url('/public/inadmin') }}">MASUK</a>
+                    <a href="{{ url('/in') }}">MASUK</a>
                 </div>
             </div>
         </div>

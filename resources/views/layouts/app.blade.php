@@ -23,8 +23,8 @@
   <!-- Scripts -->
   <script>
   window.Laravel = <?php echo json_encode([
-    'csrfToken' => csrf_token(),
-  ]); ?>
+	'csrfToken' => csrf_token(),
+]); ?>
   </script>
 
   <!--end::Web font -->
@@ -45,7 +45,7 @@
   <!--RTL version:<link href="assets/demo/default/base/style.bundle.rtl.css" rel="stylesheet" type="text/css" />-->
 
   <!--end::Base Styles -->
-  <link rel="shortcut icon" href="{{URL::asset('assets/demo/default/media/img/logo/favicon.ico')}}" />
+  <link rel="shortcut icon" href="{{URL::asset('images/icon-biru.png')}}" />
 
 </head>
 <!-- end::Body -->

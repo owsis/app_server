@@ -152,13 +152,24 @@
                                   </span>
                                 </a>
                               </li>
-                              <li class="m-nav__item">							<a href="?page=header/profile" class="m-nav__link">								<i class="m-nav__link-icon flaticon-share"></i>								<span class="m-nav__link-text">Activity</span>							</a>						</li>
-                              <li class="m-nav__item">							<a href="?page=header/profile" class="m-nav__link">								<i class="m-nav__link-icon flaticon-chat-1"></i>								<span class="m-nav__link-text">Messages</span>							</a>						</li>
-                              <li class="m-nav__separator m-nav__separator--fit">						</li>
-                              <li class="m-nav__item">							<a href="?page=header/profile" class="m-nav__link">								<i class="m-nav__link-icon flaticon-info"></i>								<span class="m-nav__link-text">FAQ</span>							</a>						</li>
-                              <li class="m-nav__item">							<a href="?page=header/profile" class="m-nav__link">								<i class="m-nav__link-icon flaticon-lifebuoy"></i>								<span class="m-nav__link-text">Support</span>							</a>						</li>
-                              <li class="m-nav__separator m-nav__separator--fit">						</li>
-                              <li class="m-nav__item">							<a href="?page=snippets/pages/user/login-1" class="btn m-btn--pill    btn-secondary m-btn m-btn--custom m-btn--label-brand m-btn--bolder">Logout</a>						</li>
+                              <li class="m-nav__item">
+                                <a href="?page=header/profile" class="m-nav__link">
+                                  <i class="m-nav__link-icon flaticon-share"></i>
+                                  <span class="m-nav__link-text">Activity</span>
+                                </a>
+                              </li>
+                              <li class="m-nav__item">
+                                <a href="?page=header/profile" class="m-nav__link">
+                                  <i class="m-nav__link-icon flaticon-chat-1"></i>
+                                  <span class="m-nav__link-text">Messages</span>
+                                </a>
+                              </li>
+                              <li class="m-nav__item">
+                                <a class="btn m-btn--pill btn-secondary m-btn m-btn--custom m-btn--label-brand m-btn--bolder" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                    {{ csrf_field() }}
+                                </form>
+                              </li>
                           </ul>
                       </div>
                   </div>

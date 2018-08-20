@@ -26,7 +26,7 @@
         <h4 class="m-menu__section-text">Menus</h4>
         <i class="m-menu__section-icon flaticon-more-v2"></i>
       </li>
-      <li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true">
+      <li class="m-menu__item  m-menu__item--submenu {{ request()->is('unit*') || request()->is('harga*') || request()->is('carabayar*') ? 'm-menu__item--open m-menu__item--expanded' : '' }}" aria-haspopup="true">
         <a href="javascript:;" class="m-menu__link m-menu__toggle">
           <i class="m-menu__link-icon flaticon-layers"></i>
           <span class="m-menu__link-text">Master</span>
@@ -40,7 +40,7 @@
                 <span class="m-menu__link-text">Master</span>
               </span>
             </li>
-            <li class="m-menu__item " aria-haspopup="true">
+            <li class="m-menu__item {{ request()->is('unit*') ? 'm-menu__item--active' : ''}}" aria-haspopup="true">
               <a href="{{ url('/unit') }}" class="m-menu__link ">
                 <i class="m-menu__link-bullet m-menu__link-bullet--dot">
                   <span></span>
@@ -48,7 +48,7 @@
                 <span class="m-menu__link-text">Unit</span>
               </a>
             </li>
-            <li class="m-menu__item " aria-haspopup="true">
+            <li class="m-menu__item {{ request()->is('harga*') ? 'm-menu__item--active' : ''}}" aria-haspopup="true">
               <a href="{{ url('/harga') }}" class="m-menu__link ">
                 <i class="m-menu__link-bullet m-menu__link-bullet--dot">
                   <span></span>
@@ -56,8 +56,8 @@
                 <span class="m-menu__link-text">Harga</span>
               </a>
             </li>
-            <li class="m-menu__item " aria-haspopup="true">
-              <a href="../../../components/base/stack.html" class="m-menu__link ">
+            <li class="m-menu__item {{ request()->is('carabayar*') ? 'm-menu__item--active' : ''}}" aria-haspopup="true">
+              <a href="{{ url('/carabayar') }}" class="m-menu__link ">
                 <i class="m-menu__link-bullet m-menu__link-bullet--dot">
                   <span></span>
                 </i>
@@ -99,7 +99,7 @@
           </ul>
         </div>
       </li>
-      <li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true">
+      <li class="m-menu__item  m-menu__item--submenu {{ request()->is('booking*') || request()->is('berkas*') ? 'm-menu__item--open m-menu__item--expanded' : '' }}" aria-haspopup="true">
         <a href="javascript:;" class="m-menu__link m-menu__toggle">
           <i class="m-menu__link-icon flaticon-share"></i>
           <span class="m-menu__link-text">Transaksi</span>
@@ -108,7 +108,7 @@
         <div class="m-menu__submenu ">
           <span class="m-menu__arrow"></span>
           <ul class="m-menu__subnav">
-            <li class="m-menu__item " aria-haspopup="true">
+            <li class="m-menu__item {{ request()->is('booking*') ? 'm-menu__item--active' : ''}}" aria-haspopup="true">
               <a href="{{ url('/booking')}}" class="m-menu__link ">
                 <i class="m-menu__link-bullet m-menu__link-bullet--dot">
                   <span></span>

@@ -10,18 +10,15 @@
   						<div class="m-stack__item m-stack__item--fluid">
   							<div class="m-login__wrapper">
   								<div class="m-login__logo">
-  									<a href="#">
-  										<img src="{{URL::asset('assets/app/media/img/logos/logo-2.png')}}">
-  									</a>
+										<img src="{{URL::asset('images/icon-biru.png')}}" with="80" height="80" >
   								</div>
-  								<div class="m-login__signin">
   									<div class="m-login__head">
   										<h3 class="m-login__title">Sign In To Admin</h3>
   									</div>
-  									<form class="m-login__form m-form" role="form" method="POST" action="{{ url('/inadmin') }}">
+  									<form class="m-login__form m-form" role="form" method="POST" action="{{ url('/in') }}">
                       {{ csrf_field() }}
   										<div class="form-group m-form__group">
-  											<input class="form-control m-input" type="text" placeholder="Phone" name="phone" autocomplete="off" required>
+                        <input class="form-control m-input" type="text" placeholder="(62) 8xx-xxxx-xxxxx" name="phone" value="62" id="m_inputmask_3" autocomplete="off" required>
                       </div>
   										<div class="form-group m-form__group">
   											<input class="form-control m-input m-login__form-input--last" type="password" placeholder="Password" name="password" required>
@@ -38,54 +35,11 @@
   											</div>
   										</div>
   										<div class="m-login__form-action">
-  											<input type="submit" class="btn btn-focus m-btn m-btn--pill m-btn--custom m-btn--air" value="Sign In"/>
+  											<input type="submit" id="submit" class="btn btn-focus m-btn m-btn--pill m-btn--custom m-btn--air" value="Sign In"/>
   										</div>
   									</form>
-  								</div>
 
-  								<div class="m-login__signup">
-  									<div class="m-login__head">
-  										<h3 class="m-login__title">Sign Up</h3>
-  										<div class="m-login__desc">Enter your details to create your account:</div>
-  									</div>
-
-  									<form class="m-login__form m-form" role="form" method="POST" action="">
-                      {{ csrf_field() }}
-  										<div class="form-group m-form__group">
-  											<input class="form-control m-input" type="text" placeholder="Phone" name="phone">
-  										</div>
-  										<div class="form-group m-form__group">
-  											<input class="form-control m-input" type="text" placeholder="Email" name="email" autocomplete="off">
-  										</div>
-  										<div class="form-group m-form__group">
-  											<input class="form-control m-input" type="text" placeholder="Name" name="name" autocomplete="off">
-  										</div>
-  										<div class="form-group m-form__group">
-  											<input class="form-control m-input" type="text" placeholder="KTP" name="ktp" autocomplete="off">
-  										</div>
-  										<div class="form-group m-form__group">
-  											<input class="form-control m-input" type="password" placeholder="Password" name="password">
-  										</div>
-  										<div class="form-group m-form__group">
-  											<input class="form-control m-input m-login__form-input--last" type="password" placeholder="Confirm Password" name="rpassword">
-  										</div>
-  										<div class="row form-group m-form__group m-login__form-sub">
-  											<div class="col m--align-left">
-  												<label class="m-checkbox m-checkbox--focus">
-  													<input type="checkbox" name="agree"> I Agree the
-  													<a href="#" class="m-link m-link--focus">terms and conditions</a>.
-  													<span></span>
-  												</label>
-  												<span class="m-form__help"></span>
-  											</div>
-  										</div>
-  										<div class="m-login__form-action">
-  											<button id="m_login_signup_submit" class="btn btn-focus m-btn m-btn--pill m-btn--custom m-btn--air">Sign Up</button>
-  											<button id="m_login_signup_cancel" class="btn btn-outline-focus  m-btn m-btn--pill m-btn--custom">Cancel</button>
-  										</div>
-  									</form>
-  								</div>
-  								<div class="m-login__forget-password">
+  								<div class="m-login__forget-password" >
   									<div class="m-login__head">
   										<h3 class="m-login__title">Forgotten Password ?</h3>
   										<div class="m-login__desc">Enter your email to reset your password:</div>
@@ -100,14 +54,6 @@
   										</div>
   									</form>
   								</div>
-  							</div>
-  						</div>
-  						<div class="m-stack__item m-stack__item--center">
-  							<div class="m-login__account">
-  								<span class="m-login__account-msg">
-  									Don't have an account yet ?
-  								</span>&nbsp;&nbsp;
-  								<a href="javascript:;" id="m_login_signup" class="m-link m-link--focus m-login__account-link">Sign Up</a>
   							</div>
   						</div>
   					</div>
@@ -126,4 +72,18 @@
 
   		<!-- end:: Page -->
 
+@endsection
+@section('page-snippets')
+<script type="text/javascript">
+  $(document).ready( function () {
+    $('img').mousedown( function () {
+      return false;
+    });
+    $("#m_inputmask_").inputmask("mask", {"mask": "(99) 999-9999-99999"});
+    $('#submit').click( function() {
+      $("#m_inputmask_3").inputmask("remove");
+      $("#m_inputmask_3").focusl();
+    });
+  });
+</script>
 @endsection
