@@ -40,7 +40,7 @@
     <!--RTL version:<link href="../../../assets/demo/default/base/style.bundle.rtl.css" rel="stylesheet" type="text/css" />-->
 
     <!--end::Base Styles -->
-    <link href="{{ URL::asset('images/icon-biru.png') }}" />
+    <link rel="shortcut icon" href="{{ URL::asset('images/icon-biru.png') }}" />
 
 </head>
 <!-- begin::Body -->
