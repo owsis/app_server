@@ -40,115 +40,165 @@
     <!--RTL version:<link href="../../../assets/demo/default/base/style.bundle.rtl.css" rel="stylesheet" type="text/css" />-->
 
     <!--end::Base Styles -->
-    <link href="{{ URL::asset('images/icon-biru.png') }}" />
+    <link rel="shortcut icon" href="{{ URL::asset('images/icon-biru.png') }}" />
 
 </head>
 <!-- begin::Body -->
 <body class="m-page--fluid m--skin- m-content--skin-light2 m-header--fixed m-header--fixed-mobile m-aside-left--enabled m-aside-left--skin-dark m-aside-left--fixed m-aside-left--offcanvas m-aside-left--minimize m-brand--minimize m-footer--push m-aside--offcanvas-default">
 
-<div class="m-grid m-grid--hor m-grid--root m-page">
-    <!-- ini awal header -->
-    @extends('layouts.header')
+    <div class="m-grid m-grid--hor m-grid--root m-page">
+        <!-- ini awal header -->
+        @extends('layouts.header')
 
-<!-- ini awal body -->
-    <div class="m-grid__item m-grid__item--fluid m-grid m-grid--ver-desktop m-grid--desktop m-body">
-    @extends('layouts.menu')
-    <!-- END: Left Aside -->
-        <div class="m-grid__item m-grid__item--fluid m-wrapper">
-            <!-- BEGIN: Subheader -->
-            <div class="m-subheader ">
-                <div class="d-flex align-items-center">
-                    <div class="mr-auto">
-                        <h3 class="m-subheader__title m-subheader__title--separator">DATA UNIT</h3>
-                        <ul class="m-subheader__breadcrumbs m-nav m-nav--inline">
-                            <li class="m-nav__item m-nav__item--home">
-                                <a href="#" class="m-nav__link m-nav__link--icon">
-                                    <i class="m-nav__link-icon la la-home"></i>
+        <!-- ini awal body -->
+        <div class="m-grid__item m-grid__item--fluid m-grid m-grid--ver-desktop m-grid--desktop m-body">
+            @extends('layouts.menu')
+            <!-- END: Left Aside -->
+            <div class="m-grid__item m-grid__item--fluid m-wrapper">
+                <!-- BEGIN: Subheader -->
+                <div class="m-subheader ">
+                    <div class="d-flex align-items-center">
+                        <div class="mr-auto">
+                            <h3 class="m-subheader__title ">Dashboard</h3>
+                        </div>
+                        <div>
+                            <span class="m-subheader__daterange" id="m_dashboard_daterangepicker">
+                                <span class="m-subheader__daterange-label">
+                                    <span class="m-subheader__daterange-title"></span>
+                                    <span class="m-subheader__daterange-date m--font-brand"></span>
+                                </span>
+                                <a href="#" class="btn btn-sm btn-brand m-btn m-btn--icon m-btn--icon-only m-btn--custom m-btn--pill">
+                                    <i class="la la-angle-down"></i>
                                 </a>
-                            </li>
-                            <li class="m-nav__separator">-</li>
-                            <li class="m-nav__item">
-                                <a href="" class="m-nav__link">
-                                    <span class="m-nav__link-text">Master</span>
-                                </a>
-                            </li>
-                            <li class="m-nav__separator">-</li>
-                            <li class="m-nav__item">
-                                <a href="" class="m-nav__link">
-                                    <span class="m-nav__link-text">Unit</span>
-                                </a>
-                            </li>
-                        </ul>
+                            </span>
+                        </div>
                     </div>
                 </div>
-            </div>
+                <!-- END: Subheader -->
+                <div class="m-content">
 
-            <!-- END: Subheader -->
-            <div class="m-content">
-
-                <div class="m-portlet m-portlet--mobile">
-                    <div class="m-portlet__head">
-                        <div class="m-portlet__head-caption">
-                            <div class="m-portlet__head-title">
-                                <h3 class="m-portlet__head-text">
-                                    Master Unit
-                                </h3>
+                    <!--begin:: Widgets/Stats-->
+                    <div class="m-portlet ">
+                        <div class="m-portlet__body  m-portlet__body--no-padding">
+                            <div class="row m-row--no-padding m-row--col-separator-xl">
+                                <div class="col-md-12 col-lg-6 col-xl-3">
+                                    <!--begin::Total Profit-->
+                                    <div class="m-widget24">
+                                        <div class="m-widget24__item">
+                                            <h4 class="m-widget24__title">
+                                                Total Frofit
+                                            </h4><br>
+                                            <span class="m-widget24__desc">
+                                                All Customs Value
+                                            </span>
+                                            <span class="m-widget24__stats m--font-brand">
+                                                $18M
+                                            </span>
+                                            <div class="m--space-10"></div>
+                                            <div class="progress m-progress--sm">
+                                                <div class="progress-bar m--bg-brand" role="progressbar" style="width: 78%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                                            </div>
+                                            <span class="m-widget24__change">
+                                                Change
+                                            </span>
+                                            <span class="m-widget24__number">
+                                                78%
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <!--end::Total Profit-->
+                                </div>
+                                <div class="col-md-12 col-lg-6 col-xl-3">
+                                    <!--begin::New Feedbacks-->
+                                    <div class="m-widget24">
+                                       <div class="m-widget24__item">
+                                        <h4 class="m-widget24__title">
+                                            New Feedbacks
+                                        </h4><br>
+                                        <span class="m-widget24__desc">
+                                            Customer Review
+                                        </span>
+                                        <span class="m-widget24__stats m--font-info">
+                                            1349
+                                        </span>
+                                        <div class="m--space-10"></div>
+                                        <div class="progress m-progress--sm">
+                                            <div class="progress-bar m--bg-info" role="progressbar" style="width: 84%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                                        </div>
+                                        <span class="m-widget24__change">
+                                            Change
+                                        </span>
+                                        <span class="m-widget24__number">
+                                            84%
+                                        </span>
+                                    </div>
+                                </div>
+                                <!--end::New Feedbacks-->
+                                </div>
+                                <div class="col-md-12 col-lg-6 col-xl-3">
+                                    <!--begin::New Orders-->
+                                    <div class="m-widget24">
+                                        <div class="m-widget24__item">
+                                            <h4 class="m-widget24__title">
+                                                New Orders
+                                            </h4><br>
+                                            <span class="m-widget24__desc">
+                                                Fresh Order Amount
+                                            </span>
+                                            <span class="m-widget24__stats m--font-danger">
+                                                567
+                                            </span>
+                                            <div class="m--space-10"></div>
+                                            <div class="progress m-progress--sm">
+                                                <div class="progress-bar m--bg-danger" role="progressbar" style="width: 69%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                                            </div>
+                                            <span class="m-widget24__change">
+                                                Change
+                                            </span>
+                                            <span class="m-widget24__number">
+                                                69%
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <!--end::New Orders-->
+                                </div>
+                                <div class="col-md-12 col-lg-6 col-xl-3">
+                                    <!--begin::New Users-->
+                                    <div class="m-widget24">
+                                       <div class="m-widget24__item">
+                                        <h4 class="m-widget24__title">
+                                            New Users
+                                        </h4><br>
+                                        <span class="m-widget24__desc">
+                                            Joined New User
+                                        </span>
+                                        <span class="m-widget24__stats m--font-success">
+                                            276
+                                        </span>
+                                        <div class="m--space-10"></div>
+                                        <div class="progress m-progress--sm">
+                                            <div class="progress-bar m--bg-success" role="progressbar" style="width: 90%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                                        </div>
+                                        <span class="m-widget24__change">
+                                            Change
+                                        </span>
+                                        <span class="m-widget24__number">
+                                            90%
+                                        </span>
+                                    </div>
+                                </div>
+                                <!--end::New Users-->
+                                </div>
                             </div>
                         </div>
-                        <div class="m-portlet__head-tools">
-                            <ul class="m-portlet__nav">
-                                <li class="m-portlet__nav-item">
-                                    <a href="#" class="btn btn-accent m-btn m-btn--custom m-btn--icon m-btn--air">
-                                        <span>
-                                            <i class="la la-plus"></i>
-                                            <span>Tambah Data</span>
-                                        </span>
-                                    </a>
-                                </li>
-                                <li class="m-portlet__nav-item"></li>
-                                <li class="m-portlet__nav-item">
-                                    <!-- <div class="m-dropdown m-dropdown--inline m-dropdown--arrow m-dropdown--align-right m-dropdown--align-push" m-dropdown-toggle="hover" aria-expanded="true">
-                                        <a href="#" class="m-portlet__nav-link btn btn-lg btn-secondary  m-btn m-btn--icon m-btn--icon-only m-btn--pill  m-dropdown__toggle">
-                                            <i class="la la-ellipsis-h m--font-brand"></i>
-                                        </a>
-                                        <div class="m-dropdown__wrapper">
-                                            <span class="m-dropdown__arrow m-dropdown__arrow--right m-dropdown__arrow--adjust"></span>
-                                            <div class="m-dropdown__inner">
-                                                <div class="m-dropdown__body">
-                                                    <div class="m-dropdown__content">
-                                                        <ul class="m-nav">
-                                                            <li class="m-nav__section m-nav__section--first">
-                                                                <span class="m-nav__section-text">Quick Actions</span>
-                                                            </li>
-                                                            <li class="m-nav__item">
-                                                                <a href="" class="m-nav__link">
-                                                                <i class="m-nav__link-icon flaticon-plus"></i>
-                                                                <span class="m-nav__link-text">Tambah Data</span>
-                                                                </a>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div> -->
-                                </li>
-                            </ul>
-                        </div>
                     </div>
-                    <div class="m-portlet__body">
-                      <!--begin: Datatable -->
-
-                    </div>
+                    <!--end:: Widgets/Stats-->
                 </div>
 
-                <!-- END EXAMPLE TABLE PORTLET-->
             </div>
-
         </div>
     </div>
-</div>
-<!-- begin::Quick Nav -->
+    <!-- begin::Quick Nav -->
 
 <!--begin::Base Scripts -->
 <script src="{{ URL::asset('assets/vendors/base/vendors.bundle.js') }}" type="text/javascript"></script>
@@ -163,26 +213,26 @@
 
 <!--begin::Page Resources -->
 <script type="text/javascript">
-$(document).ready( function () {
-    $('#m_table_1').DataTable({
-      columnDefs: [
-        {
-          targets: 7,
-          render: function(s) {
-            if (s === 'available') {
-              return '<span class="m-badge m-badge--success m-badge--wide">AVAILABLE</span>'
-            } else if (s === 'close') {
-              return '<span class="m-badge m-badge--warning m-badge--wide">CLOSE</span>'
-            } else if (s === 'sold') {
-              return '<span class="m-badge m-badge--danger m-badge--wide">SOLD</span>'
-            } else if (s === 'order') {
-              return '<span class="m-badge m-badge--info m-badge--wide">ORDER</span>'
-            }
+    $(document).ready( function () {
+        $('#m_table_1').DataTable({
+          columnDefs: [
+          {
+              targets: 7,
+              render: function(s) {
+                if (s === 'available') {
+                  return '<span class="m-badge m-badge--success m-badge--wide">AVAILABLE</span>'
+              } else if (s === 'close') {
+                  return '<span class="m-badge m-badge--warning m-badge--wide">CLOSE</span>'
+              } else if (s === 'sold') {
+                  return '<span class="m-badge m-badge--danger m-badge--wide">SOLD</span>'
+              } else if (s === 'order') {
+                  return '<span class="m-badge m-badge--info m-badge--wide">ORDER</span>'
+              }
           }
-        }
+      }
       ]
+  });
     });
-});
 </script>
 
 <!--end::Page Resources -->
