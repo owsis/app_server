@@ -10,7 +10,7 @@
     <div class="m-stack__item m-stack__item--fluid">
      <div class="m-login__wrapper">
       <div class="m-login__logo">
-        <img src="{{URL::asset('images/icon-biru.png')}}" with="80" height="80" >
+        <img src="{{URL::asset('assets/app/media/img/logos/icon-biru.png')}}" with="80" height="80" >
       </div>
       <div class="m-login__head">
         <h3 class="m-login__title">Sign In To Admin</h3>
