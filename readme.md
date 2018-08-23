@@ -3,5 +3,3 @@
 ## About Smile In Properti
 
 Smile In Properti is a Properti Selling App from PT. Tombak Intan. It's build with Laravel Framework.
-
-
