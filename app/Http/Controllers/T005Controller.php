@@ -13,6 +13,9 @@ class T005Controller extends Controller {
         return fractal()
             ->collection($t005s)
             ->transformWith(new T005Transformer)
+            ->addMeta([
+                'data-count' => $t005->count(),
+            ])
             ->toArray();
     }
 
