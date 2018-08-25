@@ -1,7 +1,5 @@
 <?php
 
-use Illuminate\Http\Request;
-
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -11,7 +9,7 @@ use Illuminate\Http\Request;
 | routes are loaded by the RouteServiceProvider within a group which
 | is assigned the "api" middleware group. Enjoy building your API!
 |
-*/
+ */
 
 Route::get('/', 'T002Controller@api');
 
@@ -31,14 +29,12 @@ Route::get('/units/{type}/{block}', 'T003Controller@get');
 Route::get('/unitblocks/{type}', 'T003Controller@getBlock');
 Route::get('/unitupdate', 'T003Controller@update');
 
-
 Route::get('/customer/{email}/{branchcode}', 'T004Controller@get');
 Route::post('/customer', 'T004Controller@post');
 
-
 Route::post('/unit/pm', 'T004Controller@post');
 Route::get('/unit/pm/{type}', 'T004Controller@get');
-Route::get('/unit/fp', 'T005Controller@get');
+Route::get('/unit/fp/{type}', 'T005Controller@get');
 Route::post('/unit/fp', 'T005Controller@post');
 Route::get('/unit/price', 'T006Controller@get');
 Route::get('/add/promo', 'T007Controller@get');

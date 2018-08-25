@@ -5,22 +5,20 @@ namespace App\Transformers;
 use App\T102;
 use League\Fractal\TransformerAbstract;
 
-class T102Transformer extends TransformerAbstract
-{
+class T102Transformer extends TransformerAbstract {
     protected $availableIncludes = [
         'reveral_code',
     ];
 
-    public function transform(T102 $t102)
-    {
+    public function transform(T102 $t102) {
         return [
-            'branchcode'   => $t102->branchcode,
-            'order_id'     => $t102->order_id,
-            'nominal'      => $t102->nominal,
+            'branchcode' => $t102->branchcode,
+            'order_id' => $t102->order_id,
+            'type_unit' => $t102->type_unit,
+            'nominal' => $t102->nominal,
             'status_saldo' => $t102->status_saldo,
-            'code_user'    => $t102->code_user,
-            'name_user'    => $t102->name_user,
-            'phone_user'   => $t102->phone_user,
+            'code_user' => $t102->code_user,
+            'name_user' => $t102->name_user,
         ];
     }
 }
