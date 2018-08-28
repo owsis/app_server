@@ -18,7 +18,7 @@ class T102Controller extends Controller {
     ->collection($t102s)
     ->transformWith(new T102Transformer)
     ->addMeta([
-      'data_count' => $t102::where('code_user', $code_u)->where('status_utj', 'SETTLEMENT')->count(),
+      'data_count' => where('code_user', $code_u)->where('type_unit', $type_u)->where('status_utj', 'SETTLEMENT')->count(),
       // 'total_saldo' => $t102::where('code_user', $code_u)->where('status_saldo', 'order')->sum('nominal'),
     ])
     ->toArray();

@@ -12,13 +12,12 @@ class T102Transformer extends TransformerAbstract {
 
     public function transform(T102 $t102) {
         return [
-            'branchcode' => $t102->branchcode,
-            'order_id' => $t102->order_id,
-            'type_unit' => $t102->type_unit,
-            'nominal' => $t102->nominal,
-            'status_saldo' => $t102->status_saldo,
-            'code_user' => $t102->code_user,
-            'name_user' => $t102->name_user,
+            'order_id'   => $t102->order_id,
+            'type_unit'  => $t102->type_unit,
+            'nominal'    => $t102->nominal,
+            'status_utj' => $t102->status_utj,
+            'code_user'  => $t102->code_user,
+            'name_user'  => $t102->name_user,
         ];
     }
 }
