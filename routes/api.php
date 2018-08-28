@@ -49,7 +49,7 @@ Route::post('/trans/{refFrom}/{unitCode}/{codeUser}', 'T101Controller@post');
 Route::get('/saldoorder/{code_u}', 'T102Controller@getOrder');
 Route::post('/saldoorder/exe/{code_u}', 'T102Controller@exeOrder');
 Route::get('/saldoavailable/{code_u}', 'T102Controller@getAvailable');
-Route::post('/saldo', 'T102Controller@post');
+Route::post('/utj', 'T102Controller@post');
 Route::post('/saldo/update/{orderId}', 'T102Controller@update');
 Route::delete('/saldodelete/{code_u}', 'T102Controller@delete');
 

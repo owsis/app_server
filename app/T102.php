@@ -11,9 +11,8 @@ class T102 extends Model {
         'order_id',
         'type_unit',
         'nominal',
-        'status_saldo',
+        'status_utj',
         'code_user',
         'name_user',
-        'phone_user',
     ];
 }

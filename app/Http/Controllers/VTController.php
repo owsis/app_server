@@ -41,12 +41,12 @@ class VTController extends Controller {
 
 		error_log(print_r($result, true));
 
-		$transaction = $notif->transaction_status;
-		$type = $notif->payment_type;
-		$order_id = $notif->order_id;
+		$transaction  = $notif->transaction_status;
+		$type         = $notif->payment_type;
+		$order_id     = $notif->order_id;
 		$gross_amount = $notif->gross_amount;
-		$fraud = $notif->fraud_status;
-		$va_number = $notif->va_numbers[0]->va_number;
+		$fraud        = $notif->fraud_status;
+		$va_number    = $notif->va_numbers[0]->va_number;
 
 		if ($transaction == 'capture') {
 			// For credit card transaction, we need to check whether transaction is challenge by FDS or not
@@ -63,8 +63,8 @@ class VTController extends Controller {
 		} else if ($transaction == 'settlement') {
 			// TODO set payment status in merchant's database to 'Settlement'
 
-			$t101_id = T101::where('order_id', $order_id)->get();
-			$t002_id = User::where('code', $t101_id[0]->code_customer)->get();
+			$t102_id = T102::where('order_id', $order_id)->get();
+			$t002_id = User::where('code', $t101_id[0]->code_user)->get();
 
 			$userkey = "1xsbad";
 			$passkey = "abc123";
@@ -155,15 +155,11 @@ class VTController extends Controller {
 			// TODO set payment status in merchant's database to 'Pending'
 			echo "Waiting customer to finish transaction order_id: " . $order_id . " using " . $type;
 
-			$t101_id = T101::where('order_id', $order_id)->get();
-			$t002_id = User::where('code', $t101_id[0]->code_customer)->get();
+			$t102_id = T102::where('order_id', $order_id)->get();
+			$t002_id = User::where('code', $t101_id[0]->code_user)->get();
 
 			T101::where('order_id', $order_id)->update([
 				'status_fp' => 'PENDING FROM VT',
-			]);
-
-			T003::where('code_unit', $t101_id[0]->code_unit)->update([
-				'status_unit' => 'order',
 			]);
 
 			$userkey = "1xsbad";
@@ -246,8 +242,8 @@ class VTController extends Controller {
 			// TODO set payment status in merchant's database to 'Denied'
 			echo "Payment using " . $type . " for transaction order_id: " . $order_id . " is denied.";
 
-			$t101_id = T101::where('order_id', $order_id)->get();
-			$t002_id = User::where('code', $t101_id[0]->code_customer)->get();
+			$t102_id = T102::where('order_id', $order_id)->get();
+			$t002_id = User::where('code', $t101_id[0]->code_user)->get();
 
 			T101::where('order_id', $order_id)->update([
 				'status_fp' => 'DENY FROM VT',
@@ -281,8 +277,8 @@ class VTController extends Controller {
 			// TODO set payment status in merchant's database to 'Denied'
 			echo "Payment using " . $type . " for transaction order_id: " . $order_id . " is denied.";
 
-			$t101_id = T101::where('order_id', $order_id)->get();
-			$t002_id = User::where('code', $t101_id[0]->code_customer)->get();
+			$t102_id = T102::where('order_id', $order_id)->get();
+			$t002_id = User::where('code', $t101_id[0]->code_user)->get();
 
 			T101::where('order_id', $order_id)->update([
 				'status_saldo' => 'EXPIRE FROM VT',

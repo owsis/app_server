@@ -1,4 +1,4 @@
-<?php
+                       <?php
 
 namespace App\Http\Controllers;
 
@@ -70,14 +70,14 @@ class T002Controller extends Controller
         $ref_from = $t002::where('referral_code', $refFrom)->get();
 
         $this->validate($request, [
-            'code' => 'required',
-            'email' => 'required|email|unique:t002s',
+            'code'     => 'required',
+            'email'    => 'required|email|unique:t002s',
             'password' => 'required|min:6',
-            'name' => 'required',
-            'address' => 'required',
-            'phone' => 'required|unique:t002s',
-            'ktp' => 'required',
-            'npwp' => 'required',
+            'name'     => 'required',
+            'address'  => 'required',
+            'phone'    => 'required|unique:t002s',
+            'ktp'      => 'required',
+            'npwp'     => 'required',
         ]);
 
         $t002s = $t002->create([
