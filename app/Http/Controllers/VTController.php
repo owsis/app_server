@@ -25,7 +25,7 @@ class VTController extends Controller {
 
 	public function cancelVT($orderid) {
 		$t101s = T101::where('order_id', $orderid)->update([
-			'status_fp' => 'Payment Canceled',
+			'status_utj' => 'Payment Canceled',
 		]);
 	}
 
@@ -143,7 +143,7 @@ class VTController extends Controller {
 			curl_close($curlHandle);
 
 			T101::where('order_id', $order_id)->update([
-				'status_fp' => 'SETTLEMENT FROM VT',
+				'status_utj' => 'SETTLEMENT FROM VT',
 				'status' => 'BOOKED',
 			]);
 
@@ -159,7 +159,7 @@ class VTController extends Controller {
 			$t002_id = User::where('code', $t101_id[0]->code_user)->get();
 
 			T101::where('order_id', $order_id)->update([
-				'status_fp' => 'PENDING FROM VT',
+				'status_utj' => 'PENDING FROM VT',
 			]);
 
 			$userkey = "1xsbad";
@@ -246,7 +246,7 @@ class VTController extends Controller {
 			$t002_id = User::where('code', $t101_id[0]->code_user)->get();
 
 			T101::where('order_id', $order_id)->update([
-				'status_fp' => 'DENY FROM VT',
+				'status_utj' => 'DENY FROM VT',
 			]);
 
 			T003::where('code_unit', $t101_id[0]->code_unit)->update([
