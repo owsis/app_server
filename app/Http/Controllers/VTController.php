@@ -24,7 +24,7 @@ class VTController extends Controller {
 	}
 
 	public function cancelVT($orderid) {
-		$t101s = T101::where('order_id', $orderid)->update([
+		$t102s = T102::where('order_id', $orderid)->update([
 			'status_utj' => 'Payment Canceled',
 		]);
 	}
@@ -142,13 +142,8 @@ class VTController extends Controller {
 			$results = curl_exec($curlHandle);
 			curl_close($curlHandle);
 
-			T101::where('order_id', $order_id)->update([
-				'status_utj' => 'SETTLEMENT FROM VT',
-				'status' => 'BOOKED',
-			]);
-
-			T003::where('code_unit', $t101_id[0]->code_unit)->update([
-				'status_unit' => 'close',
+			T102::where('order_id', $order_id)->update([
+				'status_utj' => 'SETTLEMENT',
 			]);
 
 		} else if ($transaction == 'pending') {
@@ -159,7 +154,7 @@ class VTController extends Controller {
 			$t002_id = User::where('code', $t101_id[0]->code_user)->get();
 
 			T101::where('order_id', $order_id)->update([
-				'status_utj' => 'PENDING FROM VT',
+				'status_utj' => 'PENDING',
 			]);
 
 			$userkey = "1xsbad";
@@ -245,12 +240,8 @@ class VTController extends Controller {
 			$t102_id = T102::where('order_id', $order_id)->get();
 			$t002_id = User::where('code', $t101_id[0]->code_user)->get();
 
-			T101::where('order_id', $order_id)->update([
-				'status_utj' => 'DENY FROM VT',
-			]);
-
-			T003::where('code_unit', $t101_id[0]->code_unit)->update([
-				'status_unit' => 'available',
+			T102::where('order_id', $order_id)->update([
+				'status_utj' => 'DENY',
 			]);
 
 			$userkey = "1xsbad";
@@ -280,12 +271,8 @@ class VTController extends Controller {
 			$t102_id = T102::where('order_id', $order_id)->get();
 			$t002_id = User::where('code', $t101_id[0]->code_user)->get();
 
-			T101::where('order_id', $order_id)->update([
-				'status_saldo' => 'EXPIRE FROM VT',
-			]);
-
-			T003::where('code_unit', $t101_id[0]->code_unit)->update([
-				'status_unit' => 'available',
+			T102::where('order_id', $order_id)->update([
+				'status_utj' => 'EXPIRE',
 			]);
 
 			$userkey = "1xsbad";
