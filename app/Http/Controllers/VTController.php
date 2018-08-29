@@ -10,9 +10,9 @@ use App\Veritrans\Veritrans;
 
 class VTController extends Controller {
 	public function __construct() {
-		// Veritrans::$serverKey = 'Mid-server-mn8OGvaWPvKYm5RloWUIvJBN';
-		Veritrans::$serverKey = 'SB-Mid-server-iykXrCTadcrXdN-4RhB9TS6n';
-		Veritrans::$isProduction = false;
+		Veritrans::$serverKey = 'Mid-server-mn8OGvaWPvKYm5RloWUIvJBN';
+		// Veritrans::$serverKey = 'SB-Mid-server-iykXrCTadcrXdN-4RhB9TS6n';
+		Veritrans::$isProduction = true;
 
 	}
 
@@ -71,7 +71,7 @@ class VTController extends Controller {
 			$userkey = "1xsbad";
 			$passkey = "abc123";
 			$notelp = $t002_id[0]->phone;
-			$msg = "Terima kasih telah membayar UTJ sebesar Rp." . number_format($t102_id[0]->nominal) . "\n" .
+			$msg = "Terima kasih telah membayar UTJ sebesar Rp. " . number_format($t102_id[0]->nominal) . "\n" .
 				"Silakan lakukan booking Unit pada Cluster " . $t102_id[0]->type_unit;
 
 			$url = "https://alpha.zenziva.net/apps/smsapi.php";
@@ -87,11 +87,11 @@ class VTController extends Controller {
 			$results = curl_exec($curlHandle);
 			curl_close($curlHandle);
 
-			/* --- SMS ke Pak Yanto --- 
+			/* --- SMS ke Pak Yanto --- */
 			$userkey = "1xsbad";
 			$passkey = "abc123";
 			$notelp = "6282177778055";
-			$msg = "UTJ sebesar Rp." . number_format($t102_id[0]->nominal) . " telah dibayar oleh " . $t102_id[0]->name_user;
+			$msg = "UTJ sebesar Rp. " . number_format($t102_id[0]->nominal) . " telah dibayar oleh " . $t102_id[0]->name_user;
 
 			$url = "https://alpha.zenziva.net/apps/smsapi.php";
 			$curlHandle = curl_init();
@@ -104,13 +104,13 @@ class VTController extends Controller {
 			curl_setopt($curlHandle, CURLOPT_TIMEOUT, 30);
 			curl_setopt($curlHandle, CURLOPT_POST, 1);
 			$results = curl_exec($curlHandle);
-			curl_close($curlHandle); */
+			curl_close($curlHandle); 
 
-			/* --- SMS ke Pak Jimmy --- 
+			/* --- SMS ke Pak Jimmy --- */
 			$userkey = "1xsbad";
 			$passkey = "abc123";
 			$notelp = "6285333333354";
-			$msg = "UTJ sebesar Rp." . number_format($t102_id[0]->nominal) . " telah dibayar oleh " . $t102_id[0]->name_user;
+			$msg = "UTJ sebesar Rp. " . number_format($t102_id[0]->nominal) . " telah dibayar oleh " . $t102_id[0]->name_user;
 
 			$url = "https://alpha.zenziva.net/apps/smsapi.php";
 			$curlHandle = curl_init();
@@ -123,13 +123,13 @@ class VTController extends Controller {
 			curl_setopt($curlHandle, CURLOPT_TIMEOUT, 30);
 			curl_setopt($curlHandle, CURLOPT_POST, 1);
 			$results = curl_exec($curlHandle);
-			curl_close($curlHandle); */
+			curl_close($curlHandle); 
 
 			/* --- SMS ke Pak Rudhy --- */
 			$userkey = "1xsbad";
 			$passkey = "abc123";
 			$notelp = "6281316803664";
-			$msg = "UTJ sebesar Rp." . number_format($t102_id[0]->nominal) . " telah dibayar oleh " . $t102_id[0]->name_user;
+			$msg = "UTJ sebesar Rp. " . number_format($t102_id[0]->nominal) . " telah dibayar oleh " . $t102_id[0]->name_user;
 
 			$url = "https://alpha.zenziva.net/apps/smsapi.php";
 			$curlHandle = curl_init();
@@ -163,7 +163,7 @@ class VTController extends Controller {
 			$userkey = "1xsbad";
 			$passkey = "abc123";
 			$notelp = $t002_id[0]->phone;
-			$msg = "Anda telah memesan UTJ sebesar Rp." . number_format($t102_id[0]->nominal) . "\n" .
+			$msg = "Anda telah memesan UTJ sebesar Rp. " . number_format($t102_id[0]->nominal) . "\n" .
 				"Segera lakukan pembayaran dengan Nomor Virtual Account " . $va_number;
 
 			$url = "https://alpha.zenziva.net/apps/smsapi.php";
