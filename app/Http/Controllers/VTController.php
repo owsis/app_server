@@ -71,8 +71,8 @@ class VTController extends Controller {
 			$userkey = "1xsbad";
 			$passkey = "abc123";
 			$notelp = $t002_id[0]->phone;
-			$msg = $t102_id[0]->code_unit . "telah dibooking oleh" . $t102_id[0]->name_customer . "\n" .
-				"dengan Nomor Virtual Account " . $va_number;
+			$msg = "Terima kasih telah membayar UTJ sebesar Rp." . number_format($t102_id[0]->nominal) . "\n" .
+				"Silakan lakukan booking Unit pada Cluster " . $t102_id[0]->type_unit;
 
 			$url = "https://alpha.zenziva.net/apps/smsapi.php";
 			$curlHandle = curl_init();
@@ -87,12 +87,11 @@ class VTController extends Controller {
 			$results = curl_exec($curlHandle);
 			curl_close($curlHandle);
 
-			/* --- SMS ke Pak Yanto --- */
+			/* --- SMS ke Pak Yanto --- 
 			$userkey = "1xsbad";
 			$passkey = "abc123";
 			$notelp = "6282177778055";
-			$msg = $t102_id[0]->code_unit . " telah dipesan oleh " . $t102_id[0]->name_customer . "\n" .
-				"lakukan pembayaran dengan Nomor Virtual Account " . $va_number;
+			$msg = "UTJ sebesar Rp." . number_format($t102_id[0]->nominal) . " telah dibayar oleh " . $t102_id[0]->name_user;
 
 			$url = "https://alpha.zenziva.net/apps/smsapi.php";
 			$curlHandle = curl_init();
@@ -105,14 +104,13 @@ class VTController extends Controller {
 			curl_setopt($curlHandle, CURLOPT_TIMEOUT, 30);
 			curl_setopt($curlHandle, CURLOPT_POST, 1);
 			$results = curl_exec($curlHandle);
-			curl_close($curlHandle);
+			curl_close($curlHandle); */
 
-			/* --- SMS ke Pak Jimmy --- */
+			/* --- SMS ke Pak Jimmy --- 
 			$userkey = "1xsbad";
 			$passkey = "abc123";
 			$notelp = "6285333333354";
-			$msg = $t102_id[0]->code_unit . " telah dipesan oleh " . $t102_id[0]->name_customer . "\n" .
-				"lakukan pembayaran dengan Nomor Virtual Account " . $va_number;
+			$msg = "UTJ sebesar Rp." . number_format($t102_id[0]->nominal) . " telah dibayar oleh " . $t102_id[0]->name_user;
 
 			$url = "https://alpha.zenziva.net/apps/smsapi.php";
 			$curlHandle = curl_init();
@@ -125,14 +123,13 @@ class VTController extends Controller {
 			curl_setopt($curlHandle, CURLOPT_TIMEOUT, 30);
 			curl_setopt($curlHandle, CURLOPT_POST, 1);
 			$results = curl_exec($curlHandle);
-			curl_close($curlHandle);
+			curl_close($curlHandle); */
 
 			/* --- SMS ke Pak Rudhy --- */
 			$userkey = "1xsbad";
 			$passkey = "abc123";
 			$notelp = "6281316803664";
-			$msg = $t102_id[0]->code_unit . " telah dipesan oleh " . $t102_id[0]->name_customer . "\n" .
-				"lakukan pembayaran dengan Nomor Virtual Account " . $va_number;
+			$msg = "UTJ sebesar Rp." . number_format($t102_id[0]->nominal) . " telah dibayar oleh " . $t102_id[0]->name_user;
 
 			$url = "https://alpha.zenziva.net/apps/smsapi.php";
 			$curlHandle = curl_init();
@@ -166,8 +163,8 @@ class VTController extends Controller {
 			$userkey = "1xsbad";
 			$passkey = "abc123";
 			$notelp = $t002_id[0]->phone;
-			$msg = $t102_id[0]->code_unit . " telah dipesan oleh " . $t102_id[0]->name_customer . "\n" .
-				"lakukan pembayaran dengan Nomor Virtual Account " . $va_number;
+			$msg = "Anda telah memesan UTJ sebesar Rp." . number_format($t102_id[0]->nominal) . "\n" .
+				"Segera lakukan pembayaran dengan Nomor Virtual Account " . $va_number;
 
 			$url = "https://alpha.zenziva.net/apps/smsapi.php";
 			$curlHandle = curl_init();
@@ -198,7 +195,7 @@ class VTController extends Controller {
 			$passkey = "abc123";
 			$notelp = $t002_id[0]->phone;
 			$msg = "Mohon maaf." . "\n" .
-				"Nomor Virtual Account " . $va_number . "\n" .
+				"Nomor Virtual Account " . $va_number . " tidak dapat diproses. \n" .
 				"Pembayaran Anda tertolak.";
 
 			$url = "https://alpha.zenziva.net/apps/smsapi.php";
@@ -230,8 +227,7 @@ class VTController extends Controller {
 			$passkey = "abc123";
 			$notelp = $t002_id[0]->phone;
 			$msg = "Mohon maaf." . "\n" .
-				"Nomor Virtual Account " . $va_number . "\n" .
-				"Telah melewati masa Pembayaran.";
+				"Nomor Virtual Account " . $va_number . " telah melewati masa Pembayaran.";
 
 			$url = "https://alpha.zenziva.net/apps/smsapi.php";
 			$curlHandle = curl_init();
