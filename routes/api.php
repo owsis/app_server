@@ -36,7 +36,7 @@ Route::post('/unit/pm', 'T004Controller@post');
 Route::get('/unit/pm/{type}', 'T004Controller@get');
 Route::get('/unit/fp/{type}', 'T005Controller@get');
 Route::post('/unit/fp', 'T005Controller@post');
-Route::get('/unit/price', 'T006Controller@get');
+Route::get('/unit/price/{code}', 'T006Controller@get');
 Route::get('/add/promo', 'T007Controller@get');
 Route::post('/add/promo', 'T007Controller@post');
 

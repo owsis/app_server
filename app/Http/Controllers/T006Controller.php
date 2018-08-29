@@ -8,9 +8,9 @@ use App\Transformers\T006Transformer;
 
 class T006Controller extends Controller
 {
-    public function get(T006 $t006)
+    public function get(T006 $t006, $code)
     {
-        $t006s = $t006->all();
+        $t006s = $t006::where('code_unit', $code)->get();
 
         return fractal()
         ->collection($t006s)
