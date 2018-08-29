@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\T003;
-use App\t102;
+use App\T102;
 use App\User;
 use App\Veritrans\Veritrans;
 
