@@ -37,7 +37,7 @@
   <!--end::Page Vendors Styles -->
 
   <!--begin::Base Styles -->
-  <link href="{{URL::asset('assets/vendors/base/vendors.bundle.css')}}" rel="stylesheet" type="text/css" />
+  <link href="{{ URL::asset('assets/vendors/base/vendors.bundle.css')}}" rel="stylesheet" type="text/css" />
 
   <!--RTL version:<link href="assets/vendors/base/vendors.bundle.rtl.css" rel="stylesheet" type="text/css" />-->
   <link href="{{URL::asset('assets/demo/default/base/style.bundle.css')}}" rel="stylesheet" type="text/css" />
