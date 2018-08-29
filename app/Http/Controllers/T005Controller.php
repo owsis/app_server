@@ -7,6 +7,7 @@ use App\Transformers\T005Transformer;
 use Illuminate\Http\Request;
 
 class T005Controller extends Controller {
+    
     public function get(T005 $t005, $type) {
         $t005s = $t005::where('type_unit', $type)->get();
 
