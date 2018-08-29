@@ -40,6 +40,7 @@ Route::get('/unit/price/{code}', 'T006Controller@get');
 Route::get('/add/promo', 'T007Controller@get');
 Route::post('/add/promo', 'T007Controller@post');
 
+Route::get('/trans/utj/{code}', 'T102Controller@getUtj');
 Route::get('/trans/jual/{refFrom}', 'T101Controller@getPenjual');
 Route::get('/trans/beli/{code}', 'T101Controller@getPembeli');
 Route::get('/trans/beli/order/{code}', 'T101Controller@getOrder');

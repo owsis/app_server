@@ -39,6 +39,20 @@ class T102Controller extends Controller {
 
   }
 
+  public function getUtj($code)
+  {
+    $t102s = T102::where('code_user', $code)->get();
+
+    return fractal()
+    ->collection($t102s)
+    ->transformWith(new T102Transformer)
+    ->addMeta([
+      'data_count' => T102::where('code_user', $code)->count(),
+                // 'total_jum_tiket' => $t102::where('code_user', $code_u)->where('status_tiket', 'aktif')->sum('jum_tiket'),
+    ])
+    ->toArray();
+  }
+
   public function post(Request $req, T102 $t102, User $t002) {
     $this->validate($req, [
       'order_id'  => 'required|unique:t102s',
