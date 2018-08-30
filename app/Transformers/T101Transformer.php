@@ -30,10 +30,8 @@ class T101Transformer extends TransformerAbstract
             'kpr'           => $t101->kpr,
             'cash'          => $t101->cash,
             'referral_from' => $t101->referral_from,
-            'tiket'         => $t101->tiket,
-            'total_tiket'   => $t101->total_tiket,
+            'utj_id'        => $t101->utj_id,
             'status'        => $t101->status,
-            'status_fp'     => $t101->status_fp,
         ];
     }
 

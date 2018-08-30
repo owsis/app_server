@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\T101;
+use App\T102;
 use App\Transformers\T101Transformer;
 use App\User;
 use Illuminate\Http\Request;
@@ -63,12 +64,12 @@ class T101Controller extends Controller
 
     public function post(Request $req, T101 $t101, $refFrom, $unitCode, $codeUser)
     {
-        $ref_from = \App\User::where('referral_from', $refFrom)->get();
+        $ref_from = User::where('referral_from', $refFrom)->get();
+        $utj_id = T102::where('type_unit', $req->type_unit)->where('status_pakai', '1')->where('status_utj', 'SETTLEMENT')->get();
 
         $this->validate($req, [
             'branchcode'     => 'required',
             'booking_no'     => 'required',
-            'order_id'       => 'required',
             'code_customer'  => 'required',
             'name_customer'  => 'required',
             'phone_customer' => 'required',
@@ -85,7 +86,6 @@ class T101Controller extends Controller
         $t101s = $t101->create([
             'branchcode'     => $req->branchcode,
             'booking_no'     => $req->booking_no,
-            'order_id'       => $req->order_id,
             'code_customer'  => $req->code_customer,
             'name_customer'  => strtoupper($req->name_customer),
             'phone_customer' => $req->phone_customer,
@@ -98,6 +98,12 @@ class T101Controller extends Controller
             'kpr'            => $req->kpr,
             'cash'           => $req->cash,
             'referral_from'  => $ref_from[0]->referral_from,
+            'utj_id'         => $utj_id[0]->order_id,
+            'status'         => 'BOOKED'
+        ]);
+
+        T102::where('order_id', $utj_id[0]->order_id)->update([
+            'status_pakai' => '0'
         ]);
 
         return response()->json($t101s);

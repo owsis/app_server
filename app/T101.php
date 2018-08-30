@@ -25,8 +25,8 @@ class T101 extends Model
         'kpr',
         'cash',
         'referral_from',
+        'utj_id',
         'status',
-        'status_fp'
     ];
 
     public function t002()
