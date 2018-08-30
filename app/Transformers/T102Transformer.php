@@ -18,6 +18,7 @@ class T102Transformer extends TransformerAbstract {
             'status_utj' => $t102->status_utj,
             'code_user'  => $t102->code_user,
             'name_user'  => $t102->name_user,
+            'status_pakai'  => $t102->status_pakai,
         ];
     }
 }
