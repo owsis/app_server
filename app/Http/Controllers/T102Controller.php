@@ -11,7 +11,7 @@ use Illuminate\Http\Request;
 
 class T102Controller extends Controller {
 
-  public function getOrder(T102 $t102, $code_u, $type_u) {
+  public function cekUtj(T102 $t102, $code_u, $type_u) {
     $t102s = $t102::where('code_user', $code_u)->where('type_unit', $type_u)->where('status_utj', 'SETTLEMENT')->get();
 
     return fractal()
@@ -25,14 +25,14 @@ class T102Controller extends Controller {
 
   }
 
-  public function getAvailable(T102 $t102, $code_u) {
-    $t102s = $t102::where('code_user', $code_u)->where('status_saldo', 'available')->get();
+  public function getPending($code_u) {
+    $t102s = T102::where('code_user', $code_u)->where('status_utj', 'PENDING')->get();
 
     return fractal()
     ->collection($t102s)
     ->transformWith(new T102Transformer)
     ->addMeta([
-      'data_count' => $t102::where('code_user', $code_u)->count(),
+      'data_count' => T102::where('code_user', $code_u)->where('status_utj', 'PENDING')->count(),
                 // 'total_jum_tiket' => $t102::where('code_user', $code_u)->where('status_tiket', 'aktif')->sum('jum_tiket'),
     ])
     ->toArray();

@@ -47,7 +47,8 @@ Route::get('/trans/beli/order/{code}', 'T101Controller@getOrder');
 Route::get('/trans/order/{code}', 'T101Controller@getUnitOrder');
 Route::post('/trans/{refFrom}/{unitCode}/{codeUser}', 'T101Controller@post');
 
-Route::get('/cekutj/{code_u}/{type_u}', 'T102Controller@getOrder');
+Route::get('/cekutj/{code_u}/{type_u}', 'T102Controller@cekUtj');
+Route::get('/utj/pending/{code_u}', 'T102Controller@getPending');
 // Route::post('/saldoorder/exe/{code_u}', 'T102Controller@exeOrder');
 // Route::get('/saldoavailable/{code_u}', 'T102Controller@getAvailable');
 Route::post('/utj', 'T102Controller@post');
