@@ -35,34 +35,31 @@ class T003Controller extends Controller
 		->toArray();
 	}
 
-	public function getKey()
-	{
-		$T005 = T005::all();
-
-		return fractal()
-		->collection($t003s_2)
-		->transformWith(new T005Transformer)
-		->toArray();
-	}
-
 	public function getKeyUnit($name)
 	{
-		$t005 = T005::where('name_key', $name)->get();
+		$t005s = T005::where('name_key', $name)->get();
 
 		return fractal()
-		->collection($t005)
-		->transformWith(new T005Transformer)
+		->collection($t005s)
+		->transformWith(new T003_1Transformer)
+		->addMeta([
+			'data_count' => T005::where('name_key', $name)->count(),
+		])
 		->toArray();
 	}
 
-	public function update() {
-		\App\T006::where('price', '469411765')->update([
-			'code_payment' => '5'
-		]);
+	public function getBlock(T003_1 $t003_1, $type)
+	{
+		$t003s_1 = $t003_1::where('type_unit', $type)->get();
 
-		\App\T006::where('price', '483636364')->update([
-			'code_payment' => '4'
-		]);
+		return fractal()
+		->collection($t003s_1)
+		->transformWith(new T003_1Transformer)
+		->addMeta([
+			'data_count' => $t003_1::where('type_unit', $type)->count(),
+		])
+		->toArray();
 
 	}
+
 }

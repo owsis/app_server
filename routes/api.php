@@ -27,7 +27,6 @@ Route::get('/developer', 'T009Controller@get');
 Route::get('/newunits', 'T008Controller@get');
 Route::get('/units/{type}/{block}', 'T003Controller@get');
 Route::get('/unitblocks/{type}', 'T003Controller@getBlock');
-Route::get('/unitupdate', 'T003Controller@update');
 Route::get('/unit/key/{name}', 'T003Controller@getKeyUnit');
 
 Route::get('/key', 'T005Controller@get');
