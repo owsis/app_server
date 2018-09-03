@@ -20,6 +20,7 @@ class T003Transformer extends TransformerAbstract
             'lt'         => $t003->lt_unit,
             'lb'         => $t003->lb_unit,
             'status'     => $t003->status_unit,
+            'code_key'   => $t003->code_key,
             'key'        => $t003->name_key
         ];
     }
