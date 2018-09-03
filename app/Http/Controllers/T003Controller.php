@@ -13,7 +13,7 @@ class T003Controller extends Controller
 {
 	public function get($type, $block)
 	{
-		$t003s = T003::join('t003s_2', 't003s_2.code_key', '=', 't003s.code_key')
+		$t003s = T003::join('t005s', 't005s.code_key', '=', 't003s.code_key')
 		->where([
 			'type_unit' => $type, 
 			'block_unit' => $block
@@ -25,7 +25,7 @@ class T003Controller extends Controller
 		->collection($t003s)
 		->transformWith(new T003Transformer)
 		->addMeta([
-			'data_count' => T003::join('t003s_2', 't003s_2.code_key', '=', 't003s.code_key')
+			'data_count' => T003::join('t005s', 't005s.code_key', '=', 't003s.code_key')
 			->where([
 				'type_unit' => $type, 
 				'block_unit' => $block
