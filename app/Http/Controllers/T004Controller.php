@@ -9,16 +9,16 @@ use App\Transformers\T004Transformer;
 
 class T004Controller extends Controller
 {
-    public function get(T004 $t004, $type)
+    public function get($type)
     {
 
-        $t004s = $t004::where('type_unit', $type)->get();
+        $t004s = T004::where('type_unit', $type)->get();
 
         return fractal()
         ->collection($t004s)
         ->transformWith(new T004Transformer)
         ->addMeta([
-            'data_count' => $t004::where('type_unit', $type)->count()
+            'data_count' => T004::where('type_unit', $type)->count()
         ])
         ->toArray();
 

@@ -11,8 +11,9 @@ use Illuminate\Http\Request;
 
 class T102Controller extends Controller {
 
-  public function cekKey($code_u) {
+  public function cekKey($code_u, $code_k) {
     $t102s = T102::where([
+    	'code_key' => $code_k,
       'code_user' => $code_u,
       'status_key' => 'SETTLEMENT'
     ])
@@ -23,6 +24,7 @@ class T102Controller extends Controller {
     ->transformWith(new T102Transformer)
     ->addMeta([
       'data_count' => T102::where([
+	    	'code_key' => $code_k,
         'code_user' => $code_u,
         'status_key' => 'SETTLEMENT'
       ])

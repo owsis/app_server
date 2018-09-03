@@ -35,9 +35,9 @@ Route::get('/key', 'T005Controller@get');
 Route::get('/customer/{email}/{branchcode}', 'T004Controller@get');
 Route::post('/customer', 'T004Controller@post');
 
-Route::post('/unit/pm', 'T004Controller@post');
-Route::get('/unit/pm/{type}', 'T004Controller@get');
-Route::get('/unit/price/{code}', 'T006Controller@get');
+Route::post('/pm', 'T004Controller@post');
+Route::get('/pm/{type}', 'T004Controller@get');
+Route::get('/price/{code}', 'T006Controller@get');
 Route::get('/add/promo', 'T007Controller@get');
 Route::post('/add/promo', 'T007Controller@post');
 
@@ -48,7 +48,7 @@ Route::get('/trans/beli/order/{code}', 'T101Controller@getOrder');
 Route::get('/trans/order/{code}', 'T101Controller@getUnitOrder');
 Route::post('/trans/{refFrom}/{unitCode}/{codeUser}', 'T101Controller@post');
 
-Route::get('/cekkey/{code_u}', 'T102Controller@cekKey');
+Route::get('/cekkey/{code_u}/{code_k}', 'T102Controller@cekKey');
 Route::get('/key/pending/{code_u}', 'T102Controller@pendKey');
 // Route::post('/saldoorder/exe/{code_u}', 'T102Controller@exeOrder');
 // Route::get('/saldoavailable/{code_u}', 'T102Controller@getAvailable');
