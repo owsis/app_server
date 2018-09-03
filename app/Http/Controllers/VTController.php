@@ -26,7 +26,7 @@ class VTController extends Controller {
 
 	public function cancelVT($orderid) {
 		$t102s = T102::where('order_id', $orderid)->update([
-			'status_utj' => 'Payment Canceled',
+			'status_key' => 'Payment Canceled',
 		]);
 	}
 
@@ -71,7 +71,7 @@ class VTController extends Controller {
 			$userkey = "1xsbad";
 			$passkey = "abc123";
 			$notelp = $t002_id[0]->phone;
-			$msg = "Terima kasih telah membayar UTJ sebesar Rp. " . number_format($t102_id[0]->nominal) . "\n" .
+			$msg = "Terima kasih telah membayar Kunci dengan harga sebesar Rp. " . number_format($t102_id[0]->nominal) . "\n" .
 				"Silakan lakukan booking Unit pada Cluster " . $t102_id[0]->type_unit;
 
 			$url = "https://alpha.zenziva.net/apps/smsapi.php";
@@ -91,7 +91,7 @@ class VTController extends Controller {
 			$userkey = "1xsbad";
 			$passkey = "abc123";
 			$notelp = "6282177778055";
-			$msg = "UTJ sebesar Rp. " . number_format($t102_id[0]->nominal) . " telah dibayar oleh " . $t102_id[0]->name_user;
+			$msg = "Kunci dengan harga sebesar Rp. " . number_format($t102_id[0]->nominal) . " telah dibayar oleh " . $t102_id[0]->name_user;
 
 			$url = "https://alpha.zenziva.net/apps/smsapi.php";
 			$curlHandle = curl_init();
@@ -110,7 +110,7 @@ class VTController extends Controller {
 			$userkey = "1xsbad";
 			$passkey = "abc123";
 			$notelp = "6285333333354";
-			$msg = "UTJ sebesar Rp. " . number_format($t102_id[0]->nominal) . " telah dibayar oleh " . $t102_id[0]->name_user;
+			$msg = "Kunci dengan harga sebesar Rp. " . number_format($t102_id[0]->nominal) . " telah dibayar oleh " . $t102_id[0]->name_user;
 
 			$url = "https://alpha.zenziva.net/apps/smsapi.php";
 			$curlHandle = curl_init();
@@ -129,7 +129,7 @@ class VTController extends Controller {
 			$userkey = "1xsbad";
 			$passkey = "abc123";
 			$notelp = "6281316803664";
-			$msg = "UTJ sebesar Rp. " . number_format($t102_id[0]->nominal) . " telah dibayar oleh " . $t102_id[0]->name_user;
+			$msg = "Kunci dengan harga sebesar Rp. " . number_format($t102_id[0]->nominal) . " telah dibayar oleh " . $t102_id[0]->name_user;
 
 			$url = "https://alpha.zenziva.net/apps/smsapi.php";
 			$curlHandle = curl_init();
@@ -145,7 +145,7 @@ class VTController extends Controller {
 			curl_close($curlHandle);
 
 			T102::where('order_id', $order_id)->update([
-				'status_utj' => 'SETTLEMENT',
+				'status_key' => 'SETTLEMENT',
 			]);
 
 		} else if ($transaction == 'pending') {
@@ -156,14 +156,15 @@ class VTController extends Controller {
 			$t002_id = User::where('code', $t102_id[0]->code_user)->get();
 
 			T102::where('order_id', $order_id)->update([
-				'status_utj' => 'PENDING',
+				'status_key' => 'PENDING',
+				'status_use' => '1'
 			]);
 
 			/* --- SMS ke Konsumen --- */
 			$userkey = "1xsbad";
 			$passkey = "abc123";
 			$notelp = $t002_id[0]->phone;
-			$msg = "Anda telah memesan UTJ sebesar Rp. " . number_format($t102_id[0]->nominal) . "\n" .
+			$msg = "Anda telah memesan Kunci dengan harga sebesar Rp. " . number_format($t102_id[0]->nominal) . "\n" .
 				"Segera lakukan pembayaran dengan Nomor Virtual Account " . $va_number;
 
 			$url = "https://alpha.zenziva.net/apps/smsapi.php";
@@ -187,7 +188,8 @@ class VTController extends Controller {
 			$t002_id = User::where('code', $t102_id[0]->code_user)->get();
 
 			T102::where('order_id', $order_id)->update([
-				'status_utj' => 'DENY',
+				'status_key' => 'DENY',
+				'status_use' => '0'
 			]);
 
 			/* --- SMS ke Konsumen --- */
@@ -219,7 +221,8 @@ class VTController extends Controller {
 			$t002_id = User::where('code', $t102_id[0]->code_user)->get();
 
 			T102::where('order_id', $order_id)->update([
-				'status_utj' => 'EXPIRE',
+				'status_key' => 'EXPIRE',
+				'status_use' => '0'
 			]);
 
 			/* --- SMS ke Konsumen --- */

@@ -6,11 +6,11 @@ use App\T005;
 use League\Fractal\TransformerAbstract;
 
 class T005Transformer extends TransformerAbstract {
-    public function transform(T005 $t005) {
-        return [
-            'branchcode' => $t005->branchcode,
-            'type_unit' => $t005->type_unit,
-            'nominal' => $t005->nominal,
-        ];
-    }
+	public function transform(T005 $t005) {
+		return [
+			'code_key' => $t005->code_key,
+			'name_key' => $t005->name_key,
+			'nom_key'  => $t005->nom_key
+		];
+	}
 }

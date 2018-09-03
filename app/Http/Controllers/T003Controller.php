@@ -4,9 +4,10 @@ namespace App\Http\Controllers;
 
 use App\T003;
 use App\T003_1;
-use App\T003_2;
+use App\T005;
 use App\Transformers\T003Transformer;
 use App\Transformers\T003_1Transformer;
+use App\Transformers\T005Transformer;
 
 class T003Controller extends Controller
 {
@@ -34,18 +35,24 @@ class T003Controller extends Controller
 		->toArray();
 	}
 
-	public function getBlock(T003_1 $t003_1, $type)
+	public function getKey()
 	{
-		$t003s_1 = $t003_1::where('type_unit', $type)->get();
+		$T005 = T005::all();
 
 		return fractal()
-		->collection($t003s_1)
-		->transformWith(new T003_1Transformer)
-		->addMeta([
-			'data_count' => $t003_1::where('type_unit', $type)->count(),
-		])
+		->collection($t003s_2)
+		->transformWith(new T005Transformer)
 		->toArray();
+	}
 
+	public function getKeyUnit($name)
+	{
+		$t005 = T005::where('name_key', $name)->get();
+
+		return fractal()
+		->collection($t005)
+		->transformWith(new T005Transformer)
+		->toArray();
 	}
 
 	public function update() {

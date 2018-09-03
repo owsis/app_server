@@ -8,8 +8,8 @@ class T005 extends Model {
     protected $table = 't005s';
 
     protected $fillable = [
-        'branchcode',
-        'type_unit',
-        'nominal',
+        'code_key',
+        'name_key',
+        'nom_key'
     ];
 }

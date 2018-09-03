@@ -28,14 +28,15 @@ Route::get('/newunits', 'T008Controller@get');
 Route::get('/units/{type}/{block}', 'T003Controller@get');
 Route::get('/unitblocks/{type}', 'T003Controller@getBlock');
 Route::get('/unitupdate', 'T003Controller@update');
+Route::get('/unit/key/{name}', 'T003Controller@getKeyUnit');
+
+Route::get('/key', 'T005Controller@get');
 
 Route::get('/customer/{email}/{branchcode}', 'T004Controller@get');
 Route::post('/customer', 'T004Controller@post');
 
 Route::post('/unit/pm', 'T004Controller@post');
 Route::get('/unit/pm/{type}', 'T004Controller@get');
-Route::get('/unit/fp/{type}', 'T005Controller@get');
-Route::post('/unit/fp', 'T005Controller@post');
 Route::get('/unit/price/{code}', 'T006Controller@get');
 Route::get('/add/promo', 'T007Controller@get');
 Route::post('/add/promo', 'T007Controller@post');
@@ -47,11 +48,11 @@ Route::get('/trans/beli/order/{code}', 'T101Controller@getOrder');
 Route::get('/trans/order/{code}', 'T101Controller@getUnitOrder');
 Route::post('/trans/{refFrom}/{unitCode}/{codeUser}', 'T101Controller@post');
 
-Route::get('/cekutj/{code_u}/{type_u}', 'T102Controller@cekUtj');
-Route::get('/utj/pending/{code_u}', 'T102Controller@getPending');
+Route::get('/cekkey/{code_u}', 'T102Controller@cekKey');
+Route::get('/key/pending/{code_u}', 'T102Controller@pendKey');
 // Route::post('/saldoorder/exe/{code_u}', 'T102Controller@exeOrder');
 // Route::get('/saldoavailable/{code_u}', 'T102Controller@getAvailable');
-Route::post('/utj', 'T102Controller@post');
+Route::post('/key', 'T102Controller@post');
 Route::post('/saldo/update/{orderId}', 'T102Controller@update');
 Route::delete('/saldodelete/{code_u}', 'T102Controller@delete');
 

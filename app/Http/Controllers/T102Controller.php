@@ -11,35 +11,51 @@ use Illuminate\Http\Request;
 
 class T102Controller extends Controller {
 
-  public function cekUtj(T102 $t102, $code_u, $type_u) {
-    $t102s = $t102::where('code_user', $code_u)->where('type_unit', $type_u)->where('status_utj', 'SETTLEMENT')->get();
+  public function cekKey($code_u) {
+    $t102s = T102::where([
+      'code_user' => $code_u,
+      'status_key' => 'SETTLEMENT'
+    ])
+    ->get();
 
     return fractal()
     ->collection($t102s)
     ->transformWith(new T102Transformer)
     ->addMeta([
-      'data_count' => T102::where('code_user', $code_u)->where('type_unit', $type_u)->where('status_utj', 'SETTLEMENT')->count(),
+      'data_count' => T102::where([
+        'code_user' => $code_u,
+        'status_key' => 'SETTLEMENT'
+      ])
+      ->count(),
       // 'total_saldo' => $t102::where('code_user', $code_u)->where('status_saldo', 'order')->sum('nominal'),
     ])
     ->toArray();
 
   }
 
-  public function getPending($code_u) {
-    $t102s = T102::where('code_user', $code_u)->where('status_utj', 'PENDING')->get();
+  public function pendKey($code_u) {
+    $t102s = T102::where([
+    	'code_user' => $code_u,
+    	'status_key' => 'PENDING'
+  	])
+  	->get();
 
     return fractal()
     ->collection($t102s)
     ->transformWith(new T102Transformer)
     ->addMeta([
-      'data_count' => T102::where('code_user', $code_u)->where('status_utj', 'PENDING')->count(),
+      'data_count' => T102::where([
+	    	'code_user' => $code_u,
+	    	'status_key' => 'PENDING'
+	  	])
+      ->count(),
                 // 'total_jum_tiket' => $t102::where('code_user', $code_u)->where('status_tiket', 'aktif')->sum('jum_tiket'),
     ])
     ->toArray();
 
   }
 
-  public function getUtj($code)
+  public function userKey($code)
   {
     $t102s = T102::where('code_user', $code)->get();
 
@@ -53,10 +69,10 @@ class T102Controller extends Controller {
     ->toArray();
   }
 
-  public function post(Request $req, T102 $t102, User $t002) {
+  public function post(Request $req, T102 $t102) {
     $this->validate($req, [
       'order_id'  => 'required|unique:t102s',
-      'type_unit' => 'required',
+      'code_key'  => 'required',
       'nominal'   => 'required',
       'code_user' => 'required',
       'name_user' => 'required',
@@ -64,18 +80,12 @@ class T102Controller extends Controller {
 
     $t102s = $t102->create([
       'order_id'     => $req->order_id,
-      'type_unit'    => $req->type_unit,
+      'code_key'     => $req->code_key,
       'nominal'      => $req->nominal,
       'code_user'    => $req->code_user,
       'name_user'    => $req->name_user,
-      'status_pakai' => '1',
+      'status_use' => '1',
     ]);
-
-    return response()->json($t102s);
-  }
-
-  public function exeOrder(T102 $t102, $code_u) {
-    $t102s = $t102::where('code_user', $code_u)->where('status_saldo', 'order')->update(['status_saldo' => 'pending']);
 
     return response()->json($t102s);
   }
@@ -98,34 +108,4 @@ class T102Controller extends Controller {
     return response()->json($t102s, 200);
   }
 
-  public function getMidtrans(T102_1 $t102_1, $codeUser) {
-    $t102s = $t102_1::where('code_user', $codeUser)->get();
-
-    return fractal()
-    ->collection($t102s)
-    ->transformWith(new T102_1Transformer)
-    ->addMeta([
-      'data_count' => $t102_1::where('code_user', $codeUser)->count(),
-    ])
-    ->toArray();
-
-  }
-
-  public function postMidtrans(Request $req, T102_1 $t102_1, T102 $t102, $code_u) {
-    $this->validate($req, [
-      'order_id' => 'required',
-      'code_user' => 'required',
-      'name_user' => 'required',
-    ]);
-
-    $t102_1s = $t102_1->create([
-      'order_id' => $req->order_id,
-      'code_user' => $req->code_user,
-      'name_user' => $req->name_user,
-    ]);
-
-    $t102::where('code_user', $code_u)->where('status_saldo', 'order')->update(['status_saldo' => 'pending']);
-
-    return response()->json($t102_1s);
-  }
 }
