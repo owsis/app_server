@@ -41,7 +41,7 @@ class T003Controller extends Controller
 
 		return fractal()
 		->collection($t005s)
-		->transformWith(new T003_1Transformer)
+		->transformWith(new T005Transformer)
 		->addMeta([
 			'data_count' => T005::where('name_key', $name)->count(),
 		])

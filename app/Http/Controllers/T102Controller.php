@@ -13,9 +13,10 @@ class T102Controller extends Controller {
 
   public function cekKey($code_u, $code_k) {
     $t102s = T102::where([
-    	'code_key' => $code_k,
-      'code_user' => $code_u,
-      'status_key' => 'SETTLEMENT'
+    	'code_key'   => $code_k,
+      'code_user'  => $code_u,
+      'status_key' => 'SETTLEMENT',
+      'status_use' => '1'
     ])
     ->get();
 
@@ -24,9 +25,10 @@ class T102Controller extends Controller {
     ->transformWith(new T102Transformer)
     ->addMeta([
       'data_count' => T102::where([
-	    	'code_key' => $code_k,
-        'code_user' => $code_u,
-        'status_key' => 'SETTLEMENT'
+	    	'code_key'   => $code_k,
+        'code_user'  => $code_u,
+        'status_key' => 'SETTLEMENT',
+	      'status_use' => '1'
       ])
       ->count(),
       // 'total_saldo' => $t102::where('code_user', $code_u)->where('status_saldo', 'order')->sum('nominal'),
