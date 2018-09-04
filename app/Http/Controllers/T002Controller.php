@@ -41,14 +41,6 @@ class T002Controller extends Controller
 
     public function updateData(Request $req, User $t002, $code)
     {
-        $this->validate($req, [
-            'email'   => 'required|email|unique:t002s',
-            'name'    => 'required',
-            'address' => 'required',
-            'phone'   => 'required|unique:t002s',
-            'ktp'     => 'required',
-            'npwp'    => 'required',
-        ]);
 
         $t002s = $t002::where('code', $code)->update([
             'email'   => $req->email,
