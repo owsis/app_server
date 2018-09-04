@@ -51,8 +51,7 @@ class T002Controller extends Controller
             'npwp'    => $req->npwp,
         ]);
 
-        return fractal($t002s, new T002Transformer())
-            ->respond(201, []);
+        return response()->json($t002s);
     }
 
     public function register(Request $request, User $t002, $refFrom)
