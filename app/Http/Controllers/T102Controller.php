@@ -83,12 +83,12 @@ class T102Controller extends Controller {
     ]);
 
     $t102s = $t102->create([
-      'order_id'     => $req->order_id,
-      'code_key'     => $req->code_key,
-      'nominal'      => $req->nominal,
-      'code_user'    => $req->code_user,
-      'name_user'    => $req->name_user,
-      'status_use' => '1',
+	    'order_id'   => $req->order_id,
+	    'code_key'   => $req->code_key,
+	    'nominal'    => $req->nominal,
+	    'code_user'  => $req->code_user,
+	    'name_user'  => $req->name_user,
+	    'status_use' => '1',
     ]);
 
     return response()->json($t102s);

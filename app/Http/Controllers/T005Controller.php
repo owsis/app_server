@@ -8,8 +8,8 @@ use Illuminate\Http\Request;
 
 class T005Controller extends Controller {
     
-    public function get(T005 $t005, $type) {
-        $t005s = $t005::all();
+    public function get() {
+        $t005s = T005::all();
 
         return fractal()
             ->collection($t005s)

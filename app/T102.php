@@ -9,10 +9,11 @@ class T102 extends Model {
 
     protected $fillable = [
         'order_id',
-        'type_unit',
+        'code_key',
         'nominal',
         'code_user',
         'name_user',
         'status_utj',
+        'status_use',
     ];
 }
