@@ -15,7 +15,7 @@ class T005Controller extends Controller {
             ->collection($t005s)
             ->transformWith(new T005Transformer)
             ->addMeta([
-                'data-count' => $t005::all(),
+                'data-count' => T005::all(),
             ])
             ->toArray();
     }
