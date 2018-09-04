@@ -44,17 +44,15 @@ class T002Controller extends Controller
 
         $t002s = $t002::where('code', $code)->update([
             'email'   => $req->email,
-            'name'    => $req->name,
-            'address' => $req->address,
+            'name'    => strtoupper($req->name),
+            'address' => strtoupper($req->address),
             'phone'   => $req->phone,
             'ktp'     => $req->ktp,
             'npwp'    => $req->npwp,
         ]);
 
-        return fractal()
-            ->collection($t002s)
-            ->transformWith(new T002Transformer)
-            ->toArray();
+        return fractal($t002s, new T002Transformer())
+            ->respond(201, []);
     }
 
     public function register(Request $request, User $t002, $refFrom)
