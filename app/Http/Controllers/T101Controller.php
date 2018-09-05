@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\T003;
 use App\T101;
 use App\T102;
 use App\Transformers\T101Transformer;
@@ -62,10 +63,9 @@ class T101Controller extends Controller
             ->toArray();
     }
 
-    public function post(Request $req, T101 $t101, $refFrom, $unitCode, $codeUser)
+    public function post(Request $req, $refFrom, $unitCode, $codeUser, $orderIdKey)
     {
         $ref_from = User::where('referral_from', $refFrom)->get();
-        $utj_id = T102::where('type_unit', $req->type_unit)->where('status_pakai', '1')->where('status_utj', 'SETTLEMENT')->get();
 
         $this->validate($req, [
             'branchcode'     => 'required',
@@ -83,7 +83,7 @@ class T101Controller extends Controller
             'cash'           => 'required',
         ]);
 
-        $t101s = $t101->create([
+        $t101s = T101::create([
             'branchcode'     => $req->branchcode,
             'booking_no'     => $req->booking_no,
             'code_customer'  => $req->code_customer,
@@ -102,8 +102,12 @@ class T101Controller extends Controller
             'status'         => 'BOOKED'
         ]);
 
-        T102::where('order_id', $utj_id[0]->order_id)->update([
-            'status_pakai' => '0'
+        T102::where('order_id', $orderIdKey)->update([
+            'status_use' => '0'
+        ]);
+
+        T003::where('code_unit', $req->code_unit)->update([
+            'status_unit' => 'close'
         ]);
 
         return response()->json($t101s);
