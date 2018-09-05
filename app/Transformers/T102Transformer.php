@@ -11,6 +11,7 @@ class T102Transformer extends TransformerAbstract {
 		return [
 			'order_id'   => $t102->order_id,
 			'code_key'   => $t102->code_key,
+			'name_key'   => $t102->name_key,
 			'nominal'    => $t102->nominal,
 			'code_user'  => $t102->code_user,
 			'name_user'  => $t102->name_user,
