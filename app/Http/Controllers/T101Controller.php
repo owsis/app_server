@@ -91,6 +91,7 @@ class T101Controller extends Controller
             'phone_customer' => $req->phone_customer,
             'code_unit'      => $req->code_unit,
             'type_unit'      => $req->type_unit,
+            'block_unit'     => $req->block_unit,
             'price_unit'     => $req->price_unit,
             'first_payment'  => $req->first_payment,
             'type_payment'   => $req->type_payment,
@@ -98,7 +99,6 @@ class T101Controller extends Controller
             'kpr'            => $req->kpr,
             'cash'           => $req->cash,
             'referral_from'  => $ref_from[0]->referral_from,
-            'utj_id'         => $utj_id[0]->order_id,
             'status'         => 'BOOKED'
         ]);
 
@@ -107,6 +107,8 @@ class T101Controller extends Controller
         ]);
 
         T003::where('code_unit', $req->code_unit)->update([
+            'code_customer' => $req->code_customer,
+            'name_customer' => $req->name_customer,
             'status_unit' => 'close'
         ]);
 

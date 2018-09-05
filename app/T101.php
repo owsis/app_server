@@ -18,6 +18,7 @@ class T101 extends Model
         'phone_customer',
         'code_unit',
         'type_unit',
+        'block_unit',
         'price_unit',
         'first_payment',
         'type_payment',
