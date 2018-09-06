@@ -11,9 +11,9 @@ class T008Transformer extends TransformerAbstract
     {
         return [
             'branchcode' => $t008->branchcode,
-            'name' => $t008->name,
-            'type' => $t008->type,
-            'category' => $t008->category,
+            'name_unit' => $t008->name_unit,
+            'type_unit' => $t008->type_unit,
+            'category_unit' => $t008->category_unit,
             'img1' => $t008->img1,
             'img2' => $t008->img2,
             'img3' => $t008->img3,
