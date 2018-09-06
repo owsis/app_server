@@ -40,8 +40,7 @@ class T102Controller extends Controller {
   public function keyAvailable($code_u) {
     $t102s = T102::where([
       'code_user'  => $code_u,
-      'status_key' => 'SETTLEMENT',
-      'status_use' => '1'
+      'status_key' => 'SETTLEMENT'
     ])
     ->get();
 
@@ -51,8 +50,7 @@ class T102Controller extends Controller {
     ->addMeta([
       'data_count' => T102::where([
         'code_user'  => $code_u,
-        'status_key' => 'SETTLEMENT',
-	      'status_use' => '1'
+        'status_key' => 'SETTLEMENT'
       ])
       ->count(),
       // 'total_saldo' => $t102::where('code_user', $code_u)->where('status_saldo', 'order')->sum('nominal'),
