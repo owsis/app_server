@@ -37,15 +37,15 @@ class T101Controller extends Controller
             ->toArray();
     }
 
-    public function getPembeli(T101 $t101, $code)
+    public function getBeli($code)
     {
-        $t101s = $t101::where('code_customer', $code)->where('status', 'BOOKED')->get();
+        $t101s = T101::where('code_customer', $code)->where('status', 'BOOKED')->get();
 
         return fractal()
             ->collection($t101s)
             ->transformWith(new T101Transformer)
             ->addMeta([
-                'data_count' => $t101::where('code_customer', $code)->where('status', 'BOOKED')->count(),
+                'data_count' => T101::where('code_customer', $code)->where('status', 'BOOKED')->count(),
             ])
             ->toArray();
     }
@@ -63,9 +63,11 @@ class T101Controller extends Controller
             ->toArray();
     }
 
-    public function post(Request $req, $refFrom, $unitCode, $codeUser, $orderIdKey)
+    public function post(Request $req, $refFrom)
     {
         $ref_from = User::where('referral_from', $refFrom)->get();
+
+        $t102s = T102::where('order_id', $req->order_id_key)->get();
 
         $this->validate($req, [
             'branchcode'     => 'required',
@@ -76,7 +78,6 @@ class T101Controller extends Controller
             'code_unit'      => 'required',
             'type_unit'      => 'required',
             'price_unit'     => 'required',
-            'first_payment'  => 'required',
             'type_payment'   => 'required',
             'dp'             => 'required',
             'kpr'            => 'required',
@@ -93,7 +94,8 @@ class T101Controller extends Controller
             'type_unit'      => $req->type_unit,
             'block_unit'     => $req->block_unit,
             'price_unit'     => $req->price_unit,
-            'first_payment'  => $req->first_payment,
+            'order_id_key'   => $req->order_id_key,
+            'code_key'       => $t102s[0]->code_key,
             'type_payment'   => $req->type_payment,
             'dp'             => $req->dp,
             'kpr'            => $req->kpr,
@@ -102,8 +104,9 @@ class T101Controller extends Controller
             'status'         => 'BOOKED'
         ]);
 
-        T102::where('order_id', $orderIdKey)->update([
-            'status_use' => '0'
+
+        T102::where('order_id', $req->order_id_key)->update([
+            'status_use' => $req->code_unit
         ]);
 
         T003::where('code_unit', $req->code_unit)->update([

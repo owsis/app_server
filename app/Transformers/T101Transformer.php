@@ -17,20 +17,18 @@ class T101Transformer extends TransformerAbstract
         return [
             'branchcode'    => $t101->branchcode,
             'booking_no'    => $t101->booking_no,
-            'order_id'      => $t101->order_id,
             'code_customer' => $t101->code_customer,
             'name_customer' => $t101->name_customer,
             'code_unit'     => $t101->code_unit,
             'type_unit'     => $t101->type_unit,
             'price_unit'    => $t101->price_unit,
-            'first_payment' => $t101->first_payment,
+            'order_id_key'  => $t101->order_id_key,
+            'code_key'      => $t101->code_key,
             'type_payment'  => $t101->type_payment,
-            'harga_trans'   => $t101->harga_trans,
             'dp'            => $t101->dp,
             'kpr'           => $t101->kpr,
             'cash'          => $t101->cash,
             'referral_from' => $t101->referral_from,
-            'utj_id'        => $t101->utj_id,
             'status'        => $t101->status,
         ];
     }

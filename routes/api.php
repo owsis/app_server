@@ -42,10 +42,10 @@ Route::post('/add/promo', 'T007Controller@post');
 
 Route::get('/trans/utj/{code}', 'T102Controller@getUtj');
 Route::get('/trans/jual/{refFrom}', 'T101Controller@getPenjual');
-Route::get('/trans/beli/{code}', 'T101Controller@getPembeli');
+Route::get('/trans/beli/{code}', 'T101Controller@getBeli');
 Route::get('/trans/beli/order/{code}', 'T101Controller@getOrder');
 Route::get('/trans/order/{code}', 'T101Controller@getUnitOrder');
-Route::post('/trans/{refFrom}/{unitCode}/{codeUser}/{orderIdKey}', 'T101Controller@post');
+Route::post('/trans/{refFrom}', 'T101Controller@post');
 
 Route::get('/cekkey/{code_u}/{code_k}', 'T102Controller@cekKey');
 Route::get('/key/available/{code_u}', 'T102Controller@keyAvailable');
