@@ -21,6 +21,7 @@ class T101Transformer extends TransformerAbstract
             'name_customer' => $t101->name_customer,
             'code_unit'     => $t101->code_unit,
             'type_unit'     => $t101->type_unit,
+            'block_unit'     => $t101->block_unit,
             'price_unit'    => $t101->price_unit,
             'order_id_key'  => $t101->order_id_key,
             'name_key'      => $t101->name_key,
