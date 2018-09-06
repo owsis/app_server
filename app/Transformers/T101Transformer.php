@@ -23,12 +23,12 @@ class T101Transformer extends TransformerAbstract
             'type_unit'     => $t101->type_unit,
             'price_unit'    => $t101->price_unit,
             'order_id_key'  => $t101->order_id_key,
-            'code_key'      => $t101->code_key,
+            'name_key'      => $t101->name_key,
             'type_payment'  => $t101->type_payment,
             'dp'            => $t101->dp,
             'kpr'           => $t101->kpr,
             'cash'          => $t101->cash,
-            'referral_from' => $t101->referral_from,
+            'referral_from' => $t101->name,
             'status'        => $t101->status,
         ];
     }

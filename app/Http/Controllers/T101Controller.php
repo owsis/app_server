@@ -42,22 +42,25 @@ class T101Controller extends Controller
     {
         $t101s = T101::join('t005s', 't005s.code_key', '=', 't101s.code_key' )
         ->join('t002s', 't002s.referral_code', '=', 't101s.referral_from')
-        ->select([
-            'booking_no',
-            'name_customer',
-            'code_unit',
-            'price_unit',
-            'name_key',
-            'type_payment',
-            'name'
-        ])
         ->where([
             'code_customer' => $code,
             'status' => 'BOOKED'
         ])
         ->get();
 
-        return response()->json($t101s);
+        return fractal()
+            ->collection($t101s)
+            ->transformWith(new T101Transformer)
+            ->addMeta([
+                'data_count' => T101::join('t005s', 't005s.code_key', '=', 't101s.code_key' )
+                ->join('t002s', 't002s.referral_code', '=', 't101s.referral_from')
+                ->where([
+                    'code_customer' => $code,
+                    'status' => 'BOOKED'
+                ])
+                ->count(),
+            ])
+            ->toArray();
     }
 
     public function getOrder(T101 $t101, $code)
