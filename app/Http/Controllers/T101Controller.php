@@ -55,7 +55,7 @@ class T101Controller extends Controller
             ->addMeta([
                 'data_count' => T101::join('t005s', 't005s.code_key', '=', 't101s.code_key' )
                 ->join('t002s', 't002s.referral_code', '=', 't101s.referral_from')
-                ->join('t008s', 't008s.type', '=', 't101s.type_unit')
+                ->join('t008s', 't008s.type_unit', '=', 't101s.type_unit')
                 ->where([
                     'code_customer' => $code,
                     'status' => 'BOOKED'
