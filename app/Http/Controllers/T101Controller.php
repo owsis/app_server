@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\T003;
+use App\T005;
 use App\T101;
 use App\T102;
 use App\Transformers\T101Transformer;
@@ -39,15 +40,24 @@ class T101Controller extends Controller
 
     public function getBeli($code)
     {
-        $t101s = T101::where('code_customer', $code)->where('status', 'BOOKED')->get();
+        $t101s = T101::join('t005s', 't005s.code_key', '=', 't101s.code_key' )
+        ->join('t002s', 't002s.referral_from', '=', 't101s.referral_code')
+        ->select([
+            'booking_no',
+            'name_customer',
+            'code_unit',
+            'price_unit',
+            'name_key',
+            'type_payment',
+            'name'
+        ])
+        ->where([
+            'code_customer' => $code,
+            'status' => 'BOOKED'
+        ])
+        ->get();
 
-        return fractal()
-            ->collection($t101s)
-            ->transformWith(new T101Transformer)
-            ->addMeta([
-                'data_count' => T101::where('code_customer', $code)->where('status', 'BOOKED')->count(),
-            ])
-            ->toArray();
+        return response()->json($t101s);
     }
 
     public function getOrder(T101 $t101, $code)
