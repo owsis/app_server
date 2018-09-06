@@ -41,7 +41,7 @@ class T101Controller extends Controller
     public function getBeli($code)
     {
         $t101s = T101::join('t005s', 't005s.code_key', '=', 't101s.code_key' )
-        ->join('t002s', 't002s.referral_from', '=', 't101s.referral_code')
+        ->join('t002s', 't002s.referral_code', '=', 't101s.referral_from')
         ->select([
             'booking_no',
             'name_customer',
