@@ -91,6 +91,10 @@ class T102Controller extends Controller {
 
   public function pendKey($code_u) {
     $t102s = T102::join('t005s', 't005s.code_key', '=', 't102s.code_key')
+    ->select([
+      't102s.*',
+      't005s.name_key'
+    ])
     ->where([
     	'code_user' => $code_u,
     	'status_key' => 'PENDING'
