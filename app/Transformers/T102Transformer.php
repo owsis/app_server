@@ -18,7 +18,7 @@ class T102Transformer extends TransformerAbstract {
 			'name_user'  => $t102->name_user,
 			'status_key' => $t102->status_key,
 			'status_use' => $t102->status_use,
-			'created_at' => $t102->created_at->format('D, d-M-Y - H:i')
+			'created_at' => $t102->created_at->format('D, d-M-Y H:i:s T')
 		];
 	}
 }
