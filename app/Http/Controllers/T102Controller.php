@@ -95,6 +95,7 @@ class T102Controller extends Controller {
     	'code_user' => $code_u,
     	'status_key' => 'PENDING'
   	])
+    ->orderBy('created_at', 'DESC')
   	->get();
 
     return fractal()
