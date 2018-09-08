@@ -10,6 +10,7 @@ class T102Transformer extends TransformerAbstract {
 	public function transform(T102 $t102) {
 		return [
 			'order_id'   => $t102->order_id,
+			'va_number'  => $t102->va_number,
 			'code_key'   => $t102->code_key,
 			'name_key'   => $t102->name_key,
 			'nominal'    => $t102->nominal,
@@ -17,6 +18,7 @@ class T102Transformer extends TransformerAbstract {
 			'name_user'  => $t102->name_user,
 			'status_key' => $t102->status_key,
 			'status_use' => $t102->status_use,
+			'create_at'	 => $t102->created_at
 		];
 	}
 }
