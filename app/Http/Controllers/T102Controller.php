@@ -38,8 +38,7 @@ class T102Controller extends Controller {
   }
 
   public function keyAvailable($code_u) {
-    $t102s = T102::join('t005s', 't005s.code_key', '=', 't102s.code_key')
-    ->where([
+    $t102s = T102::where([
       'code_user'  => $code_u,
       'status_key' => 'SETTLEMENT',
       'status_use' => '1'
@@ -50,8 +49,7 @@ class T102Controller extends Controller {
     ->collection($t102s)
     ->transformWith(new T102Transformer)
     ->addMeta([
-      'data_count' => T102::join('t005s', 't005s.code_key', '=', 't102s.code_key')
-      ->where([
+      'data_count' => T102::where([
         'code_user'  => $code_u,
         'status_key' => 'SETTLEMENT',
 	      'status_use' => '1'
@@ -64,8 +62,7 @@ class T102Controller extends Controller {
   }
 
   public function keySettlement($code_u) {
-    $t102s = T102::join('t005s', 't005s.code_key', '=', 't102s.code_key')
-    ->where([
+    $t102s = T102::where([
       'code_user'  => $code_u,
       'status_key' => 'SETTLEMENT',
     ])
@@ -75,8 +72,7 @@ class T102Controller extends Controller {
     ->collection($t102s)
     ->transformWith(new T102Transformer)
     ->addMeta([
-      'data_count' => T102::join('t005s', 't005s.code_key', '=', 't102s.code_key')
-      ->where([
+      'data_count' => T102::where([
         'code_user'  => $code_u,
         'status_key' => 'SETTLEMENT',
       ])
