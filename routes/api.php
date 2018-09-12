@@ -50,11 +50,11 @@ Route::get('/key', 'T005Controller@get');
 Route::get('/key/available/{code_u}', 'T102Controller@keyAvailable');
 Route::get('/key/settlement/{code_u}', 'T102Controller@keySettlement');
 Route::get('/key/pending/{code_u}', 'T102Controller@pendKey');
+Route::delete('/key/delete/{code_u}', 'T102Controller@pendKey');
 // Route::post('/saldoorder/exe/{code_u}', 'T102Controller@exeOrder');
 // Route::get('/saldoavailable/{code_u}', 'T102Controller@getAvailable');
 Route::post('/key', 'T102Controller@post');
 Route::post('/saldo/update/{orderId}', 'T102Controller@update');
-Route::delete('/saldodelete/{code_u}', 'T102Controller@delete');
 
 Route::post('/vt_notif', 'VTController@notif');
 Route::post('/vt_cancel/{orderid}', 'VTController@cancelVT');

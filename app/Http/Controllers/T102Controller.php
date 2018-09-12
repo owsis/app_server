@@ -62,7 +62,12 @@ class T102Controller extends Controller {
   }
 
   public function keySettlement($code_u) {
-    $t102s = T102::where([
+    $t102s = T102::join('t005s', 't005s.code_key', '=', 't102s.code_key')
+    ->select([
+      't102s.*',
+      't005s.name_key'
+    ])
+    ->where([
       'code_user'  => $code_u,
       'status_key' => 'SETTLEMENT',
     ])
@@ -160,8 +165,8 @@ class T102Controller extends Controller {
 
   }
 
-  public function delete(T102 $t102, $code_u) {
-    $t102s = $t102::where('order_id', $code_u)->delete();
+  public function delete($code_u) {
+    $t102s = T102::where('order_id', $code_u)->delete();
     return response()->json($t102s, 200);
   }
 
