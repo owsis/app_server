@@ -165,7 +165,7 @@ class T102Controller extends Controller {
 
   }
 
-  public function delete($code_u) {
+  public function deleteKey($code_u) {
     $t102s = T102::where('order_id', $code_u)->delete();
     return response()->json($t102s, 200);
   }
