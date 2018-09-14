@@ -61,3 +61,4 @@ Route::post('/vt_notif', 'VTController@notif');
 Route::post('/vt_cancel/{orderid}', 'VTController@cancelVT');
 
 Route::get('/headerimg', 'T011Controller@get');
+Route::get('/about/unit/{type_u}', 'T012Controller@get');
