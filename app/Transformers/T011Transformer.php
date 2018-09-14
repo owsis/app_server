@@ -11,7 +11,8 @@ class T011Transformer extends TransformerAbstract
 	{
 		return [
 			'name_img' => $t011->name_img,
-			'img'      => 'http://smile-in-properti.store/storage/app/img_src/' . $t011->img,
+			'type_img' => $t011->type_img,
+			'img1'     => 'http://smile-in-properti.store/storage/app/img_src/' . $t011->img1,
 		];
 	}
 }

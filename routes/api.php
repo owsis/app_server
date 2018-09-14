@@ -17,6 +17,7 @@ Route::get('/marketing', 'T002Controller@marketings');
 Route::get('/marketing/{code}', 'T002Controller@updateUser');
 Route::post('/marketing/reg/{refFrom}', 'T002Controller@register');
 Route::post('/marketing/img/{code}', 'T002Controller@registerUpload');
+Route::post('/marketing/imgfp/{code}', 'T002Controller@uploadFp');
 Route::post('/marketing/login', 'T002Controller@login');
 Route::post('/marketing/update/{code}', 'T002Controller@updateData');
 Route::get('/marketing/saldo/{code_u}', 'T002Controller@getSaldo');

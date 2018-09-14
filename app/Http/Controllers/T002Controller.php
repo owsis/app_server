@@ -90,8 +90,21 @@ class T002Controller extends Controller
     public function registerUpload(Request $req, User $t002, $code)
     {
         $img = $req->file('image_ktp');
-        $filename = 'ktp_' . time() . '.' . $img->getClientOriginalExtension();
+        $filename = 'KTP_' . time() . '.' . $img->getClientOriginalExtension();
         $path = $img->storeAs('images_ktp', $filename);
+
+        $t002s = $t002::where('code', $code)->update([
+            'image_ktp' => $filename,
+        ]);
+    }
+
+    public function uploadFp(Request $req, User $t002, $code)
+    {
+        $t002s_id = $t002::where('code', $code)->get();
+
+        $img = $req->file('image_ktp');
+        $filename = 'FP_' . time() . '-' . $t002s_id[0]->name . '.' . $img->getClientOriginalExtension();
+        $path = $img->storeAs('images_fp', $filename);
 
         $t002s = $t002::where('code', $code)->update([
             'image_ktp' => $filename,
