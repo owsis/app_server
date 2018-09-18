@@ -27,7 +27,7 @@ class T101Controller extends Controller
 
     public function getPenjual($refFrom)
     {
-        $t101s = T101::join('t004s', 't004s.type_payment', '=', 't101s.type_payment' )
+        $t101s = T101::join('t004s', 't004s.code_payment', '=', 't101s.type_payment' )
         ->join('t004s', 't004s.type_unit', '=', 't101s.type_unit')
         ->select([
             't101s.*',
