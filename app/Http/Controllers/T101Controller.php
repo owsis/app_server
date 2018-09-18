@@ -42,7 +42,7 @@ class T101Controller extends Controller
         ->collection($t101s)
         ->transformWith(new T101Transformer)
         ->addMeta([
-            'data_count' => $t101::where('referral_from', $refFrom)->count(),
+            'data_count' => T101::where('referral_from', $refFrom)->count(),
         ])
         ->toArray();
     }
