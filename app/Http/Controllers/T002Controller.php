@@ -43,12 +43,14 @@ class T002Controller extends Controller
     {
 
         $t002s = $t002::where('code', $code)->update([
-            'email'   => $req->email,
-            'name'    => strtoupper($req->name),
-            'address' => strtoupper($req->address),
-            'phone'   => $req->phone,
-            'ktp'     => $req->ktp,
-            'npwp'    => $req->npwp,
+            'email'         => $req->email,
+            'name'          => strtoupper($req->name),
+            'address'       => strtoupper($req->address),
+            'phone'         => $req->phone,
+            'phone2'        => $req->phone2,
+            'ktp'           => $req->ktp,
+            'npwp'          => $req->npwp,
+            'referral_code' => $req->ktp,
         ]);
 
         return response()->json($t002s);

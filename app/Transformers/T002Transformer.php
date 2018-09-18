@@ -15,6 +15,7 @@ class T002Transformer extends TransformerAbstract {
 			'name' => $t002->name,
 			'address' => $t002->address,
 			'phone' => $t002->phone,
+			'phone2' => $t002->phone2,
 			'ktp' => $t002->ktp,
 			'image_ktp' => 'http://smile-in-properti.store/storage/app/images_ktp/' . $t002->image_ktp,
 			'image_fp' => 'http://smile-in-properti.store/storage/app/images_fp/' . $t002->image_fp,
