@@ -27,6 +27,7 @@ class User extends Authenticatable
         'ktp',
         'npwp',
         'image_ktp',
+        'image_fp',
         'referral_code',
         'referral_from',
         'tiket',

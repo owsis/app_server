@@ -16,7 +16,7 @@ class T012Controller extends Controller
 		->collection($t012s)
 		->transformWith(new T012Transformer)
 		->addMeta([
-			'data_count' => T012::count()
+			'data_count' => T012::where('type_unit', $type_u)->count()
 		])
 		->toArray();
 	}

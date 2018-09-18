@@ -19,8 +19,7 @@ class HargaController extends Controller {
 	 */
 	public function index() {
 		$no = 1;
-		$price = T006::all();
-		$code_p = T004::all();
+		$price = T006::join('t004s', 't004s.')->get();
 
 		return view('master.harga', compact('price', 'no', 'code_p'));
 
