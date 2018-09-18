@@ -107,7 +107,7 @@ class T002Controller extends Controller
         $path = $img->storeAs('images_fp', $filename);
 
         $t002s = $t002::where('code', $code)->update([
-            'image_ktp' => $filename,
+            'image_fp' => $filename,
         ]);
     }
 
