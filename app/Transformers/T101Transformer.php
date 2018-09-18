@@ -27,6 +27,7 @@ class T101Transformer extends TransformerAbstract
             'order_id_key'  => $t101->order_id_key,
             'name_key'      => $t101->name_key,
             'type_payment'  => $t101->type_payment,
+            'name_payment'  => $t101->name_payment,
             'dp'            => $t101->dp,
             'kpr'           => $t101->kpr,
             'cash'          => $t101->cash,

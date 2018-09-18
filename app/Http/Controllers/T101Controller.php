@@ -17,25 +17,27 @@ class T101Controller extends Controller
         $t101s = $t101::where('code_customer', $code)->where('status', 'ORDER')->get();
 
         return fractal()
-            ->collection($t101s)
-            ->transformWith(new T101Transformer)
-            ->addMeta([
-                'data_count' => $t101::where('code_customer', $code)->where('status', 'ORDER')->count(),
-            ])
-            ->toArray();
+        ->collection($t101s)
+        ->transformWith(new T101Transformer)
+        ->addMeta([
+            'data_count' => $t101::where('code_customer', $code)->where('status', 'ORDER')->count(),
+        ])
+        ->toArray();
     }
 
-    public function getPenjual(T101 $t101, $refFrom)
+    public function getPenjual($refFrom)
     {
-        $t101s = $t101::where('referral_from', $refFrom)->get();
+        $t101s = T101::join('t004s', 't004s.code_payment', '=', 't101s.code_payment' )
+        ->where('referral_from', $refFrom)
+        ->get();
 
         return fractal()
-            ->collection($t101s)
-            ->transformWith(new T101Transformer)
-            ->addMeta([
-                'data_count' => $t101::where('referral_from', $refFrom)->count(),
-            ])
-            ->toArray();
+        ->collection($t101s)
+        ->transformWith(new T101Transformer)
+        ->addMeta([
+            'data_count' => $t101::where('referral_from', $refFrom)->count(),
+        ])
+        ->toArray();
     }
 
     public function getBeli($code)
@@ -50,19 +52,19 @@ class T101Controller extends Controller
         ->get();
 
         return fractal()
-            ->collection($t101s)
-            ->transformWith(new T101Transformer)
-            ->addMeta([
-                'data_count' => T101::join('t005s', 't005s.code_key', '=', 't101s.code_key' )
-                ->join('t002s', 't002s.referral_code', '=', 't101s.referral_from')
-                ->join('t008s', 't008s.type_unit', '=', 't101s.type_unit')
-                ->where([
-                    'code_customer' => $code,
-                    'status' => 'BOOKED'
-                ])
-                ->count(),
+        ->collection($t101s)
+        ->transformWith(new T101Transformer)
+        ->addMeta([
+            'data_count' => T101::join('t005s', 't005s.code_key', '=', 't101s.code_key' )
+            ->join('t002s', 't002s.referral_code', '=', 't101s.referral_from')
+            ->join('t008s', 't008s.type_unit', '=', 't101s.type_unit')
+            ->where([
+                'code_customer' => $code,
+                'status' => 'BOOKED'
             ])
-            ->toArray();
+            ->count(),
+        ])
+        ->toArray();
     }
 
     public function getOrder(T101 $t101, $code)
@@ -70,12 +72,12 @@ class T101Controller extends Controller
         $t101s = $t101::where('code_customer', $code)->where('status_fp', 'PENDING FROM VT')->get();
 
         return fractal()
-            ->collection($t101s)
-            ->transformWith(new T101Transformer)
-            ->addMeta([
-                'data_count' => $t101::where('code_customer', $code)->where('status_fp', 'PENDING FROM VT')->count(),
-            ])
-            ->toArray();
+        ->collection($t101s)
+        ->transformWith(new T101Transformer)
+        ->addMeta([
+            'data_count' => $t101::where('code_customer', $code)->where('status_fp', 'PENDING FROM VT')->count(),
+        ])
+        ->toArray();
     }
 
     public function post(Request $req, $refFrom)
