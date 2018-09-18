@@ -31,11 +31,9 @@ class T101Controller extends Controller
             $join->on('t004s.type_unit', '=', 't101s.type_unit');
             $join->on('t004s.code_payment', '=', 't101s.type_payment');
         })
-        ->join('t002s', 't002s.referral_code', '=', 't101s.referral_from')
         ->select([
             't101s.*',
-            't004s.name_payment',
-            't002s.name'
+            't004s.name_payment'
         ])
         ->where('referral_from', $refFrom)
         ->get();
