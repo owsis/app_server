@@ -102,7 +102,7 @@ class T002Controller extends Controller
     {
         $t002s_id = $t002::where('code', $code)->get();
 
-        $img = $req->file('image_ktp');
+        $img = $req->file('image_fp');
         $filename = 'FP_' . time() . '-' . $t002s_id[0]->name . '.' . $img->getClientOriginalExtension();
         $path = $img->storeAs('images_fp', $filename);
 
