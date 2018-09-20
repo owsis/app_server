@@ -47,7 +47,6 @@ class VTController extends Controller {
 		$order_id     = $notif->order_id;
 		$gross_amount = $notif->gross_amount;
 		$fraud        = $notif->fraud_status;
-		$va_number    = $notif->va_numbers[0]->va_number;
 
 		if ($transaction == 'capture') {
 			// For credit card transaction, we need to check whether transaction is challenge by FDS or not
@@ -149,6 +148,17 @@ class VTController extends Controller {
 			]);
 
 		} else if ($transaction == 'pending') {
+
+			if (isset($notif->va_numbers[0]->va_number)) {
+
+				$va_number = $notif->va_number[0]->va_number;
+
+			} else {
+
+				$va_number = $notif->permata_va_number;
+				
+			}
+			
 			// TODO set payment status in merchant's database to 'Pending'
 			echo "Waiting customer to finish transaction order_id: " . $order_id . " using " . $type;
 
