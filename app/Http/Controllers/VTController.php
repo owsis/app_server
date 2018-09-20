@@ -149,14 +149,14 @@ class VTController extends Controller {
 
 		} else if ($transaction == 'pending') {
 
-			if (isset($notif->va_numbers[0]->va_number)) {
+			if (property_exists($notif->va_numbers[0]->va_number)) {
 
 				$va_number = $notif->va_number[0]->va_number;
 
 			} else {
 
 				$va_number = $notif->permata_va_number;
-				
+
 			}
 			
 			// TODO set payment status in merchant's database to 'Pending'
