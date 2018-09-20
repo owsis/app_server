@@ -47,14 +47,14 @@ class VTController extends Controller {
 		$order_id     = $notif->order_id;
 		$gross_amount = $notif->gross_amount;
 		$fraud        = $notif->fraud_status;
-		
+
 		if (!isset($notif->va_numbers[0]->va_number)) {
 
 			$va_number = $notif->permata_va_number;
 
 		} else {
 
-			$va_number = $notif->va_number[0]->va_number;
+			$va_number = $notif->va_numbers[0]->va_number;
 
 		}
 
