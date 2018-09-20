@@ -47,6 +47,16 @@ class VTController extends Controller {
 		$order_id     = $notif->order_id;
 		$gross_amount = $notif->gross_amount;
 		$fraud        = $notif->fraud_status;
+		
+		if (!isset($notif->va_numbers[0]->va_number)) {
+
+			$va_number = $notif->permata_va_number;
+
+		} else {
+
+			$va_number = $notif->va_number[0]->va_number;
+
+		}
 
 		if ($transaction == 'capture') {
 			// For credit card transaction, we need to check whether transaction is challenge by FDS or not
@@ -71,7 +81,7 @@ class VTController extends Controller {
 			$passkey = "abc123";
 			$notelp = $t002_id[0]->phone;
 			$msg = "Terima kasih telah membayar Kunci dengan harga sebesar Rp. " . number_format($t102_id[0]->nominal) . "\n" .
-				"Silakan lakukan booking Unit pada Cluster " . $t102_id[0]->type_unit;
+			"Silakan lakukan booking Unit pada Cluster " . $t102_id[0]->type_unit;
 
 			$url = "https://alpha.zenziva.net/apps/smsapi.php";
 			$curlHandle = curl_init();
@@ -148,16 +158,6 @@ class VTController extends Controller {
 			]);
 
 		} else if ($transaction == 'pending') {
-
-			if (!isset($notif->va_numbers[0]->va_number)) {
-
-				$va_number = $notif->permata_va_number;
-
-			} else {
-
-				$va_number = $notif->va_number[0]->va_number;
-
-			}
 			
 			// TODO set payment status in merchant's database to 'Pending'
 			echo "Waiting customer to finish transaction order_id: " . $order_id . " using " . $type;
@@ -176,7 +176,7 @@ class VTController extends Controller {
 			$passkey = "abc123";
 			$notelp = $t002_id[0]->phone;
 			$msg = "Anda telah memesan Kunci dengan harga sebesar Rp. " . number_format($t102_id[0]->nominal) . "\n" .
-				"Segera lakukan pembayaran dengan Nomor Virtual Account " . $va_number;
+			"Segera lakukan pembayaran dengan Nomor Virtual Account " . $va_number;
 
 			$url = "https://alpha.zenziva.net/apps/smsapi.php";
 			$curlHandle = curl_init();
@@ -208,8 +208,8 @@ class VTController extends Controller {
 			$passkey = "abc123";
 			$notelp = $t002_id[0]->phone;
 			$msg = "Mohon maaf." . "\n" .
-				"Nomor Virtual Account " . $va_number . " tidak dapat diproses. \n" .
-				"Pembayaran Anda tertolak.";
+			"Nomor Virtual Account " . $va_number . " tidak dapat diproses. \n" .
+			"Pembayaran Anda tertolak.";
 
 			$url = "https://alpha.zenziva.net/apps/smsapi.php";
 			$curlHandle = curl_init();
@@ -241,7 +241,7 @@ class VTController extends Controller {
 			$passkey = "abc123";
 			$notelp = $t002_id[0]->phone;
 			$msg = "Mohon maaf." . "\n" .
-				"Nomor Virtual Account " . $va_number . " telah melewati masa Pembayaran.";
+			"Nomor Virtual Account " . $va_number . " telah melewati masa Pembayaran.";
 
 			$url = "https://alpha.zenziva.net/apps/smsapi.php";
 			$curlHandle = curl_init();
