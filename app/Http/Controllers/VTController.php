@@ -149,13 +149,13 @@ class VTController extends Controller {
 
 		} else if ($transaction == 'pending') {
 
-			if (property_exists($notif->va_numbers[0]->va_number)) {
+			if (!isset($notif->va_numbers[0]->va_number)) {
 
-				$va_number = $notif->va_number[0]->va_number;
+				$va_number = $notif->permata_va_number;
 
 			} else {
 
-				$va_number = $notif->permata_va_number;
+				$va_number = $notif->va_number[0]->va_number;
 
 			}
 			
