@@ -138,11 +138,7 @@
 										<td>{{ $no++ }}</td>
 										<td>{{ $data->type_unit }}</td>
 										<td>{{ $data->code_unit }}</td>
-										@foreach($code_p as $code)
-										@if($data->type_unit == $code->type_unit && $data->code_payment == $code->code_payment)
-										<td>{{ $code->name_payment }}</td>
-										@endif
-										@endforeach
+										<td>{{ $data->name_payment }}</td>
 										<td>Rp. {{ number_format($data->price) }}</td>
 									</tr>
 									@endforeach

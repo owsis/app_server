@@ -1,17 +1,14 @@
 <?php
 
-namespace App\Http\Controllers\Master;
+namespace App\Http\Controllers\Transaksi;
 
 use App\Http\Controllers\Controller;
-use App\T004;
-use App\T006;
+use App\T101;
+use App\User;
 use Illuminate\Http\Request;
+use redirect;
 
-class HargaController extends Controller {
-
-	public function __construct() {
-		$this->middleware('auth:t001');
-	}
+class BookingController extends Controller {
 	/**
 	 * Display a listing of the resource.
 	 *
@@ -19,17 +16,15 @@ class HargaController extends Controller {
 	 */
 	public function index() {
 		$no = 1;
-		$price = T006::join('t004s', function($join) {
-            $join->on('t004s.type_unit', '=', 't006s.type_unit');
-            $join->on('t004s.code_payment', '=', 't006s.code_payment');
-		})
+		$transaksi = T101::join('t002s', 't002s.ktp', '=', 't101s.referral_from')
 		->select([
-			't006s.*',
-			't004s.name_payment'
+			't101s.*',
+			't002s.name'
 		])
 		->get();
+		$t002s = User::all();
 
-		return view('master.harga', compact('price', 'no'));
+		return view('transaksi.booking', compact('transaksi', 't002s', 'no'));
 
 	}
 
@@ -90,6 +85,8 @@ class HargaController extends Controller {
 	 * @return \Illuminate\Http\Response
 	 */
 	public function destroy($id) {
-		//
+		$t101s = T101::destroy($id);
+
+		return redirect()->back()->with('msg', 'Data dihapus');
 	}
 }

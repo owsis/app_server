@@ -1,13 +1,15 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Transaksi;
 
+use App\Http\Controllers\Controller;
+use App\T551;
+use App\T531;
 use App\T101;
-use App\User;
 use Illuminate\Http\Request;
 use redirect;
 
-class BookingController extends Controller {
+class AngsuranController extends Controller {
 	/**
 	 * Display a listing of the resource.
 	 *
@@ -15,10 +17,11 @@ class BookingController extends Controller {
 	 */
 	public function index() {
 		$no = 1;
-		$transaksi = T101::all();
-		$t002s = User::all();
+		$num = 1;
+		$transaksi = T551::all();
+		$t101s = T101::all();
 
-		return view('transaksi.booking', compact('transaksi', 't002s', 'no'));
+		return view('transaksi.angsuran', compact('transaksi', 't101s', 'no', 'num'));
 
 	}
 
@@ -37,8 +40,22 @@ class BookingController extends Controller {
 	 * @param  \Illuminate\Http\Request  $request
 	 * @return \Illuminate\Http\Response
 	 */
-	public function store(Request $request) {
-		//
+	public function store($code) {
+
+		$angsuran = new T551;
+		$angsuran->code_customer = $code;
+		$angsuran->type= 0;
+		$angsuran->totalloan= 0;
+		$angsuran->totalpayment= 0;
+		$angsuran->status= 0;
+		$angsuran->save();
+
+		session(['idangsuran' => $angsuran->code_customer]);
+		session(['idkonsumen' => $angsuran->id]);
+		session(['idcustomer' => $code]);
+
+		return redirect('/angsuran/detail');
+
 	}
 
 	/**

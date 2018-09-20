@@ -37,8 +37,14 @@ Route::put('/carabayar/update/{id}', 'Master\CarabayarController@update');
 Route::delete('/carabayar/del/{id}', 'Master\CarabayarController@destroy');
 
 //TABLE TRANSAKSI
-Route::get('/booking', 'BookingController@index');
-Route::post('/booking/del/{id}', 'BookingController@destroy')->name('booking.del');
+Route::get('/booking', 'Transaksi\BookingController@index');
+Route::post('/booking/del/{id}', 'Transaksi\BookingController@destroy')->name('booking.del');
+
+Route::get('/angsuran', 'Transaksi\AngsuranController@index');
+Route::post('/angsuran/post/{code}', 'Transaksi\AngsuranController@store')->name('angsuran.post');
+
+Route::get('/angsuran/detail', 'Transaksi\AngsuranDetailController@index')->name('angsuran_detail.get');
+Route::post('/angsuran/detail/post', 'Transaksi\AngsuranDetailController@store')->name('angsuran_detail.post');
 
 Route::get('/paymentype', function () {
 

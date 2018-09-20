@@ -58,7 +58,7 @@
             <div class="m-subheader ">
                 <div class="d-flex align-items-center">
                     <div class="mr-auto">
-                        <h3 class="m-subheader__title m-subheader__title--separator">DATA HARGA UNIT</h3>
+                        <h3 class="m-subheader__title m-subheader__title--separator">DATA BOOKING</h3>
                         <ul class="m-subheader__breadcrumbs m-nav m-nav--inline">
                             <li class="m-nav__item m-nav__item--home">
                                 <a href="#" class="m-nav__link m-nav__link--icon">
@@ -68,13 +68,13 @@
                             <li class="m-nav__separator">-</li>
                             <li class="m-nav__item">
                                 <a href="" class="m-nav__link">
-                                    <span class="m-nav__link-text">Master</span>
+                                    <span class="m-nav__link-text">Transaksi</span>
                                 </a>
                             </li>
                             <li class="m-nav__separator">-</li>
                             <li class="m-nav__item">
                                 <a href="" class="m-nav__link">
-                                    <span class="m-nav__link-text">Harga</span>
+                                    <span class="m-nav__link-text">Booking</span>
                                 </a>
                             </li>
                         </ul>
@@ -149,7 +149,7 @@
                                 <th>KPR</th>
                                 <th>CASH</th>
                                 <th>Marketing</th>
-                                <th>Status UTJ</th>
+                                {{-- <th>Status UTJ</th> --}}
                                 <th>Status Unit</th>
                                 <th>Aksi</th>
                             </tr>
@@ -167,8 +167,8 @@
                                 <td>Rp. {{ number_format($data->dp) }}</td>
                                 <td>Rp. {{ number_format($data->kpr) }}</td>
                                 <td>Rp. {{ number_format($data->cash) }}</td>
-                                <td>{{ $data->referral_from }}</td>
-                                <td>{{ $data->status_fp }}</td>
+                                <td>{{ $data->name }}</td>
+                                {{-- <td>{{ $data->status_fp }}</td> --}}
                                 <td>{{ $data->status }}</td>
                                 <td nowrap>
                                   <span class="dropdown">
@@ -230,7 +230,7 @@
                               <th class="sumFooter">KPR</th>
                               <th class="sumFooter">CASH</th>
                               <th>Marketing</th>
-                              <th>Status UTJ</th>
+                              {{-- <th>Status UTJ</th> --}}
                               <th>Status Unit</th>
                               <th>Aksi</th>
                             </tr>

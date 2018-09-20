@@ -49,8 +49,7 @@ class T002Controller extends Controller
             'phone'         => $req->phone,
             'phone2'        => $req->phone2,
             'ktp'           => $req->ktp,
-            'npwp'          => $req->npwp,
-            'referral_code' => $req->ktp,
+            'npwp'          => $req->npwp
         ]);
 
         return response()->json($t002s);
