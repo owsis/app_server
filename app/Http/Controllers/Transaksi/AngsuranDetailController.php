@@ -18,13 +18,44 @@ class AngsuranDetailController extends Controller {
 	public function index() {
 
 		$no = 1;
-		$idkonsumen = session('idkonsumen');
-		$idangsuran = session('idangsuran');
-		$idcustomer = T101::where('code_customer', session('idcustomer'))->first();
-		$transaksi = T531::where('code_customer', session('idcustomer'))->get();
-		$sumbaseamount = T531::where('code_customer', session('idangsuran'))->sum('baseamount');
-		return view('transaksi.angsuran_detail', compact('transaksi', 'idkonsumen', 'idangsuran', 'idcustomer', 'no', 'sumbaseamount'));
+		$id = session('id');
+		$code_customer = session('code_customer');
+		$idcustomer = T101::where('code_customer', session('code_customer'))->first();
+		$sumbaseamount = T531::where('code_customer', session('id'))->sum('baseamount');
+		return view('transaksi.angsuran_detail', compact('transaksi', 'id', 'code_customer', 'idcustomer', 'no', 'sumbaseamount'));
 
+	}
+
+	public function detail($code, $type)
+	{
+		$detail = T531::where([
+			'code_customer' => $code, 
+			'type' => $type
+		])->get();
+
+		$no = 0;
+		$data = array();
+		foreach ($detail as $list) {
+			$no++;
+			$row = array();
+			$row[] = $no;
+			$row[] = $list->code_customer;
+			$row[] = $list->payment_schedule;
+			$row[] = $list->type;
+			$row[] = $list->description;
+			$row[] = $list->baseamount;
+			$row[] = $list->billamount;
+			$row[] = $list->status;
+			$row[] = 
+			'<a href="#" class="m-portlet__nav-link btn m-btn m-btn--hover-brand m-btn--icon m-btn--icon-only m-btn--pill" title="View">
+			<i class="la la-edit"></i>
+			</a>';
+			$data[] = $row;
+
+		}
+
+		$output = array("data"=> $data);
+		return response()->json($output);
 	}
 
 	/**
@@ -62,10 +93,32 @@ class AngsuranDetailController extends Controller {
 
 		}
 
+		// $sumbaseamount = T531::where(['code_customer' => $request['code_customer'], 'type' => $request['type']])->sum('baseamount');
+
+		// T551::where('id', session('idkonsumen'))->update([
+		// 	'type' => $request['type'],
+		// 	'totalloan' => $sumbaseamount
+		// ]);
+
 		session(['type_angsuran' => $request['type']]);
 
 		return redirect()->back()->with('msg', 'Data berhasil dibuat');
 
+	}
+
+	public function save()
+	{
+		$sumbaseamount = T531::where([
+			'code_customer' => session('code_customer'), 
+			'type' => session('type_angsuran')
+		])->sum('baseamount');
+
+		T551::where('id', session('id'))->update([
+			'type' => session('type_angsuran'),
+			'totalloan' => $sumbaseamount
+		]);
+
+		return redirect('/angsuran')->with('msg', 'Data Angsuran secara detail berhasil dibuat');
 	}
 
 	/**

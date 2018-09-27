@@ -38,12 +38,21 @@ Route::delete('/carabayar/del/{id}', 'Master\CarabayarController@destroy');
 
 //TABLE TRANSAKSI
 Route::get('/booking', 'Transaksi\BookingController@index');
+Route::get('/booking/pdf/{code}', 'Transaksi\BookingController@generate_pdf');
+Route::get('/booking/pdf/test', function () {
+	return view('transaksi.pdf');
+});
 Route::post('/booking/del/{id}', 'Transaksi\BookingController@destroy')->name('booking.del');
 
 Route::get('/angsuran', 'Transaksi\AngsuranController@index');
+Route::get('/angsuran/view', 'Transaksi\AngsuranController@transaksi')->name('angsuran.view');
+Route::get('/angsuran/view/{id}', 'Transaksi\AngsuranController@detail');
 Route::post('/angsuran/post/{code}', 'Transaksi\AngsuranController@store')->name('angsuran.post');
+Route::post('/angsuran/delete/{code}', 'Transaksi\AngsuranController@destroy')->name('angsuran.del');
 
 Route::get('/angsuran/detail', 'Transaksi\AngsuranDetailController@index')->name('angsuran_detail.get');
+Route::get('/angsuran/detail/{code}/{type}', 'Transaksi\AngsuranDetailController@detail');
+Route::get('/angsuran/detail/save', 'Transaksi\AngsuranDetailController@save');
 Route::post('/angsuran/detail/post', 'Transaksi\AngsuranDetailController@store')->name('angsuran_detail.post');
 
 Route::get('/paymentype', function () {

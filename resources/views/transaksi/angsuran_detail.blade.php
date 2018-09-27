@@ -116,12 +116,21 @@
 
 									<li class="m-portlet__nav-item"></li>
 									<li class="m-portlet__nav-item">
+										@if(session()->has('type_angsuran'))
+										<a href="{{ url('/angsuran/detail/save') }}" class="btn btn-accent m-btn m-btn--custom m-btn--icon m-btn--air">
+											<span>
+												<i class="la la-floppy-o"></i>
+												<span>Simpan Angsuran</span>
+											</span>
+										</a>
+										@else
 										<button type="button" class="btn btn-accent m-btn m-btn--custom m-btn--icon m-btn--air" data-toggle="modal" data-target="#m_modal_1">
 											<span>
 												<i class="la la-plus"></i>
 												<span>Buat Angsuran</span>
 											</span>
 										</button>
+										@endif
 									</li>
 								</ul>
 							</div>
@@ -144,33 +153,21 @@
 									</tr>
 								</thead>
 								<tbody>
-									@foreach($transaksi as $data)
-									<tr>
-										<td>{{ $no++ }}</td>
-										<td>{{ $data->code_customer }}</td>
-										<td>{{ $data->payment_schedule }}</td>
-										<td>{{ $data->type }}</td>
-										<td>{{ $data->description }}</td>
-										<td>{{ $data->baseamount }}</td>
-										<td>{{ $data->billamount }}</td>
-										<td>{{ $data->status }}</td>
-										<td nowrap>
-											<span class="dropdown">
-												<a href="#" class="btn m-btn m-btn--hover-brand m-btn--icon m-btn--icon-only m-btn--pill" data-toggle="dropdown" aria-expanded="true">
-													<i class="la la-ellipsis-h"></i>
-												</a>
-												<div class="dropdown-menu dropdown-menu-right">
-													<a class="dropdown-item" href="#"><i class="la la-edit"></i> Edit Details</a>
-													<button class="dropdown-item" type="button" data-toggle="modal" data-target="#m_modal_{{ $data->id }}"><i class="la la-trash"></i> Delete Data</button>
-												</div>
-											</span>
-											<a href="#" class="m-portlet__nav-link btn m-btn m-btn--hover-brand m-btn--icon m-btn--icon-only m-btn--pill" title="View">
-												<i class="la la-edit"></i>
-											</a>
-										</td>
-									</tr>
-									@endforeach
+									
 								</tbody>
+								<tfoot>
+									<tr>
+										<th>#</th>
+										<th>Kode Konsumen</th>
+										<th>Pembayaran</th>
+										<th>Tipe</th>
+										<th>Deskripsi</th>
+										<th>Base Amount</th>
+										<th>Bill Amout</th>
+										<th>Status</th>
+										<th>Aksi</th>
+									</tr>
+								</tfoot>
 							</table>
 						</div>
 					</div>
@@ -255,9 +252,12 @@
 			});
 
 			$('#m_table_1').DataTable({
-				buttons: [
-				'copy', 'excel', 'pdf'
-				],
+				processing: true,
+				serverside: true,
+				ajax: {
+					url: '{{ url("angsuran/detail/".session("code_customer")."/".session("type_angsuran")) }}',
+					type: 'GET'
+				},
 				footerCallback: function(a, b) {
 					var o = this.api(),
 					l = function(a) {
@@ -287,47 +287,6 @@
 					}, 0);
 					$(o.column(6).footer()).html("Rp. " + mUtil.numberString(i.toFixed(0)));
 
-					var o = this.api(),
-					l = function(a) {
-						return "string" == typeof a ? 1 * a.replace(/[\Rp.,]/g, "") : "number" == typeof a ? a : 0
-					},
-					u = o.column(7).data().reduce(function(a, b) {
-						return l(a) + l(b)
-					}, 0),
-					i = o.column(7, {
-						page: "current"
-					}).data().reduce(function(a, b) {
-						return l(a) + l(b)
-					}, 0);
-					$(o.column(7).footer()).html("Rp. " + mUtil.numberString(i.toFixed(0)));
-
-					var o = this.api(),
-					l = function(a) {
-						return "string" == typeof a ? 1 * a.replace(/[\Rp.,]/g, "") : "number" == typeof a ? a : 0
-					},
-					u = o.column(8).data().reduce(function(a, b) {
-						return l(a) + l(b)
-					}, 0),
-					i = o.column(8, {
-						page: "current"
-					}).data().reduce(function(a, b) {
-						return l(a) + l(b)
-					}, 0);
-					$(o.column(8).footer()).html("Rp. " + mUtil.numberString(i.toFixed(0)));
-
-					var o = this.api(),
-					l = function(a) {
-						return "string" == typeof a ? 1 * a.replace(/[\Rp.,]/g, "") : "number" == typeof a ? a : 0
-					},
-					u = o.column(9).data().reduce(function(a, b) {
-						return l(a) + l(b)
-					}, 0),
-					i = o.column(9, {
-						page: "current"
-					}).data().reduce(function(a, b) {
-						return l(a) + l(b)
-					}, 0);
-					$(o.column(9).footer()).html("Rp. " + mUtil.numberString(i.toFixed(0)));
 				},
 
 			});

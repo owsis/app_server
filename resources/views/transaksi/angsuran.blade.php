@@ -87,11 +87,11 @@
 					@if(session()->has('msg'))
 					<div class="m-alert m-alert--icon m-alert--icon-solid m-alert--outline alert alert-success alert-dismissible fade show" role="alert">
 						<div class="m-alert__icon">
-							<i class="flaticon-close"></i>
+							<i class="la la-check-circle"></i>
 							<span></span>
 						</div>
 						<div class="m-alert__text">
-							<strong>Sukses!</strong> Data telah dihapus.
+							<strong>Sukses!</strong> {{ session()->get('msg') }}
 						</div>
 						<div class="m-alert__close">
 							<button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -152,83 +152,18 @@
 									</tr>
 								</thead>
 								<tbody>
-									@foreach($transaksi as $data)
-									<tr>
-										<td>{{ $no++ }}</td>
-										<td>{{ $data->code_customer }}</td>
-										<td>{{ $data->type }}</td>
-										<td>{{ $data->totalloan }}</td>
-										<td>{{ $data->totalpayment }}</td>
-										<td>{{ $data->status }}</td>
-										<td>{{ $data->created_at->format('d M Y') }}</td>
-										<td nowrap>
-											<span class="dropdown">
-												<a href="#" class="btn m-btn m-btn--hover-brand m-btn--icon m-btn--icon-only m-btn--pill" data-toggle="dropdown" aria-expanded="true">
-													<i class="la la-ellipsis-h"></i>
-												</a>
-												<div class="dropdown-menu dropdown-menu-right">
-													<button class="dropdown-item" type="button" data-toggle="modal" data-target="#m_modal_{{ $data->id }}">
-														<i class="la la-edit"></i> Lihat Detail
-													</button>
-													<a class="dropdown-item" href="#"><i class="la la-leaf"></i> Update Status</a>
-													<button class="dropdown-item" type="button" data-toggle="modal" data-target="#m_modal_{{ $data->id }}"><i class="la la-trash"></i> Delete Data</button>
-													<a class="dropdown-item" href="#"><i class="la la-print"></i> Generate Report {{ Session::get('idkonsumen')}}</a>
-												</div>
-											</span>
-											<a href="#" class="m-portlet__nav-link btn m-btn m-btn--hover-brand m-btn--icon m-btn--icon-only m-btn--pill" title="View">
-												<i class="la la-edit"></i>
-											</a>
-										</td>
-									</tr>
-
-									<!-- BEGIN MODAL -->
-									<div class="modal fade" id="m_modal_{{ $data->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-										<div class="modal-dialog modal-lg" role="document">
-											<div class="modal-content">
-												<div class="modal-header">
-													<h3 class="modal-title" id="exampleModalLabel">Detail Angsuran</h3>
-													<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-														<span aria-hidden="true">&times;</span>
-													</button>
-												</div>
-												<div class="modal-body">
-													<table class="table table-striped- table-bordered table-hover table-checkable">
-														<thead>
-															<tr>
-																<th>#</th>
-																<th>Kode Konsumen</th>
-																<th>Nama Konsumen</th>
-																<th>Kode Unit</th>
-																<th>Aksi</th>
-															</tr>
-														</thead>
-														<tbody>
-															@foreach($t101s as $data)
-															<tr>
-																<td>{{ $num++ }}</td>
-																<td>{{ $data->code_customer }}</td>
-																<td>{{ $data->name_customer }}</td>
-																<td>{{ $data->code_unit }}</td>
-																<td nowrap>
-																	<form method="POST" action="{{ route('angsuran.post', $data->code_customer ) }}">
-																		{{ csrf_field() }}
-																		<button type="submit" class="m-portlet__nav-link btn m-btn m-btn--hover-brand m-btn--icon m-btn--icon-only m-btn--pill" title="Pilih">
-																			<i class="la la-check"></i>
-																		</button>
-																	</form>
-																</td>
-															</tr>
-															@endforeach
-														</tbody>
-													</table>
-												</div>
-											</div>
-										</div>
-									</div>
-									<!-- END MODAL -->
-
-									@endforeach
+									
 								</tbody>
+								<tfoot>
+									<th>#</th>
+									<th>Kode Konsumen</th>
+									<th>Tipe</th>
+									<th>Total Loan</th>
+									<th>Total Payment</th>
+									<th>Status</th>
+									<th>Tgl. Buat</th>
+									<th>Aksi</th>
+								</tfoot>
 							</table>
 						</div>
 					</div>
@@ -279,6 +214,40 @@
 						</div>
 					</div>
 					<!-- END MODAL -->
+
+					<!-- BEGIN MODAL -->
+					<div class="modal fade" id="m_modal_2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+						<div class="modal-dialog modal-lg" role="document">
+							<div class="modal-content">
+								<div class="modal-header">
+									<h3 class="modal-title" id="exampleModalLabel">Tambah Transaksi</h3>
+									<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+										<span aria-hidden="true">&times;</span>
+									</button>
+								</div>
+								<div class="modal-body">
+									<table class="table table-striped- table-bordered table-hover table-checkable table-detail">
+										<thead>
+											<tr>
+												<th>#</th>
+												<th>Kode Konsumen</th>
+												<th>Jadwal Pembayaran</th>
+												<th>Tipe Pembayaran</th>
+												<th>Deskripsi</th>
+												<th>Jumlah Dasar</th>
+												<th>Jumlah Tagihan</th>
+												<th>Aksi</th>
+											</tr>
+										</thead>
+										<tbody>
+											
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- END MODAL -->
 				</div>
 
 			</div>
@@ -299,81 +268,65 @@
 
 	<!--begin::Page Resources -->
 	<script type="text/javascript">
+		var tableDetail;
+		$(function() {
+			tableDetail = $('.table-detail').DataTable({
+                // "dom" : 'Brt',
+                "bSort" : false,
+                "processing" : true
+              });
+		})
+
+		function viewDetail(id) {
+			$('#m_modal_2').modal()
+			tableDetail.ajax.url('angsuran/view/'+ id)
+			tableDetail.ajax.reload()
+		}
+
+		// function viewDetail(code, type) {
+		// 	alert()
+		// }
+		function deleteData(id) {
+			
+		}
+
 		$(document).ready( function () {
 			$('#m_table_1').DataTable({
-				buttons: [
-				'copy', 'excel', 'pdf'
-				],
+				processing: true,
+				serverside: true,
+				ajax: {
+					url: '{{ url('angsuran/view') }}',
+					type: 'GET'
+				},
 				footerCallback: function(a, b) {
 					var o = this.api(),
 					l = function(a) {
 						return "string" == typeof a ? 1 * a.replace(/[\Rp.,]/g, "") : "number" == typeof a ? a : 0
 					},
-					u = o.column(5).data().reduce(function(a, b) {
+					u = o.column(3).data().reduce(function(a, b) {
 						return l(a) + l(b)
 					}, 0),
-					i = o.column(5, {
+					i = o.column(3, {
 						page: "current"
 					}).data().reduce(function(a, b) {
 						return l(a) + l(b)
 					}, 0);
-					$(o.column(5).footer()).html("Rp. " + mUtil.numberString(i.toFixed(0)));
+					$(o.column(3).footer()).html("Rp. " + mUtil.numberString(i.toFixed(0)));
 
 					var o = this.api(),
 					l = function(a) {
 						return "string" == typeof a ? 1 * a.replace(/[\Rp.,]/g, "") : "number" == typeof a ? a : 0
 					},
-					u = o.column(6).data().reduce(function(a, b) {
+					u = o.column(4).data().reduce(function(a, b) {
 						return l(a) + l(b)
 					}, 0),
-					i = o.column(6, {
+					i = o.column(4, {
 						page: "current"
 					}).data().reduce(function(a, b) {
 						return l(a) + l(b)
 					}, 0);
-					$(o.column(6).footer()).html("Rp. " + mUtil.numberString(i.toFixed(0)));
+					$(o.column(4).footer()).html("Rp. " + mUtil.numberString(i.toFixed(0)));
 
-					var o = this.api(),
-					l = function(a) {
-						return "string" == typeof a ? 1 * a.replace(/[\Rp.,]/g, "") : "number" == typeof a ? a : 0
-					},
-					u = o.column(7).data().reduce(function(a, b) {
-						return l(a) + l(b)
-					}, 0),
-					i = o.column(7, {
-						page: "current"
-					}).data().reduce(function(a, b) {
-						return l(a) + l(b)
-					}, 0);
-					$(o.column(7).footer()).html("Rp. " + mUtil.numberString(i.toFixed(0)));
-
-					var o = this.api(),
-					l = function(a) {
-						return "string" == typeof a ? 1 * a.replace(/[\Rp.,]/g, "") : "number" == typeof a ? a : 0
-					},
-					u = o.column(8).data().reduce(function(a, b) {
-						return l(a) + l(b)
-					}, 0),
-					i = o.column(8, {
-						page: "current"
-					}).data().reduce(function(a, b) {
-						return l(a) + l(b)
-					}, 0);
-					$(o.column(8).footer()).html("Rp. " + mUtil.numberString(i.toFixed(0)));
-
-					var o = this.api(),
-					l = function(a) {
-						return "string" == typeof a ? 1 * a.replace(/[\Rp.,]/g, "") : "number" == typeof a ? a : 0
-					},
-					u = o.column(9).data().reduce(function(a, b) {
-						return l(a) + l(b)
-					}, 0),
-					i = o.column(9, {
-						page: "current"
-					}).data().reduce(function(a, b) {
-						return l(a) + l(b)
-					}, 0);
-					$(o.column(9).footer()).html("Rp. " + mUtil.numberString(i.toFixed(0)));
 				},
 
 			});

@@ -11,6 +11,7 @@
         "irazasyed/jwt-auth-guard": "^1.0",
         "laravel/framework": "5.3.*",
         "laravelcollective/html": "^5.3.0",
+        "niklasravnsborg/laravel-pdf": "^2.0",
         "spatie/laravel-fractal": "4.0",
         "tymon/jwt-auth": "dev-develop"
     },

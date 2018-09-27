@@ -181,6 +181,7 @@ return [
 		Spatie\Fractal\FractalServiceProvider::class,
 		Intervention\Image\ImageServiceProvider::class,
 		Irazasyed\JwtAuthGuard\JwtAuthGuardServiceProvider::class,
+		niklasravnsborg\LaravelPdf\PdfServiceProvider::class,
 
 	],
 
@@ -233,6 +234,7 @@ return [
 		'View' => Illuminate\Support\Facades\View::class,
 		'Form' => Collective\Html\FormFacade::class,
 		'Html' => Collective\Html\HtmlFacade::class,
+		'PDF' => niklasravnsborg\LaravelPdf\Facades\Pdf::class,
 
 	],
 
